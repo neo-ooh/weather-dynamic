@@ -1,0 +1,53 @@
+.city-line {
+    position: relative;
+    width: 100%;
+    height: 185px;
+
+    background-color: $transparent-background;
+
+    &:not(:first-child) {
+        margin-top: 5px;
+    }
+
+    .temperature-block {
+        position: relative;
+        width: 320px;
+        height: 100%;
+
+        background-color: transparentize($transparent-background, .2);
+
+        .temperature {
+            display: block;
+            width: 100%;
+            padding: 17px 0 0 5px;
+
+            text-align: center;
+            color: white;
+            font-size: 100pt;
+            font-weight: 700;
+        }
+    }
+
+    .weather-icon {
+        position: absolute;
+        top: 20px;
+        left: 320px;
+
+        width: 400px;
+        height: 145px;
+
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .city-name {
+        position: absolute;
+        top: 22px;
+        left: 730px;
+
+        color: white;
+        font-size: 90pt;
+        font-weight: 700;
+    }
+}

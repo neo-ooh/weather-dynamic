@@ -1,0 +1,39 @@
+#error-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 1920px;
+    height: 1080px;
+    text-align: center;
+
+    &.FCL {
+        width: 1920px;
+        height: 1080px;
+    }
+
+    h1 {
+        margin: 280px auto 0;
+        font-size: 140pt;
+    }
+
+    h3 {
+        margin-top: -30px;
+        font-size: 80pt;
+        color: #ff4a60;
+    }
+
+    h5 {
+        font-size: 30pt;
+        font-style: italic;
+        font-weight: 500;
+        color: $grey;
+    }
+
+    h6 {
+        font-size: 15pt;
+        font-style: normal;
+        font-weight: 500;
+        color: $grey;
+    }
+}

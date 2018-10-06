@@ -1,0 +1,16 @@
+#log-block {
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    width: 1920px;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+
+    color: #FFF;
+
+    p {
+        margin: 15px 20px;
+        font-size: 36pt;
+    }
+}

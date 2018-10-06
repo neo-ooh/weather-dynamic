@@ -1,0 +1,62 @@
+{
+	"dawn": {
+		"sunny": "",
+		"mostly-sunny": "",
+		"partly-sunny": "",
+		"mostly-cloudy": "",
+		"cloudy": "",
+		"rain-and-sun": "",
+		"rain": "",
+		"heavy-rain": "",
+		"storm-clouds": "",
+		"thunderstorms": "",
+		"snow-and-rain": "",
+		"snow": "",
+		"fog": ""
+	},
+	"day": {
+		"sunny": "",
+		"mostly-sunny": "",
+		"partly-sunny": "",
+		"mostly-cloudy": "",
+		"cloudy": "",
+		"rain-and-sun": "",
+		"rain": "",
+		"heavy-rain": "",
+		"storm-clouds": "",
+		"thunderstorms": "",
+		"snow-and-rain": "",
+		"snow": "",
+		"fog": ""
+	},
+	"dusk": {
+		"sunny": "",
+		"mostly-sunny": "",
+		"partly-sunny": "",
+		"mostly-cloudy": "",
+		"cloudy": "",
+		"rain-and-sun": "",
+		"rain": "",
+		"heavy-rain": "",
+		"storm-clouds": "",
+		"thunderstorms": "",
+		"snow-and-rain": "",
+		"snow": "",
+		"fog": ""
+	},
+	"evening": {
+		"sunny": "",
+		"mostly-sunny": "",
+		"partly-sunny": "",
+		"mostly-cloudy": "",
+		"cloudy": "",
+		"rain-and-sun": "",
+		"rain": "",
+		"heavy-rain": "",
+		"storm-clouds": "",
+		"thunderstorms": "",
+		"snow-and-rain": "",
+		"snow": "",
+		"fog": ""
+	}
+}

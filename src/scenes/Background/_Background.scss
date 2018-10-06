@@ -1,0 +1,42 @@
+#background-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+#main-background {
+    width: 100%;
+    height: 100%;
+
+    background-color: $blue;
+    background-repeat: no-repeat;
+    background-position: top left;
+
+    transition: .75s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-property: opacity;
+
+    &.transition-background-appear,
+    &.transition-background-enter
+    {
+        position: absolute;
+
+        opacity: 0;
+
+        &.transition-background-appear-active,
+        &.transition-background-enter-active
+        {
+            opacity: 1;
+        }
+    }
+
+    &.transition-background-leave
+    {
+
+        transition: .25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        opacity: 1;
+
+        &.transition-background-leave-active
+        {
+            opacity: 0.01;
+        }
+    }
+}

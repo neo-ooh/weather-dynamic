@@ -1,0 +1,118 @@
+#Captions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+
+    .top-bar
+    {
+        position: absolute;
+        z-index: 100;
+        width: 1565px;
+        height: 195px;
+
+        top: 265px;
+        left: 0;
+
+        background-color: rgba(0, 0, 0, .4);
+
+        span {
+            display: block;
+            margin: -15px 0 0 400px;
+
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 195pt;
+
+            text-shadow: 0 5px 5px rgba(0, 0, 0, .25);
+        }
+    }
+
+    .middle-bar
+    {
+        position: absolute;
+        z-index: 80;
+        width: 1675px;
+        height: 160px;
+
+        top: 460px;
+        left: 0;
+
+        background-color: rgba(0, 0, 0, 1);
+
+        span {
+            display: block;
+            width: 1625px;
+            margin: 40px 0 0 0;
+            padding: 0 25px;
+
+            color: white;
+            font-size: 101pt;
+            font-weight: 700;
+            text-transform: none;
+            text-transform: uppercase;
+            text-align: right;
+        }
+    }
+
+    .bottom-bar
+    {
+        position: absolute;
+        width: 1425px;
+        height: 125px;
+
+        top: 620px;
+        left: 0;
+
+        background-color: $yellow;
+
+        span {
+            display: block;
+            width: 1375px;
+            margin:18px 0 0 0;
+            padding: 0 25px;
+
+            color: black;
+            font-size: 90pt;
+            font-weight: 700;
+            text-align: right;
+
+            transition: .75s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-property: margin-left, opacity;
+
+            &.transition-captions-appear,
+            &.transition-captions-enter
+            {
+                position: absolute;
+
+                opacity: 0;
+                margin-left: -250px;
+
+                &.transition-captions-appear-active,
+                &.transition-captions-enter-active
+                {
+                    opacity: 1;
+                    margin-left: 0;
+                }
+            }
+
+            &.transition-captions-leave
+            {
+
+                transition: .25s cubic-bezier(0.645, 0.045, 0.355, 1);
+                opacity: 1;
+                margin-left: 0;
+
+                &.transition-captions-leave-active
+                {
+                    opacity: 0.01;
+                    margin-left: 30px;
+                }
+            }
+        }
+    }
+}
+
+

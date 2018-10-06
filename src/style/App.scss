@@ -1,0 +1,25 @@
+// MAIN CSS ENTRY POINT
+@import 'colors';
+@import 'mixins/font-face';
+
+@import '../scenes/Background/Background';
+@import '../scenes/Captions/Captions';
+@import '../scenes/Error/Error';
+@import '../scenes/Forecast/Forecast';
+@import '../scenes/Forecast/DayColumn/DayColumn';
+@import '../scenes/Log/Log';
+@import '../scenes/National/National';
+@import '../scenes/National/CityLine/CityLine';
+@import '../scenes/OneDay/OneDay';
+
+@include font-face(Gotham, "/fonts/Gotham-Book", 500, normal, otf);
+@include font-face(Gotham, "/fonts/Gotham-Bold", 700, normal, otf);
+@include font-face(Gotham, "/fonts/Gotham-Light", 300, normal, otf);
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+
+    font-family: Gotham;
+}

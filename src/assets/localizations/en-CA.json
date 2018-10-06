@@ -1,0 +1,28 @@
+{
+	"weather": "Weather",
+	"national": {
+		"top": "National",
+		"bottom": "Weather"
+	},
+	"now": "Now",
+	"today": "Today",
+	"tomorrow": "Tomorrow",
+	"forecast": "Five days forecast",
+	"updatedOn": "Updated on",
+	"stats": {
+		"wind": "Wind",
+		"feelsLike": "Feels like",
+		"max": "H",
+		"min": "L",
+		"pop": "Chance of rain"
+	},
+	"days": {
+		"0": "Sun",
+		"1": "Mon",
+		"2": "Tue",
+		"3": "Wed",
+		"4": "Thu",
+		"5": "Fri",
+		"6": "Sat"
+	}
+}

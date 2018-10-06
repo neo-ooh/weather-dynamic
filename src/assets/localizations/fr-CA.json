@@ -1,0 +1,28 @@
+{
+	"weather": "Météo",
+	"national": {
+		"top": "Météo",
+		"bottom": "Nationale"
+	},
+	"now": "Maintenant",
+	"today": "Aujourd'hui",
+	"tomorrow": "Demain",
+	"forecast": "Cinq prochains jours",
+	"updatedOn": "Mis à jour",
+	"stats": {
+		"wind": "Vent",
+		"feelsLike": "Ressenti",
+		"max": "Max",
+		"min": "Min",
+		"pop": "Risque de pluie"
+	},
+	"days": {
+		"0": "Dim",
+		"1": "Lun",
+		"2": "Mar",
+		"3": "Mer",
+		"4": "Jeu",
+		"5": "Ven",
+		"6": "Sam"
+	}
+}
