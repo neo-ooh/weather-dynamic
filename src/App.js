@@ -81,16 +81,12 @@ class App extends Component {
 
   componentDidMount () {
     // LOCALIZATION ----
-    let country = null
-    let province = null
-    let city = null
-
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), address => {
-        country = 'CA'
-        province = address.province
-        city = address.city
+        let country = 'CA'
+        let province = address.state
+        let city = address.city
 
 
         this.log('Country: ' + country + ', Province: ' + province + ', City: ' + city)
@@ -106,9 +102,9 @@ class App extends Component {
     this.log('Detecting location using URL parameters')
     const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
 
-    country = urlParameters.country || 'CA'
-    province = urlParameters.province || ''
-    city = urlParameters.city || ''
+    let country = urlParameters.country || 'CA'
+    let province = urlParameters.province || ''
+    let city = urlParameters.city || ''
 
     this.log('Country: ' + country + ', Province: ' + province + ', City: ' + city)
 
