@@ -87,12 +87,12 @@ class App extends Component {
 
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
-      this.log(encodeURIComponent(window.BroadSignObject.display_unit_address))
-      /* const address = parseAdress(window.BroadSignObject.display_unit_address)
+      this.log(decodeURIComponent(window.BroadSignObject.display_unit_address))
+      const address = parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address))
 
       country = address.country || 'CA'
       province = address.state
-      city = address.city */
+      city = address.city
    } else {
       this.log('Detecting location using URL parameters')
       const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
