@@ -87,6 +87,7 @@ class App extends Component {
 
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
+      this.log(window.BroadSignObject.display_unit_latlong)
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), (error, address) => {
         if (error) {
           return this.onError('Could not parse adresse : ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
