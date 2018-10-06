@@ -87,7 +87,7 @@ class National extends Component {
 
   componentDidUpdate (prevProps) {
     if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
-      this.props.log('Beggining display')
+      this.props.log('Begining display')
 
       setTimeout(() => {
         this.setState({

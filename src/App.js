@@ -7,6 +7,7 @@ import Now from './scenes/Now/Now'
 import URL from 'url-parse'
 import querystring from 'querystring'
 import WeatherAPI from 'library/WeatherAPI'
+import { stopDisplay } from './library/Broadsignlink'
 
 import { renderToStaticMarkup } from 'react-dom/server'
 import { withLocalize } from 'react-localize-redux'
@@ -70,6 +71,7 @@ class App extends Component {
       errorMsg: 'Screen localization could not be determined',
 
       // Debugging
+      production: true,
       logs: []
     }
 
@@ -165,6 +167,10 @@ class App extends Component {
       onError: true,
       errorMsg: message
     })
+
+    if (this.state.production) {
+      stopDisplay()
+    }
   }
 
   render () {
@@ -172,7 +178,7 @@ class App extends Component {
       // skip
     }
 
-    const logs = <Log logs={this.state.logs} key="logs"/>
+    const logs = this.state.production ? null : <Log logs={this.state.logs} key="logs"/>
 
     if (this.state.localization === null) {
       return logs
