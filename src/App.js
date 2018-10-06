@@ -90,9 +90,9 @@ class App extends Component {
       this.log(decodeURIComponent(window.BroadSignObject.display_unit_address))
       const address = parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address))
 
-      country = address.country || 'CA'
+      /*country = address.country || 'CA'
       province = address.state
-      city = address.city
+      city = address.city*/
    } else {
       this.log('Detecting location using URL parameters')
       const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
