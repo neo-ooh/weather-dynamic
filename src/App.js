@@ -81,10 +81,17 @@ class App extends Component {
 
   componentDidMount () {
     // LOCALIZATION ----
+
+    parseAdress('3700 Saint-Patrick-Street, Montreal, QC H4E 1A1', console.log)
+
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
       this.log(decodeURIComponent(window.BroadSignObject.display_unit_address))
-      return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), address => {
+      return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), (error, address) => {
+        if (error) {
+          return this.onError('Could not parse adresse : ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
+        }
+
         let country = 'CA'
         let province = address.state
         let city = address.city
