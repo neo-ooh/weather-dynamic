@@ -24,6 +24,7 @@ import './style/App.scss'
 class App extends Component {
   contents = {
     'NOW': Now,
+    'TOMORROW': Now,
     'FORECAST': Forecast,
     'NATIONAL': National
   }

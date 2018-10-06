@@ -130,7 +130,8 @@ export default class Now extends Component {
         content={this.state.content}
         weatherData={weatherData}
         player={this.props.player}
-        location={weatherData.Location} />,
+        location={weatherData.Location}
+        log={this.props.log} />,
       <Captions key="captions"
         content={this.state.content}
         localization={weatherData.Location} />,

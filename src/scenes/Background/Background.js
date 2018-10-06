@@ -49,9 +49,10 @@ export default class background extends Component {
     let location
 
     if (this.props.player.isBroadSign) {
+      this.props.log(window.BroadSignObject.display_unit_latlong)
       location = {
-        lat: window.BroadSignObject.display_unit_lat_lng.split(',')[0],
-        lng: window.BroadSignObject.display_unit_lat_lng.split(',')[1]
+        lat: window.BroadSignObject.display_unit_latlong.split(',')[0],
+        lng: window.BroadSignObject.display_unit_latlong.split(',')[1]
       }
     } else {
       location = {
