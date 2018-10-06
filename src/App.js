@@ -85,8 +85,9 @@ class App extends Component {
     let province = null
     let city = null
 
-    if (this.state.player.isBroadSign) {
+    if (true || this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
+      this.log(window.BroadSignObject.display_unit_address)
       const address = parseAdress(window.BroadSignObject.display_unit_address)
 
       country = address.country || 'CA'
