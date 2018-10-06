@@ -83,6 +83,7 @@ class App extends Component {
     // LOCALIZATION ----
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
+      this.log(decodeURIComponent(window.BroadSignObject.display_unit_address))
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), address => {
         let country = 'CA'
         let province = address.state
