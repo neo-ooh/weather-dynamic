@@ -83,11 +83,11 @@ class App extends Component {
   componentDidMount () {
     // LOCALIZATION ----
 
-    parseAdress('3700 Saint-Patrick-Street, Montreal, QC H4E 1A1', console.log)
+    // parseAdress('3700 Saint-Patrick-Street, Montreal, QC H4E 1A1', console.log)
 
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
-      Object.keys(window.BroadSignObject).map(this.log)
+      // Object.keys(window.BroadSignObject).map(this.log)
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), (error, address) => {
         if (error) {
           return this.onError('Could not parse adresse : ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
@@ -178,12 +178,12 @@ class App extends Component {
       return logs
     }
 
-    // const Scene = this.contents[this.state.content]
+    const Scene = this.contents[this.state.content]
 
     return (
       <ErrorBoundary>
         {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
-        { /* !this.state.onError &&
+        { !this.state.onError &&
         <Scene
           key="scene"
           player={this.state.player}
@@ -193,7 +193,7 @@ class App extends Component {
           localization={this.state.localization}
           shouldDisplay={this.state.display}
           log={this.log}
-        /> */ }
+        /> }
         { logs }
       </ErrorBoundary>
     )
