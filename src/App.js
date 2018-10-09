@@ -75,9 +75,6 @@ class App extends Component {
       logs: []
     }
 
-    // Init localization
-    this.initLocalization()
-
     WeatherAPI.setLocale(this.state.locale)
     WeatherAPI.setAPIKey(this.state.APIKey)
   }
@@ -105,7 +102,7 @@ class App extends Component {
           localization: [country, province, city],
           onError: city === null,
           errorMsg: city === null ? oldState.errorMsg : ''
-        }))
+        }), this.initLocalization)
       })
     }
 
@@ -122,7 +119,7 @@ class App extends Component {
       localization: [country, province, city],
       onError: city === null,
       errorMsg: city === null ? oldState.errorMsg : ''
-    }))
+    }), this.initLocalization)
   }
 
   broadSignPlay = () => {
@@ -149,7 +146,12 @@ class App extends Component {
     this.props.addTranslationForLanguage(fr_caLocalization, 'fr-CA')
     this.props.addTranslationForLanguage(en_caLocalization, 'en-CA')
 
-    this.props.setActiveLanguage(this.state.locale)
+    let language = this.state.localization[1] === 'QC' ? 'fr-CA' : 'en-CA'
+
+    const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
+    language = urlParameters.locale || language
+
+    this.props.setActiveLanguage(language)
   }
 
   log = msg => {
