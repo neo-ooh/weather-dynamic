@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
+
+import { renderToStaticMarkup } from 'react-dom/server'
+import { withLocalize } from 'react-localize-redux'
+import parseAdress from 'parse-address-string'
 import windowSize from 'react-window-size'
+import querystring from 'querystring'
+import URL from 'url-parse'
+
+import WeatherAPI from 'library/WeatherAPI'
+import { stopDisplay } from './library/Broadsignlink'
+
 import ErrorBoundary from './scenes/Error/ErrorBoundary'
 import Forecast from './scenes/Forecast/Forecast'
 import National from './scenes/National/National'
 import Now from './scenes/Now/Now'
-import URL from 'url-parse'
-import querystring from 'querystring'
-import WeatherAPI from 'library/WeatherAPI'
-import { stopDisplay } from './library/Broadsignlink'
-
-import { renderToStaticMarkup } from 'react-dom/server'
-import { withLocalize } from 'react-localize-redux'
-
-import fr_caLocalization from 'assets/localizations/fr-CA.json'
-import en_caLocalization from 'assets/localizations/en-CA.json'
-
 import Error from './scenes/Error/Error'
 import Log from './scenes/Log/Log'
 
-import parseAdress from 'parse-address-string'
+import fr_caLocalization from 'assets/localizations/fr-CA.json'
+import en_caLocalization from 'assets/localizations/en-CA.json'
 
 import './style/App.scss'
 
@@ -71,12 +71,14 @@ class App extends Component {
       errorMsg: 'Screen localization could not be determined',
 
       // Debugging
-      production: true,
+      production: process.env.REACT_APP_ENV === 'production',
       logs: []
     }
 
     WeatherAPI.setLocale(this.state.locale)
     WeatherAPI.setAPIKey(this.state.APIKey)
+
+    // Store backgrounds
   }
 
   componentDidMount () {

@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import ErrorBoundary from './scenes/Error/ErrorBoundary'
-import * as serviceWorker from './serviceWorker'
 import { LocalizeProvider } from 'react-localize-redux'
+
+import ErrorBoundary from './scenes/Error/ErrorBoundary'
+import App from './App';
+
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <LocalizeProvider>

@@ -5,6 +5,7 @@
   "homepage": "https://weather.dynamics.ad-direct.ca/",
   "dependencies": {
     "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "node-sass": "^4.9.3",
