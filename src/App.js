@@ -154,6 +154,7 @@ class App extends Component {
     language = urlParameters.locale || language
 
     this.props.setActiveLanguage(language)
+    WeatherAPI.setLocale(language)
   }
 
   log = msg => {
