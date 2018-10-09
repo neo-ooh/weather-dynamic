@@ -66,6 +66,7 @@ class App extends Component {
       localization: null,
 
       // Where are we at ?
+      inited: false,
       display: false,
       onError: false,
       errorMsg: 'Screen localization could not be determined',
@@ -155,6 +156,11 @@ class App extends Component {
 
     this.props.setActiveLanguage(language)
     WeatherAPI.setLocale(language)
+
+    this.setState({
+      locale: language,
+      inited: true
+    })
   }
 
   log = msg => {
@@ -179,6 +185,8 @@ class App extends Component {
   }
 
   render () {
+    if(!this.state.inited) return null
+
     if (this.state.onError && this.state.display) {
       // skip
     }
