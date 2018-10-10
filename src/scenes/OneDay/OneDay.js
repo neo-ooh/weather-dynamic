@@ -41,7 +41,7 @@ class OneDay extends Component {
   getTodayBottomSection () {
     return (
       <div className="bottom-part">
-        <div className="temperature">
+        <div className={ 'temperature ' + (this.props.weatherData.TemperatureC <= 0 ? 'bellow-zero ' : ' ') + (this.props.weatherData.TemperatureC.length > 2 ? 'shrink ' : ' ')}>
           {this.props.weatherData.TemperatureC}°
         </div>
         <div className="details">
@@ -97,7 +97,7 @@ class OneDay extends Component {
             {this.props.weatherData.TemperatureCMin}°
           </div>
         </div>
-        <div className="details wide margin">
+        <div className="details wide centered">
           <div className="detail-line wind">
             <span className="detail-name">
               <Translate id="stats.wind"/>

@@ -71,13 +71,14 @@
         span {
             display: block;
             width: 1375px;
-            margin:18px 0 0 0;
+            margin:35px 0 0 0;
             padding: 0 25px;
 
             color: black;
-            font-size: 90pt;
+            font-size: 75pt;
             font-weight: 700;
             text-align: right;
+            text-transform: uppercase;
 
             transition: .75s cubic-bezier(0.645, 0.045, 0.355, 1);
             transition-property: margin-left, opacity;
