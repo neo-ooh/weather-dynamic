@@ -6,7 +6,7 @@ export function get (url) {
     cache.match(url).then(response => {
       // Is the request missing from the cache
       if (response === undefined) {
-        return add(url).then(response => response.json().then(data => data.content))
+        return add(url).then(response => response.json().then(data => data))
       }
 
       // decode response

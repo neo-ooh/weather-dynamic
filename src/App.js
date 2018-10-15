@@ -7,6 +7,7 @@ import windowSize from 'react-window-size'
 import querystring from 'querystring'
 import URL from 'url-parse'
 import Backgrounds from 'library/Backgrounds'
+import settings from 'library/settings'
 
 import WeatherAPI from 'library/WeatherAPI'
 import { stopDisplay } from './library/Broadsignlink'
@@ -79,11 +80,35 @@ class App extends Component {
 
     WeatherAPI.setLocale(this.state.locale)
     WeatherAPI.setAPIKey(this.state.APIKey)
-
-    // Store backgrounds
   }
 
   componentDidMount () {
+    this.checkCache().then(this.detectLocation())
+  }
+
+
+  checkCache() {
+    // Check cache state and erase if new day
+    const lastUpdate = localStorage.getItem('weather-dynamic-refresh')
+    if(lastUpdate === null) {
+      let d = new Date();
+      d.setHours(0,0,0,0)
+      return Promise.resolve().then(localStorage.setItem('weather-dynamic-refresh', d.getTime()))
+    }
+
+    if(Date.now() - lastUpdate > (1000 * 3600 * 24)) {
+      return caches.delete(settings.cacheName).then(() => {
+        this.log('Cache Cleaned')
+        let d = new Date();
+        d.setHours(0,0,0,0)
+        localStorage.setItem('weather-dynamic-refresh', d.getTime())
+      })
+    }
+
+    return Promise.resolve()
+  }
+
+  detectLocation () {
     // LOCALIZATION ----
 
     // parseAdress('3700 Saint-Patrick-Street, Montreal, QC H4E 1A1', console.log)

@@ -1,5 +1,6 @@
 import SunCalc from 'suncalc'
 import API from './WeatherAPI'
+import settings from './settings'
 
 const periods = ['MORNING', 'DAY', 'DUSK', 'NIGHT']
 
@@ -10,17 +11,25 @@ class Backgrounds
 
   init(location) {
     const api = new API()
-    Promise.all(periods.map(period => {
-      return api.backgrounds(period, ...location).then(({ content }) => {
-        if(typeof content === 'undefined') return
-        this._backgrounds = this._backgrounds.concat(content.backgrounds)
-        this._selectionMethod = content.selection
-      })
-    })).then(() => {
-      /*caches.open(settings.cacheName).then(cache => {
-        cache.addAll(this._backgrounds.map(background => background.path.replace(/\\\//g, "/")))
-      })*/
-    })
+    Promise.all(
+      periods.map(period =>
+        api.backgrounds(period, ...location).then(({ content }) => {
+          if (typeof content === 'undefined') return
+
+          this._backgrounds = this._backgrounds.concat(content.backgrounds)
+          this._selectionMethod = content.selection
+        })
+      )
+    ).then(() =>
+      caches.open(settings.cacheName).then(cache =>
+        cache.keys().then(storedRequests  => {
+          const keys = storedRequests.map(key => key.url)
+          cache.addAll(this._backgrounds
+            .map(background => background.path.replace(/\\\//g, "/"))
+            .filter(path => !keys.includes(path)))
+        })
+      )
+    )
   }
 
   get(weather, geo) {
