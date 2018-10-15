@@ -156,6 +156,8 @@ class App extends Component {
       display: true
     })
 
+    if(this.state.onError) stopDisplay()
+
     if (!window.BroadSignObject) {
       console.log('No BroadSignObject has been found')
       console.log('This is not a BroadSign Player')
@@ -207,7 +209,7 @@ class App extends Component {
       errorMsg: message
     })
 
-    if (this.state.production) {
+    if (this.state.production && this.state.display) {
       stopDisplay()
     }
   }
