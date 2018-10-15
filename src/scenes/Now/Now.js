@@ -52,8 +52,6 @@ export default class Now extends Component {
           this.checkLoadedData()
         }
       })
-
-    console.log('all promise launched')
   }
 
   handleFailedRequests (req) {
@@ -77,7 +75,6 @@ export default class Now extends Component {
   }
 
   checkLoadedData = () => {
-    console.log(this.todayForecast, this.tomorrowForecast)
     if (this.todayForecast === undefined || this.tomorrowForecast === undefined) return
 
     if (this.todayForecast === null || this.tomorrowForecast === null) {
@@ -123,18 +120,18 @@ export default class Now extends Component {
       return null
     }
 
-    console.log(weatherData)
-
     return [
+      this.props.shouldDisplay &&
       <Background key="background"
         content={this.state.content}
         weatherData={weatherData}
         player={this.props.player}
         location={weatherData.Location}
-        log={this.props.log} />,
+        log={this.props.log}/>,
       <Captions key="captions"
         content={this.state.content}
-        localization={weatherData.Location} />,
+        localization={weatherData.Location}
+        shouldDisplay={this.props.shouldDisplay}/>,
       <OneDay key="now-oneday"
         player={this.props.player}
         content={this.state.content}

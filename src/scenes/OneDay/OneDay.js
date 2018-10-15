@@ -10,6 +10,7 @@ class OneDay extends Component {
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 
     const label = this.props.weatherData.ObsCondition ? this.props.weatherData.ObsCondition : this.props.weatherData.FxConditionDay
+    const labelClass = label.length > 15 ? 'small' : ''
 
     const bottomPart = this.props.content === 'NOW' ? this.getTodayBottomSection() : this.getTomorrowBottomSection()
 
@@ -26,7 +27,7 @@ class OneDay extends Component {
         id="OneDay">
         <div id="oneDay-wrapper" key={this.props.content + '-' + this.props.weatherData.Location.Name}>
           <div className="top-part">
-            <div className="weather-label">
+            <div className={'weather-label ' + labelClass}>
               <span className="label">{ label }</span>
             </div>
             <div className="weather-icon" style={iconStyle} />

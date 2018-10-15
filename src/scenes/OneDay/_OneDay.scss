@@ -36,6 +36,10 @@
 
             line-height: 365px;
 
+            &.small {
+                font-size: 70pt;
+            }
+
             .label {
                 display: inline-block;
                 width: 100%;

@@ -1,4 +1,5 @@
 import React, { Component} from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { withLocalize } from 'react-localize-redux'
 import WeatherAPI from 'library/WeatherAPI'
 
@@ -31,8 +32,6 @@ class Forecast extends Component {
     this.props.log('Loading weather data')
 
     let getWeather = new WeatherAPI()
-
-    console.log(this.props.localization)
 
     getWeather.forecast(...this.props.localization)
       .then(this.handleFailedRequests)
@@ -78,6 +77,12 @@ class Forecast extends Component {
     this.loadWeatherData()
   }
 
+  componentDidUpdate (prevProps) {
+    if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
+      this.props.log('Begining display')
+    }
+  }
+
   render () {
     if (!this.state.isReady) {
       return null // skip
@@ -87,6 +92,7 @@ class Forecast extends Component {
       <DayColumn weatherData={day} key={day.Period}/>)
 
     return [
+      this.props.shouldDisplay &&
       <Background key="background"
         content={this.props.content}
         weatherData={this.state.weatherData}
@@ -94,10 +100,21 @@ class Forecast extends Component {
         location={this.state.weatherData.Location} />,
       <Captions key="captions"
         content={this.props.content}
-        localization={this.state.weatherData.Location} />,
-      <section id="FCL-Forecast" key="forecast">
-        { columns }
-      </section>
+        localization={this.state.weatherData.Location}
+        shouldDisplay={this.props.shouldDisplay}/>,
+      <ReactCSSTransitionGroup
+        transitionName="transition-forecast"
+        transitionAppearTimeout={1250}
+        transitionEnterTimeout={1250}
+        transitionLeaveTimeout={1250}
+        transitionAppear={true}
+        transitionEnter={true}
+        transitionLeave={true}
+        component="div"
+        id="FCL-Forecast"
+        key="columns">
+        { this.props.shouldDisplay && columns }
+      </ReactCSSTransitionGroup>
     ]
   }
 }

@@ -108,13 +108,15 @@ class National extends Component {
       <CityLine weatherData={city} key={key + '-' + this.state.status} />)
 
     return [
+      this.props.shouldDisplay &&
       <Background key="background"
         content={this.props.content}
         weatherData={weatherData}
         player={this.props.player}
         location={this.state.location}/>,
       <Captions key="captions"
-        content={this.props.content} />,
+        content={this.props.content}
+        shouldDisplay={this.props.shouldDisplay}/>,
       <section id="FCL-National" key="national-lines">
         <ReactCSSTransitionGroup
           transitionName="transition-national"
@@ -126,7 +128,7 @@ class National extends Component {
           transitionLeave={true}
           component="div"
           id="national-wrapper">
-          { cities }
+          { this.props.shouldDisplay && cities }
         </ReactCSSTransitionGroup>
       </section>
     ]

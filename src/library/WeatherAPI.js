@@ -28,9 +28,12 @@ export default class WeatherAPI {
     return get(url)
   }
 
+  backgrounds (period, country, province, city) {
+    return this.getLocalized('/backgrounds/' + period, country, province, city)
+  }
+
   getLocalized (endpoint, country, province, city) {
     return get(settings.apiURL + endpoint + '/' + country + '/' + province + '/' + city + this.getParams()).then(resp => {
-      console.log(resp)
       return resp
     })
   }

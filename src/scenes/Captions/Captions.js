@@ -36,7 +36,9 @@ class Captions extends Component {
           transitionLeave={true}
           component="section"
           className="bottom-bar">
-          <span key={bottom}>{ bottom }</span>
+          { this.props.shouldDisplay &&
+            <span key={ bottom }>{ bottom }</span>
+          }
         </ReactCSSTransitionGroup>
       </section>
     )

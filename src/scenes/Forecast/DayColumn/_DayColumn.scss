@@ -5,6 +5,8 @@
     width: 340px;
     height: 100%;
 
+    background-color: rgba(0, 0, 0, .65);
+
     .caption
     {
         width: 100%;
@@ -101,5 +103,43 @@
         text-align: center;
         font-size: 70pt;
         font-weight: 700;
+    }
+
+    $elements: 5;
+    @for $i from 0 to $elements {
+        &:nth-child(#{$i + 1}) {
+            transition: #{($i + 1) * .25}s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+    }
+
+    @for $i from 0 to $elements {
+        &:nth-child(#{$i + 6}) {
+            transition: #{($i + 1) * .25}s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-property: margin-left, opacity;
+        }
+    }
+
+    &.transition-forecast-appear,
+    &.transition-forecast-enter
+    {
+        position: absolute;
+
+        opacity: 0;
+        margin-top: 50px;
+
+        @for $i from 1 to $elements
+        {
+            &:nth-child(#{$i + 1})
+            {
+                left: #{$i * 340}px;
+            }
+        }
+
+        &.transition-forecast-appear-active,
+        &.transition-forecast-enter-active
+        {
+            opacity: 1;
+            margin-top: 0;
+        }
     }
 }

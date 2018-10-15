@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import getBackgroundURL from 'library/getBackgroundURL'
 import _ from 'lodash'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Backgrounds from 'library/Backgrounds'
+import backgroundMap from 'library/backgroundsMap.json'
 
 export default class background extends Component {
   constructor (props) {
@@ -46,21 +47,21 @@ export default class background extends Component {
       default: return {}
     }
 
-    let location
+    let geo
 
     if (this.props.player.isBroadSign) {
-      location = {
+      geo = {
         lat: window.BroadSignObject.display_unit_lat_long.split(',')[0],
         lng: window.BroadSignObject.display_unit_lat_long.split(',')[1]
       }
     } else {
-      location = {
+      geo = {
         lat: this.props.location.Latitude,
         lng: this.props.location.Longitude
       }
     }
 
-    return getBackgroundURL(iconID, location)
+    return Backgrounds.get(backgroundMap[iconID], geo)
   }
 
   getNationalBackground () {
@@ -90,10 +91,11 @@ export default class background extends Component {
       transitionLeave={true}
       component="div"
       id="background-wrapper">
+      { this.state.url &&
       <section
         key={this.state.url}
         id="main-background"
-        style={{backgroundImage: 'url(' + this.state.url + ')'}} />
+        style={{backgroundImage: 'url(' + this.state.url + ')'}} /> }
     </ReactCSSTransitionGroup>
   }
 }

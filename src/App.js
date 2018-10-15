@@ -6,6 +6,7 @@ import parseAdress from 'parse-address-string'
 import windowSize from 'react-window-size'
 import querystring from 'querystring'
 import URL from 'url-parse'
+import Backgrounds from 'library/Backgrounds'
 
 import WeatherAPI from 'library/WeatherAPI'
 import { stopDisplay } from './library/Broadsignlink'
@@ -131,7 +132,7 @@ class App extends Component {
     })
 
     if (!window.BroadSignObject) {
-      console.log('no BroadSignObject found')
+      console.log('No BroadSignObject has been found')
       console.log('This is not a BroadSign Player')
     }
   }
@@ -161,6 +162,8 @@ class App extends Component {
       locale: language,
       inited: true
     })
+
+    Backgrounds.init(this.state.localization)
   }
 
   log = msg => {
