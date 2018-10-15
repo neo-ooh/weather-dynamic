@@ -54,7 +54,8 @@ export default class Now extends Component {
       })
   }
 
-  handleFailedRequests (req) {
+  handleFailedRequests = req => {
+    console.log(req)
     if (req === null) {
       return null
     }
@@ -75,6 +76,7 @@ export default class Now extends Component {
   }
 
   checkLoadedData = () => {
+    console.log('Data loaded')
     if (this.todayForecast === undefined || this.tomorrowForecast === undefined) return
 
     if (this.todayForecast === null || this.tomorrowForecast === null) {

@@ -1,6 +1,7 @@
 import settings from './settings'
 
 export function get (url) {
+  console.log('retrieving ' + url)
   // Start by checking if the requested url isn't already stored
   return caches.open(settings.cacheName).then(cache =>
     cache.match(url).then(response => {
@@ -19,7 +20,7 @@ export function get (url) {
         }
 
         // Request OK, let's return it
-        return data.content
+        return data
       })
     })
   )
