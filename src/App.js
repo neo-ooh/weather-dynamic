@@ -141,17 +141,20 @@ class App extends Component {
 
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
-      // Object.keys(window.BroadSignObject).map(this.log)
+      this.log('Player location :' + decodeURIComponent(window.BroadSignObject.display_unit_address))
+
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), (error, address) => {
         if (error) {
           return this.onError('Could not parse adresse : ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
         }
+
 
         let country = 'CA'
         let province = address.state
         let city = address.city
 
         this.log('Country: ' + country + ', Province: ' + province + ', City: ' + city)
+        this.log(city.length)
 
         this.setState(oldState => ({
           localization: [country, province, city],
@@ -165,15 +168,15 @@ class App extends Component {
     const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
 
     let country = urlParameters.country || 'CA'
-    let province = urlParameters.province || ''
-    let city = urlParameters.city || ''
+    let province = urlParameters.province || '--'
+    let city = urlParameters.city || '-'
 
     this.log('Country: ' + country + ', Province: ' + province + ', City: ' + city)
 
     this.setState(oldState => ({
       localization: [country, province, city],
-      onError: city === null,
-      errorMsg: city === null ? oldState.errorMsg : ''
+      onError: city === '-',
+      errorMsg: city === '-' ? oldState.errorMsg : ''
     }), this.initLocalization)
   }
 
