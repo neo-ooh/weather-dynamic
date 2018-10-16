@@ -83,9 +83,9 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.setState({
-      player: { support: this.detectSupport() || 'FCL' }
-    }, () => {
+    let player = this.state.player
+    player.support = this.detectSupport() || 'FCL'
+    this.setState({ player }, () => {
       this.checkCache().then(this.detectLocation())
     })
   }
