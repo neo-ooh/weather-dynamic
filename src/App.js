@@ -97,11 +97,12 @@ class App extends Component {
     }
 
     const refreshRate = this.state.production ? 1000 * 3600 * 24 : 300 * 1000
+    console.log(refreshRate, Date.now() - lastUpdate)
     if(Date.now() - lastUpdate > refreshRate) {
       return caches.delete(settings.cacheName).then(() => {
         this.log('Cache Cleaned')
         let d = new Date();
-        d.setHours(0,0,0,0)
+        this.state.production && d.setHours(0,0,0,0)
         localStorage.setItem('weather-dynamic-refresh', d.getTime())
       })
     }
