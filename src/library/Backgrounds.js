@@ -9,7 +9,7 @@ class Backgrounds
   _backgrounds = []
   _selectionMethod = 'WEATHER'
 
-  init(location) {
+  init(location, log) {
     const api = new API()
     Promise.all(
       periods.map(period =>
@@ -20,17 +20,17 @@ class Backgrounds
           this._selectionMethod = content.selection
         })
       )
-    ).then(() =>
+    ).then(() => {
       log(this._backgrounds.length + ' background.s found')
       caches.open(settings.cacheName).then(cache =>
-        cache.keys().then(storedRequests  => {
+        cache.keys().then(storedRequests => {
           const keys = storedRequests.map(key => key.url)
           cache.addAll(this._backgrounds
             .map(background => background.path.replace(/\\\//g, "/"))
             .filter(path => !keys.includes(path)))
         })
       )
-    )
+    })
   }
 
   get(weather, geo) {
