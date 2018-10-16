@@ -21,6 +21,7 @@ class Backgrounds
         })
       )
     ).then(() =>
+      log(this._backgrounds.length + ' background.s found')
       caches.open(settings.cacheName).then(cache =>
         cache.keys().then(storedRequests  => {
           const keys = storedRequests.map(key => key.url)

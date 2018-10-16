@@ -14,8 +14,9 @@ export function get (url) {
       return response.json().then(data => {
         // Is the request too old
         const responseTime = data.timestamp * 1000
+        const refreshRate = process.env.REACT_APP_ENV === 'production' ? data.refresh * 1000 : 120 * 1000 // API refresh or 2 minutes in development
 
-        if (Date.now() - responseTime > data.refresh * 1000) {
+        if (Date.now() - responseTime > refreshRate) {
           return add(url).then(response => response.json().then(data => data))
         }
 

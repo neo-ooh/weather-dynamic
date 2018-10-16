@@ -190,7 +190,7 @@ class App extends Component {
       inited: true
     })
 
-    Backgrounds.init(this.state.localization)
+    Backgrounds.init(this.state.localization, this.log)
   }
 
   log = msg => {
