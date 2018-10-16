@@ -90,10 +90,22 @@ class App extends Component {
     })
   }
 
+  supports = [
+    {name: 'FCL', width: '3840', height: '1080'},
+    {name: 'DCA', width: '1080', height: '1920'},
+    {name: 'FCL', width: '2048', height: '576'},
+  ]
+
   detectSupport () {
     if (this.state.player.isBroadSign) {
       this.log('display_unit_resolution: ' + window.BroadSignObject.display_unit_resolution)
-      this.log('frame_resolution: ' + window.BroadSignObject.frame_resolution)
+      const supportIndex = this.supports.findIndex(support => window.BroadSignObject.display_unit_resolution === (support.width + "x" + support.height))
+
+      if(supportIndex === -1)
+        return null
+
+      this.log('Support: ' + this.supports[supportIndex].name)
+      return this.supports[supportIndex].name
     } else {
       this.log('Current resolution: ' + this.props.windowWidth + "x" + this.props.windowHeight)
     }
