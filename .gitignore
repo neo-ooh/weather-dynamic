@@ -23,3 +23,5 @@ yarn-error.log*
 
 .idea
 
+public/images
+/backgrounds/
