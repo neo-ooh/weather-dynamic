@@ -87,7 +87,7 @@ class National extends Component {
 
   componentDidUpdate (prevProps) {
     if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
-      this.props.log('Begining display')
+      this.props.log('Beginning display')
 
       setTimeout(() => {
         this.setState({
@@ -117,8 +117,9 @@ class National extends Component {
         log={this.props.log}/>,
       <Captions key="captions"
         content={this.props.content}
+        player={this.props.player}
         shouldDisplay={this.props.shouldDisplay}/>,
-      <section id="FCL-National" key="national-lines">
+      <section id="FCL-National" className={this.props.player.support} key="national-lines">
         <ReactCSSTransitionGroup
           transitionName="transition-national"
           transitionAppearTimeout={1250}
@@ -128,7 +129,8 @@ class National extends Component {
           transitionEnter={true}
           transitionLeave={true}
           component="div"
-          id="national-wrapper">
+          id="national-wrapper"
+          className={this.props.player.support} >
           { this.props.shouldDisplay && cities }
         </ReactCSSTransitionGroup>
       </section>

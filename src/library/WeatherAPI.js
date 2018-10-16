@@ -28,8 +28,8 @@ export default class WeatherAPI {
     return get(url)
   }
 
-  backgrounds (period, country, province, city) {
-    return this.getLocalized('/backgrounds/' + period, country, province, city)
+  backgrounds (period, support, country, province, city) {
+    return this.getLocalized('/backgrounds/' + period + '/' + support, country, province, city)
   }
 
   getLocalized (endpoint, country, province, city) {

@@ -79,7 +79,7 @@ class Forecast extends Component {
 
   componentDidUpdate (prevProps) {
     if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
-      this.props.log('Begining display')
+      this.props.log('Beginning display')
     }
   }
 
@@ -101,6 +101,7 @@ class Forecast extends Component {
         log={this.props.log} />,
       <Captions key="captions"
         content={this.props.content}
+        player={this.props.player}
         localization={this.state.weatherData.Location}
         shouldDisplay={this.props.shouldDisplay}/>,
       <ReactCSSTransitionGroup
@@ -113,6 +114,7 @@ class Forecast extends Component {
         transitionLeave={true}
         component="div"
         id="FCL-Forecast"
+        className={this.props.player.support}
         key="columns">
         { this.props.shouldDisplay && columns }
       </ReactCSSTransitionGroup>

@@ -10,11 +10,11 @@ class Backgrounds
   _backgrounds = []
   _selectionMethod = 'WEATHER'
 
-  init(location, log) {
+  init(location, support, log) {
     const api = new API()
     Promise.all(
       periods.map(period =>
-        api.backgrounds(period, ...location).then((response) => {
+        api.backgrounds(period, support, ...location).then((response) => {
           console.log(response)
           if (typeof response.content === 'undefined') return
 
@@ -28,7 +28,6 @@ class Backgrounds
       )
     ).then(() => {
       log(this._backgrounds.length + ' background.s found')
-
       caches.open(settings.cacheName).then(cache =>
         cache.keys().then(storedRequests => {
           const keys = storedRequests.map(key => key.url)

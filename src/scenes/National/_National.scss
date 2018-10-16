@@ -1,22 +1,26 @@
 #FCL-National
 {
     position: absolute;
-    left: 1920px;
-    top: 0;
-    width: 1920px;
-    height: 1080px;
-
     overflow: hidden;
+
+    &.FCL {
+        left: 1920px;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+    }
 }
 
 #national-wrapper
 {
     position: absolute;
-    left: 85px;
-    top: 70px;
 
-    height: 940px;
-    width: 1750px;
+    &.FCL {
+        left: 85px;
+        top: 70px;
+        height: 940px;
+        width: 1750px;
+    }
 }
 
 .city-line

@@ -26,6 +26,7 @@ class OneDay extends Component {
         transitionEnter={true}
         transitionLeave={true}
         component="section"
+        className={this.props.player.support}
         id="OneDay">
         <div id="oneDay-wrapper" key={this.props.content + '-' + this.props.weatherData.Location.Name}>
           <div className="top-part">

@@ -19,7 +19,7 @@ class Captions extends Component {
     }
 
     return (
-      <section id="Captions" >
+      <section id="Captions" className={this.props.player.support}>
         <div className="top-bar">
           <span>{ top }</span>
         </div>

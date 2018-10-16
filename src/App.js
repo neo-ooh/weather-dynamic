@@ -54,12 +54,12 @@ class App extends Component {
         isBroadSign: broadSignPlayer,
         width: props.windowWidth,
         height: props.windowHeight,
-        location: null
+        location: null,
+        support: null,
       },
 
       // What to display
       content: urlParameters.content ? urlParameters.content.toUpperCase() in this.contents ? urlParameters.content.toUpperCase() : 'NATIONAL' : 'NATIONAL', // TODAY, TOMORROW, FORECAST, NATIONAL
-      support: null,
 
       // Localization (the language)
       locale: urlParameters.locale || 'en-CA',
@@ -84,7 +84,7 @@ class App extends Component {
 
   componentDidMount () {
     this.setState({
-      support: this.detectSupport() || 'FCL'
+      player: { support: this.detectSupport() || 'FCL' }
     }, () => {
       this.checkCache().then(this.detectLocation())
     })
@@ -93,23 +93,22 @@ class App extends Component {
   supports = [
     {name: 'FCL', width: '3840', height: '1080'},
     {name: 'DCA', width: '1080', height: '1920'},
-    {name: 'FCL', width: '2048', height: '576'},
+    {name: 'LED', width: '2048', height: '576'},
   ]
 
   detectSupport () {
-    if (this.state.player.isBroadSign) {
-      this.log('display_unit_resolution: ' + window.BroadSignObject.display_unit_resolution)
-      const supportIndex = this.supports.findIndex(support => window.BroadSignObject.display_unit_resolution === (support.width + "x" + support.height))
+    const supportResolution = this.state.player.isBroadSign
+      ? window.BroadSignObject.display_unit_resolution
+      : this.props.windowWidth + "x" + this.props.windowHeight
 
-      if(supportIndex === -1)
+    this.log('Current resolution: ' + supportResolution)
+    const supportIndex = this.supports.findIndex(support => supportResolution === (support.width + "x" + support.height))
+
+    if(supportIndex === -1)
         return null
 
-      this.log('Support: ' + this.supports[supportIndex].name)
-      return this.supports[supportIndex].name
-    } else {
-      this.log('Current resolution: ' + this.props.windowWidth + "x" + this.props.windowHeight)
-    }
-    return null
+    this.log('Support: ' + this.supports[supportIndex].name)
+    return this.supports[supportIndex].name
   }
 
   checkCache() {
@@ -217,7 +216,7 @@ class App extends Component {
       inited: true
     })
 
-    Backgrounds.init(this.state.localization, this.log)
+    Backgrounds.init(this.state.localization, this.state.player.support, this.log)
   }
 
   log = msg => {

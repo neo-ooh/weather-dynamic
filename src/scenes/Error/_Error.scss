@@ -3,15 +3,11 @@
     top: 0;
     left: 0;
     display: block;
-    width: 1920px;
-    height: 1080px;
+    width: 100vw;
+    max-width: 1920px;
+    height: 100vh;
     text-align: center;
     background-color: #FFF;
-
-    &.FCL {
-        width: 1920px;
-        height: 1080px;
-    }
 
     h1 {
         margin: 280px auto 0;

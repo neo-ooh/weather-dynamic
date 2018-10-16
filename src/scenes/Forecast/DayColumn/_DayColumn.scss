@@ -1,32 +1,15 @@
-.day-column
-{
+.day-column {
     position: relative;
-
-    width: 340px;
-    height: 100%;
-
     background-color: rgba(0, 0, 0, .65);
 
-    .caption
-    {
-        width: 100%;
-        height: 135px;
-
-        margin-top: 25px;
-
+    .caption {
         color: white;
 
-        font-size: 85pt;
         font-weight: 700;
         text-align: center;
     }
 
-    .weather-icon
-    {
-        width: 250px;
-        height: 270px;
-        margin: 20px auto;
-
+    .weather-icon {
         background-repeat: no-repeat;
         background-position: center center;
         background-size: contain;
@@ -35,22 +18,13 @@
     .weather-label {
         box-sizing: border-box;
 
-        top: 480px;
-        height: 150px;
-
-        padding: 0 30px;
-
         color: #FFF;
-        font-size: 28pt;
         font-weight: 700;
         text-align: center;
 
-        line-height: 150px;
-
         .label {
             display: inline-block;
-            width: 280px;
-            vertical-align:middle;
+            vertical-align: middle;
             line-height: 1.2;
 
             /* -webkit-hyphens: auto;
@@ -64,44 +38,24 @@
         border: 3px solid rgba(lighten($yellow, 15%), .6);
     }
 
-    &:first-child .h-separator {
-        margin-left: 50px;
-    }
-
-    &:last-child .h-separator {
-        margin-right: 50px;
-    }
-
-    &:not(:first-child) .v-separator
-    {
+    &:not(:first-child) .v-separator {
         position: absolute;
-        top: 200px;
-        height: 600px;
-        width: 7px;
 
-        background:    -moz-linear-gradient(top, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-        background:   linear-gradient(to bottom, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+        background: -moz-linear-gradient(top, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, 0) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0); /* IE6-9 */
     }
 
     .max-temperature {
-        margin: 40px 0 0;
-        padding-left: 45px;
-
         color: white;
         text-align: center;
-        font-size: 95pt;
         font-weight: 700;
     }
 
     .min-temperature {
-        margin-top: -15px;
-        padding-left: 32px;
-
         color: $blue;
         text-align: center;
-        font-size: 70pt;
         font-weight: 700;
     }
 
@@ -120,26 +74,84 @@
     }
 
     &.transition-forecast-appear,
-    &.transition-forecast-enter
-    {
+    &.transition-forecast-enter {
         position: absolute;
 
         opacity: 0;
         margin-top: 50px;
 
-        @for $i from 1 to $elements
-        {
-            &:nth-child(#{$i + 1})
-            {
+        @for $i from 1 to $elements {
+            &:nth-child(#{$i + 1}) {
                 left: #{$i * 340}px;
             }
         }
 
         &.transition-forecast-appear-active,
-        &.transition-forecast-enter-active
-        {
+        &.transition-forecast-enter-active {
             opacity: 1;
             margin-top: 0;
+        }
+    }
+
+    .FCL & {
+        width: 340px;
+        height: 100%;
+
+        .caption {
+            width: 100%;
+            height: 135px;
+
+            margin-top: 25px;
+
+            font-size: 85pt;
+        }
+
+        .weather-icon {
+            width: 250px;
+            height: 270px;
+            margin: 20px auto;
+        }
+
+        .weather-label {
+            top: 480px;
+            height: 150px;
+
+            padding: 0 30px;
+
+            font-size: 28pt;
+            line-height: 150px;
+
+            .label {
+                width: 280px;
+            }
+        }
+
+        &:first-child .h-separator {
+            margin-left: 50px;
+        }
+
+        &:last-child .h-separator {
+            margin-right: 50px;
+        }
+
+        &:not(:first-child) .v-separator {
+            top: 200px;
+            height: 600px;
+            width: 7px;
+        }
+
+        .max-temperature {
+            margin: 40px 0 0;
+            padding-left: 45px;
+
+            font-size: 95pt;
+        }
+
+        .min-temperature {
+            margin-top: -15px;
+            padding-left: 32px;
+
+            font-size: 70pt;
         }
     }
 }

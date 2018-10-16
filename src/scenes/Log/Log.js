@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Log extends Component {
+class Log extends Component {
   hashCode = txt => {
     let hash = 0
     let i, chr
@@ -23,3 +23,5 @@ export default class Log extends Component {
     )
   }
 }
+
+export default Log

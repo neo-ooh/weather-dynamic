@@ -101,7 +101,7 @@ export default class Now extends Component {
 
   componentDidUpdate (prevProps) {
     if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
-      this.props.log('Begining display')
+      this.props.log('Beginning display')
 
       setTimeout(() => {
         this.setState({
@@ -133,7 +133,8 @@ export default class Now extends Component {
       <Captions key="captions"
         content={this.state.content}
         localization={weatherData.Location}
-        shouldDisplay={this.props.shouldDisplay}/>,
+        shouldDisplay={this.props.shouldDisplay}
+        player={this.props.player} />,
       <OneDay key="now-oneday"
         player={this.props.player}
         content={this.state.content}
