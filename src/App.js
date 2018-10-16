@@ -185,7 +185,7 @@ class App extends Component {
       display: true
     })
 
-    if(this.state.onError) stopDisplay()
+    if(this.state.onError && this.state.production) stopDisplay()
 
     if (!window.BroadSignObject) {
       console.log('No BroadSignObject has been found')
@@ -244,10 +244,9 @@ class App extends Component {
   }
 
   render () {
-    if(!this.state.inited) return null
-
-    if (this.state.onError && this.state.display) {
-      // skip
+    if(!this.state.inited ||
+      (this.state.onError && this.state.production)) {
+      return null
     }
 
     const logs = this.state.production ? null : <Log logs={this.state.logs} key="logs"/>
