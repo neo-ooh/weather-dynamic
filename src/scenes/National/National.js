@@ -113,7 +113,8 @@ class National extends Component {
         content={this.props.content}
         weatherData={weatherData}
         player={this.props.player}
-        location={this.state.location}/>,
+        location={this.state.location}
+        log={this.props.log}/>,
       <Captions key="captions"
         content={this.props.content}
         shouldDisplay={this.props.shouldDisplay}/>,

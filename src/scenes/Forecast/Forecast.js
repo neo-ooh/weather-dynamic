@@ -97,7 +97,8 @@ class Forecast extends Component {
         content={this.props.content}
         weatherData={this.state.weatherData}
         player={this.props.player}
-        location={this.state.weatherData.Location} />,
+        location={this.state.weatherData.Location}
+        log={this.props.log} />,
       <Captions key="captions"
         content={this.props.content}
         localization={this.state.weatherData.Location}

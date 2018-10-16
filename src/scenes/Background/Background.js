@@ -15,6 +15,7 @@ export default class background extends Component {
 
   componentDidMount () {
     const url = this.resolveBackground()
+    this.props.log('Background: ' + url)
     this.setState({
       url: url
     })
