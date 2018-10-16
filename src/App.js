@@ -59,7 +59,7 @@ class App extends Component {
 
       // What to display
       content: urlParameters.content ? urlParameters.content.toUpperCase() in this.contents ? urlParameters.content.toUpperCase() : 'NATIONAL' : 'NATIONAL', // TODAY, TOMORROW, FORECAST, NATIONAL
-      support: urlParameters.support || 'FCL',
+      support: null,
 
       // Localization (the language)
       locale: urlParameters.locale || 'en-CA',
@@ -83,9 +83,22 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.checkCache().then(this.detectLocation())
+    this.setState({
+      support: this.detectSupport() || 'FCL'
+    }, () => {
+      this.checkCache().then(this.detectLocation())
+    })
   }
 
+  detectSupport () {
+    if (this.state.player.isBroadSign) {
+      this.log('display_unit_resolution: ' + window.BroadSignObject.display_unit_resolution)
+      this.log('frame_resolution: ' + window.BroadSignObject.frame_resolution)
+    } else {
+      this.log('Current resolution: ' + this.props.windowWidth + "x" + this.props.windowHeight)
+    }
+    return null
+  }
 
   checkCache() {
     // Check cache state and erase if new day
