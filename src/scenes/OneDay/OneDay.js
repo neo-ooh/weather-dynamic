@@ -6,6 +6,8 @@ import getIcon from 'library/getIcon'
 
 class OneDay extends Component {
   render () {
+    if(!this.props.weatherData) return null
+
     const iconID = this.props.weatherData.ObsIcon ? this.props.weatherData.ObsIcon : this.props.weatherData.FxIconDay
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 

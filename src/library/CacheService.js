@@ -7,7 +7,7 @@ export function get (url) {
     cache.match(url).then(response => {
       // Is the request missing from the cache
       if (response === undefined) {
-        return add(url).then(response => response.json().then(data => data))
+        return add(url).then(response => response.json().then(data => { data.url = url; return data }))
       }
 
       // decode response
@@ -17,10 +17,11 @@ export function get (url) {
         const refreshRate = process.env.REACT_APP_ENV === 'production' ? data.refresh * 1000 : 120 * 1000 // API refresh or 2 minutes in development
 
         if (Date.now() - responseTime > refreshRate) {
-          return add(url).then(response => response.json().then(data => data))
+          return add(url).then(response => response.json().then(data => { data.url = url; return data }))
         }
 
         // Request OK, let's return it
+        data.url = url
         return data
       })
     })

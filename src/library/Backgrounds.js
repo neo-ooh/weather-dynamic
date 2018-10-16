@@ -1,6 +1,7 @@
 import SunCalc from 'suncalc'
 import API from './WeatherAPI'
 import settings from './settings'
+import { remove as removeFromCache } from 'library/CacheService'
 
 const periods = ['MORNING', 'DAY', 'DUSK', 'NIGHT']
 
@@ -13,15 +14,21 @@ class Backgrounds
     const api = new API()
     Promise.all(
       periods.map(period =>
-        api.backgrounds(period, ...location).then(({ content }) => {
-          if (typeof content === 'undefined') return
+        api.backgrounds(period, ...location).then((response) => {
+          console.log(response)
+          if (typeof response.content === 'undefined') return
 
-          this._backgrounds = this._backgrounds.concat(content.backgrounds)
-          this._selectionMethod = content.selection
+          this._backgrounds = this._backgrounds.concat(response.content.backgrounds)
+          this._selectionMethod = response.content.selection
+
+          if(response.content.backgrounds.length === 0) {
+            removeFromCache(response.url)
+          }
         })
       )
     ).then(() => {
       log(this._backgrounds.length + ' background.s found')
+
       caches.open(settings.cacheName).then(cache =>
         cache.keys().then(storedRequests => {
           const keys = storedRequests.map(key => key.url)
