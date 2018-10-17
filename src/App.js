@@ -141,11 +141,11 @@ class App extends Component {
 
     if (this.state.player.isBroadSign) {
       this.log('Detecting location using BroadSign variables')
-      this.log('Player location :' + decodeURIComponent(window.BroadSignObject.display_unit_address))
+      this.log('Player location: ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
 
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), (error, address) => {
         if (error) {
-          return this.onError('Could not parse adresse : ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
+          return this.onError('Could not parse adresse: ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
         }
 
 
@@ -154,7 +154,6 @@ class App extends Component {
         let city = address.city
 
         this.log('Country: ' + country + ', Province: ' + province + ', City: ' + city)
-        this.log(city.length)
 
         this.setState(oldState => ({
           localization: [country, province, city],

@@ -8,10 +8,10 @@ class OneDay extends Component {
   render () {
     if(!this.props.weatherData) return null
 
-    const iconID = this.props.weatherData.ObsIcon ? this.props.weatherData.ObsIcon : this.props.weatherData.FxIconDay
+    const iconID = this.props.weatherData.ObsIcon || this.props.weatherData.FxIconDay
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 
-    const label = this.props.weatherData.ObsCondition ? this.props.weatherData.ObsCondition : this.props.weatherData.FxConditionDay
+    const label = this.props.weatherData.ObsCondition || this.props.weatherData.FxConditionDay
     const labelClass = label.length > 15 ? 'small' : ''
 
     const bottomPart = this.props.content === 'NOW' ? this.getTodayBottomSection() : this.getTomorrowBottomSection()
