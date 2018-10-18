@@ -241,6 +241,126 @@
 
                     .temperature-line {
                         display: inline-block;
+                        width: calc(50% - 25px);
+
+                        &.min {
+                            margin-left: 50px;
+                        }
+                    }
+
+                    &:first-child {
+                        margin-left: -10px;
+                    }
+
+                    &:not(:last-child) {
+                        padding-bottom: 15px;
+                    }
+                }
+
+                .detail-separator {
+                    width: 810px;
+                    height: 5px;
+                }
+            }
+        }
+    }
+
+    .DCA & {
+        width: 1780px;
+        height: 885px;
+        margin: 150px 70px 0 70px;
+
+        .top-part {
+            width: 1720px;
+            height: 365px;
+            margin-left: 30px;
+
+            .weather-label {
+                top: 0px;
+                left: 50px;
+                width: 900px;
+                height: 365px;
+
+                font-size: 80pt;
+                line-height: 365px;
+
+                &.small {
+                    font-size: 70pt;
+                }
+            }
+
+            .weather-icon {
+                top: -120px;
+                left: 960px;
+                width: 850px;
+                height: 460px;
+            }
+        }
+
+        .separator {
+            width: 1720px;
+            height: 10px;
+            margin-left: 30px;
+        }
+
+        .bottom-part {
+            width: 1720px;
+
+            .temperature {
+                left: 30px;
+                top: -5px;
+                width: 850px;
+
+                font-size: 350pt;
+                line-height: 520px;
+
+                &.shrink {
+                    font-size: 275pt;
+                }
+            }
+
+            .forecast {
+                left: 30px;
+                top: 5px;
+                width: 770px;
+
+                .max {
+                    font-size: 200pt;
+                }
+
+                .min {
+                    margin-top: -75px;
+                    font-size: 150pt;
+                }
+            }
+
+            .details {
+                top: 50px;
+                left: 900px;
+
+                font-size: 65pt;
+
+                &.wide {
+                    left: 800px;
+
+                    .detail-line {
+                        width: 935px;
+                    }
+                }
+
+                &.centered {
+                    top: 125px;
+                }
+
+                .detail-line {
+                    padding-top: 15px;
+
+                    .detail-value {
+                        padding-left: 35px;
+                    }
+
+                    .temperature-line {
+                        display: inline-block;
 
                         &.min {
                             margin-left: 50px;
