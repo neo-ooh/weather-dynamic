@@ -3,7 +3,8 @@
     position: absolute;
     overflow: hidden;
 
-    &.FCL {
+    &.FCL,
+    &.LED {
         left: 1920px;
         top: 0;
         width: 1920px;
@@ -22,7 +23,8 @@
 {
     position: absolute;
 
-    &.FCL {
+    &.FCL,
+    &.LED {
         left: 85px;
         top: 70px;
         height: 940px;
@@ -65,7 +67,8 @@
         {
             &:nth-child(#{$i + 1})
             {
-                &.FCL {
+                &.FCL,
+                &.LED {
                     top: #{$i * 185 + ($i - 1) * 5}px;
                 }
 
@@ -88,7 +91,8 @@
         opacity: 1;
         margin-left: 0;
 
-        &.FCL {
+        &.FCL,
+        &.LED {
             &:nth-child(6) {
                 margin-top: 0px;
             }

@@ -2,7 +2,8 @@
     display: flex;
     position: absolute;
 
-    &.FCL {
+    &.FCL,
+    &.LED {
         top: 125px;
         left: 2035px;
         width: 1700px;

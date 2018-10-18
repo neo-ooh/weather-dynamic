@@ -84,7 +84,7 @@ class App extends Component {
 
   componentDidMount () {
     let player = this.state.player
-    player.support = this.detectSupport() || 'FCL'
+    player.support = this.detectSupport() || 'LED'
     this.setState({ player }, () => {
       this.checkCache().then(this.detectLocation())
     })
@@ -248,7 +248,7 @@ class App extends Component {
       return null
     }
 
-    const logs = this.state.production ? null : null //<Log logs={this.state.logs} key="logs"/>
+    const logs = this.state.production ? null : <Log logs={this.state.logs} key="logs"/>
 
     if (this.state.localization === null) {
       return logs
@@ -257,21 +257,23 @@ class App extends Component {
     const Scene = this.contents[this.state.content]
 
     return (
-      <ErrorBoundary>
-        {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
-        { !this.state.onError &&
-        <Scene
-          key="scene"
-          player={this.state.player}
-          content={this.state.content}
-          weatherData={this.state.weatherData}
-          onError={this.onError}
-          localization={this.state.localization}
-          shouldDisplay={this.state.display}
-          log={this.log}
-        /> }
-        { logs }
-      </ErrorBoundary>
+      <main className={this.state.player.support}>
+        <ErrorBoundary>
+          {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
+          { !this.state.onError &&
+          <Scene
+            key="scene"
+            player={this.state.player}
+            content={this.state.content}
+            weatherData={this.state.weatherData}
+            onError={this.onError}
+            localization={this.state.localization}
+            shouldDisplay={this.state.display}
+            log={this.log}
+          /> }
+          { logs }
+        </ErrorBoundary>
+      </main>
     )
   }
 }

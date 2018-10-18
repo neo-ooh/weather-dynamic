@@ -1,7 +1,8 @@
 #OneDay {
     position: absolute;
 
-    &.FCL {
+    &.FCL,
+    &.LED {
         top: 0;
         left: 1920px;
 
@@ -153,6 +154,7 @@
         }
     }
 
+    .LED &,
     .FCL & {
         width: 1780px;
         height: 885px;
