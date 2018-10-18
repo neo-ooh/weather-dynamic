@@ -9,6 +9,13 @@
         width: 1920px;
         height: 1080px;
     }
+
+    &.DCA {
+        left: 0px;
+        top: 750px;
+        width: 1080px;
+        height: 1170px;
+    }
 }
 
 #national-wrapper
@@ -20,6 +27,13 @@
         top: 70px;
         height: 940px;
         width: 1750px;
+    }
+
+    &.DCA {
+        left: 0;
+        top: 0;
+        height: 1170px;
+        width: 1080px;
     }
 }
 
@@ -51,7 +65,13 @@
         {
             &:nth-child(#{$i + 1})
             {
-                top: #{$i * 185 + ($i - 1) * 5}px;
+                &.FCL {
+                    top: #{$i * 185 + ($i - 1) * 5}px;
+                }
+
+                &.DCA {
+                    top: #{$i * 185 + ($i - 1) * 40}px;;
+                }
             }
         }
 
@@ -68,8 +88,20 @@
         opacity: 1;
         margin-left: 0;
 
-        &:nth-child(6) {
-            margin-top: 0;
+        &.FCL {
+            &:nth-child(6) {
+                margin-top: 0px;
+            }
+        }
+
+        .DCA {
+            &:nth-child(6),
+            &:nth-child(7),
+            &:nth-child(8),
+            &:nth-child(9),
+            &:nth-child(10) {
+                top: -40px;
+            }
         }
 
         &.transition-national-leave-active

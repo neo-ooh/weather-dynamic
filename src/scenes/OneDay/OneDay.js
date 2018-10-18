@@ -28,7 +28,7 @@ class OneDay extends Component {
         component="section"
         className={this.props.player.support}
         id="OneDay">
-        <div id="oneDay-wrapper" key={this.props.content + '-' + this.props.weatherData.Location.Name}>
+        <div id="oneDay-wrapper" className={this.props.content} key={this.props.content + '-' + this.props.weatherData.Location.Name}>
           <div className="top-part">
             <div className={'weather-label ' + labelClass}>
               <span className="label">{ label }</span>
@@ -44,7 +44,7 @@ class OneDay extends Component {
 
   getTodayBottomSection () {
     return (
-      <div className="bottom-part">
+      <div className="bottom-part today">
         <div className={ 'temperature ' + (this.props.weatherData.TemperatureC <= 0 ? 'bellow-zero ' : ' ') + (this.props.weatherData.TemperatureC.length > 2 ? 'shrink ' : ' ')}>
           {this.props.weatherData.TemperatureC}°
         </div>
@@ -92,7 +92,7 @@ class OneDay extends Component {
 
   getTomorrowBottomSection () {
     return (
-      <div className="bottom-part">
+      <div className="bottom-part tomorrow">
         <div className="forecast">
           <div className="max">
             {this.props.weatherData.TemperatureCMax}°

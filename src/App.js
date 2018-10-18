@@ -248,7 +248,7 @@ class App extends Component {
       return null
     }
 
-    const logs = this.state.production ? null : <Log logs={this.state.logs} key="logs"/>
+    const logs = this.state.production ? null : null //<Log logs={this.state.logs} key="logs"/>
 
     if (this.state.localization === null) {
       return logs

@@ -93,7 +93,7 @@ class National extends Component {
         this.setState({
           status: 'SECOND'
         })
-      }, 7125)
+      }, this.props.player.support === 'DCA' ? 4600 : 7125)
     }
   }
 
@@ -105,7 +105,7 @@ class National extends Component {
     const weatherData = this.state.status === 'FIRST' ? this.state.firstScreen : this.state.secondScreen
 
     const cities = weatherData.map((city, key) =>
-      <CityLine weatherData={city} key={key + '-' + this.state.status} />)
+      <CityLine weatherData={city} key={key + '-' + this.state.status} support={this.props.player.support}/>)
 
     return [
       this.props.shouldDisplay &&

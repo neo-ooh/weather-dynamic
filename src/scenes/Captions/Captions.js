@@ -6,7 +6,11 @@ class Captions extends Component {
   render () {
     let top, middle, bottom
 
-    const content = this.props.content.toLowerCase()
+    let content = this.props.content.toLowerCase()
+
+    if(content === 'forecast' && this.props.player.support === 'DCA') {
+      content = 'forecast-3'
+    }
 
     if (this.props.content === 'NATIONAL') {
       top = <Translate id="national.top" />
