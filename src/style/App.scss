@@ -26,11 +26,14 @@ html, body
     background-color: $background;
 }
 
-main.LED {
+main {
     display: block;
     position: absolute;
     width: 100%;
     height: 100%;
-    transform-origin: top left;
-    transform: scale(0.5333333333);
+
+    &.LED {
+        transform-origin: top left;
+        transform: scale(0.5333333333);
+    }
 }
