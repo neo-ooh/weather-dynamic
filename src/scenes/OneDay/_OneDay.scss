@@ -278,7 +278,7 @@
     .DCA & {
         width: 1000px;
         height: 950px;
-        margin: 110px 40px;
+        margin: 0 40px;
 
         // Val: OK so nothing will make sense here
         // Just deal with it
@@ -378,13 +378,13 @@
 
                     .temperature-line {
                         display: inline-block;
-                        width: calc(50% - 62.5px);
+                        width: 50%;
 
-                        font-size: 80pt;
+                        font-size: 70pt;
                         padding-top: 10px;
 
                         &.min {
-                            margin-left: 125px;
+                            text-align: right;
                         }
                     }
 
@@ -394,6 +394,11 @@
 
                     &:not(:last-child) {
                         padding-bottom: 15px;
+                    }
+
+                    &.min-max {
+                        width: 100%;
+                        padding-left: 0;
                     }
                 }
 

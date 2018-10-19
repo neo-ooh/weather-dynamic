@@ -17,6 +17,7 @@ import Forecast from './scenes/Forecast/Forecast'
 import National from './scenes/National/National'
 import Now from './scenes/Now/Now'
 import Error from './scenes/Error/Error'
+import Legal from './scenes/Legal/Legal'
 import Log from './scenes/Log/Log'
 
 import fr_caLocalization from 'assets/localizations/fr-CA.json'
@@ -84,7 +85,7 @@ class App extends Component {
 
   componentDidMount () {
     let player = this.state.player
-    player.support = this.detectSupport() || 'FCL'
+    player.support = this.detectSupport() || 'DCA'
     this.setState({ player }, () => {
       this.checkCache().then(this.detectLocation())
     })
@@ -94,6 +95,7 @@ class App extends Component {
     {name: 'FCL', width: '3840', height: '1080'},
     {name: 'DCA', width: '1080', height: '1920'},
     {name: 'LED', width: '2048', height: '576'},
+    {name: 'LED', width: '2176', height: '576'},
   ]
 
   detectSupport () {
@@ -272,6 +274,10 @@ class App extends Component {
             log={this.log}
           /> }
           { logs }
+          <Legal
+            key="legal"
+            player={this.state.player}
+            localization={this.state.localization} />
         </ErrorBoundary>
       </main>
     )

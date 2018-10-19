@@ -1,0 +1,21 @@
+#legals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .logo {
+        display: block;
+        position: absolute;
+        height: 100px;
+        bottom: 50px;
+        left: 50px;
+    }
+
+    &.DCA .logo {
+        height: 75px;
+        bottom: 40px;
+        left: 40px;
+    }
+}

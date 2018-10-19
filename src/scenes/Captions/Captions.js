@@ -4,6 +4,8 @@ import { Translate, withLocalize } from 'react-localize-redux'
 
 class Captions extends Component {
   render () {
+    if(this.props.localization === undefined) return null
+
     let top, middle, bottom
 
     let content = this.props.content.toLowerCase()
