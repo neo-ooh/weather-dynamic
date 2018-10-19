@@ -4,7 +4,6 @@ import { Translate, withLocalize } from 'react-localize-redux'
 
 class Captions extends Component {
   render () {
-    if(this.props.localization === undefined) return null
 
     let top, middle, bottom
 
@@ -19,6 +18,7 @@ class Captions extends Component {
       middle = <Translate id="national.bottom" />
       bottom = 'Canada'
     } else {
+      if(this.props.localization === undefined) return null
       top = <Translate id="weather" />
       middle = this.props.localization.Name
       bottom = <Translate id={content} />
