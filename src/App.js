@@ -106,8 +106,10 @@ class App extends Component {
     this.log('Current resolution: ' + supportResolution)
     const supportIndex = this.supports.findIndex(support => supportResolution === (support.width + "x" + support.height))
 
-    if(supportIndex === -1)
-        return null
+    if(supportIndex === -1) {
+      const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
+      return urlParameters.support || null
+    }
 
     this.log('Support: ' + this.supports[supportIndex].name)
     return this.supports[supportIndex].name
@@ -277,6 +279,7 @@ class App extends Component {
           <Legal
             key="legal"
             player={this.state.player}
+            locale={this.state.locale}
             localization={this.state.localization} />
         </ErrorBoundary>
       </main>

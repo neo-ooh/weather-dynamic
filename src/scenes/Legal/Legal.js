@@ -6,11 +6,13 @@ class Legal extends Component {
     if(this.props.localization === undefined) return null
 
     let legal = {}
-    if(this.props.localization[1] === 'QC') {
-      legal = { url: "images/logo_mm.png", alt:"Météo Média" }
+    if(this.props.locale === 'fr-CA') {
+      legal = { url: "images/propulsePar", alt:"Météo Média" }
     } else {
-      legal = { url: "images/logo_twn.png", alt:"The Weather Network" }
+      legal = { url: "images/poweredBy", alt:"The Weather Network" }
     }
+
+    legal.url += this.props.localization[1] === 'QC' ? 'QC.png' : '.png'
 
     return (
       <section id="legals" className={this.props.player.support}>
