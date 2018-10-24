@@ -12,7 +12,7 @@ class OneDay extends Component {
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 
     const label = this.props.weatherData.ObsCondition || this.props.weatherData.FxConditionDay
-    const labelClass = label.length > 15 ? 'small' : ''
+    const labelClass = label !== undefined ? (label.length > 15 ? 'small' : '') : ''
 
     const bottomPart = this.props.content === 'NOW' ? this.getTodayBottomSection() : this.getTomorrowBottomSection()
 
