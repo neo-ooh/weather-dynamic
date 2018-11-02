@@ -275,12 +275,12 @@ class App extends Component {
             shouldDisplay={this.state.display}
             log={this.log}
           /> }
-          { logs }
           <Legal
             key="legal"
             player={this.state.player}
             locale={this.state.locale}
             localization={this.state.localization} />
+          { logs }
         </ErrorBoundary>
       </main>
     )

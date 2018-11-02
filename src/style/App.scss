@@ -30,10 +30,20 @@ html, body
 main {
     display: block;
     position: absolute;
-    width: 100%;
-    height: 100%;
+
+    &.FCL {
+        width: 3840px;
+        height: 1080px;
+    }
+
+    &.DCA {
+        width: 1080px;
+        height: 1920px;
+    }
 
     &.LED {
+        width: 3840px;
+        height: 1080px;
         transform-origin: top left;
         transform: scale(0.5333333333);
     }
