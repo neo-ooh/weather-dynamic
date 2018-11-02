@@ -24,6 +24,10 @@ class Captions extends Component {
       bottom = <Translate id={content} />
     }
 
+    if(middle.length > 15) {
+      content += " small-text"
+    }
+
     return (
       <section id="Captions" className={this.props.player.support}>
         <div className="top-bar">
