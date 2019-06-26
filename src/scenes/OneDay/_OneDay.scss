@@ -458,6 +458,8 @@
 
         margin-top: 60px;
 
+        background: none;
+
         // Val: Me again mdr
 
         .top-part {
@@ -465,14 +467,18 @@
             // In the design : temperature + icon, actually the left side
 
             width: 375px;
-            height: 325px;
+            height: 324px;
+
+            background-color: rgba(0, 0, 0, .65);
+
+            z-index: 100;
 
             .weather-label {
                 // Placed on the right of the vertical separator
                 top: 0px;
                 left: 430px;
                 width: 500px;
-                height: 325px;
+                height: 324px;
 
                 font-size: 60pt;
                 line-height: 325px;
@@ -499,14 +505,17 @@
             left: 375px;
             top: 60px;
 
-            background-color: #aaa;
+            display: none;
         }
 
         .bottom-part {
-            top: -320px;
-            left: 380px;
+            top: -325px;
+            left: 385px;
 
-            width: 1000px;
+            width: 1235px;
+            height: 325px;
+
+            background-color: rgba(0, 0, 0, .65);
 
             .temperature {
                 // So this is in the left part of the design
@@ -516,6 +525,8 @@
 
                 font-size: 110pt;
                 line-height: 185px;
+
+                z-index: 200;
 
                 &.shrink {
                     font-size: 90pt;
