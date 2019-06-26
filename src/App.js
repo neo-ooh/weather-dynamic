@@ -97,6 +97,8 @@ class App extends Component {
     {name: 'LED', width: '2048', height: '576', design: 'FCL'},
     {name: 'LED', width: '2176', height: '576', design: 'FCL'},
     {name: 'FLD', width: '2560', height: '720', design: 'FCL'},
+    {name: 'FLD', width: '2560', height: '720', design: 'FCL'},
+    {name: 'WDE', width: '2560', height: '384', design: 'WDE'},
   ]
 
   detectSupport () {

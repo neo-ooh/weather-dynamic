@@ -16,6 +16,14 @@
         width: 1080px;
         height: 1170px;
     }
+
+    &.WDE {
+        top: 0px;
+        left: 910px;
+
+        width: 1624px;
+        height: 384px;
+    }
 }
 
 #oneDay-wrapper {
@@ -438,6 +446,204 @@
 
                     .detail-line {
                         padding: 30px 0 30px 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .WDE & {
+        width: 1620px;
+        height: 324px;
+
+        margin-top: 60px;
+
+        // Val: Me again mdr
+
+        .top-part {
+            // In the code: weather label + icon
+            // In the design : temperature + icon, actually the left side
+
+            width: 375px;
+            height: 325px;
+
+            .weather-label {
+                // Placed on the right of the vertical separator
+                top: 0px;
+                left: 430px;
+                width: 500px;
+                height: 325px;
+
+                font-size: 60pt;
+                line-height: 325px;
+                text-align: left;
+
+                &.small {
+                    font-size: 40pt;
+                }
+            }
+
+            .weather-icon {
+                // This one's still here
+                top: -45px;
+                left: 30px;
+                width: 315px;
+                height: 200px;
+            }
+        }
+
+        .separator {
+            position: absolute;
+            width: 5px;
+            height: 322px;
+            left: 375px;
+            top: 60px;
+
+            background-color: #aaa;
+        }
+
+        .bottom-part {
+            top: -320px;
+            left: 380px;
+
+            width: 1000px;
+
+            .temperature {
+                // So this is in the left part of the design
+                left: -370px;
+                top: 140px;
+                width: 375px;
+
+                font-size: 110pt;
+                line-height: 185px;
+
+                &.shrink {
+                    font-size: 90pt;
+                }
+            }
+
+            // Now for the really fucked up part
+            // The temperature line will go up above the other details
+
+            .forecast {
+                position: absolute;
+                left: 450px;
+                top: 15px;
+                width: 350px;
+
+
+                .max {
+                    font-size: 120pt;
+                }
+
+                .min {
+                    margin-top: -30px;
+                    font-size: 85pt;
+                }
+            }
+
+            .details {
+                top: 10px;
+                left: 580px;
+
+                width: 660px;
+
+                font-size: 45pt;
+
+                .detail-line {
+                    width: calc(100% - 30px);
+                    padding: 10px 0 0px 30px;
+
+                    .detail-value {
+                        padding-left: 35px;
+                    }
+
+                    .temperature-line {
+                        display: inline-block;
+                        width: 50%;
+
+                        font-size: 50pt;
+                        padding-top: 10px;
+
+                        &.min {
+                            //text-align: right;
+                        }
+
+                        .detail-value {
+                            padding-left: 20px;
+                        }
+                    }
+
+                    &:first-child {
+                        margin-left: -10px;
+                    }
+
+                    &:not(:last-child) {
+                        padding-bottom: 5px;
+                    }
+
+                    &.wind {
+                        width: 100%;
+                        margin-left: -10px;
+                    }
+
+                    &.min-max {
+                        margin-top: 8px;
+                        width: 100%;
+                        padding-left: 20px;
+                    }
+                }
+
+                &.centered {
+                    .detail-line {
+                        padding: 20px 0 0 15px;
+                        width: calc(100% - 15px);
+                    }
+                }
+
+                .detail-separator {
+                    width: 600px;
+                    height: 2px;
+                }
+            }
+        }
+
+        &.TOMORROW {
+            .top-part {
+                .weather-icon {
+                    left: 15px;
+                    top: -50px;
+                    width: 345px;
+                    height: 365px;
+                }
+
+                .weather-label {
+                    width: 400px;
+                }
+            }
+
+            .bottom-part {
+                .forecast {
+                    //top: -435px;
+                }
+
+                .details {
+
+                    left: 800px;
+                    width: 440px;
+
+                    font-size: 35pt;
+
+                    .detail-line {
+                        padding: 30px 0 30px 15px;
+
+                        &.wind {
+                            margin-left: 0;
+                        }
+                    }
+
+                    .detail-separator {
+                        width: 440px;
                     }
                 }
             }

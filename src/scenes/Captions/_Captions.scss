@@ -181,6 +181,59 @@
             }
         }
     }
+
+    &.WDE {
+        width: 850px;
+        height: 384px;
+
+        .top-bar {
+            width: 690px;
+            height: 100px;
+
+            top: 55px;
+            left: 0;
+
+            span {
+                margin: 0 0 0 100px;
+                font-size: 85pt;
+            }
+        }
+
+        .middle-bar {
+            width: 750px;
+            height: 75px;
+
+            top: 155px;
+            left: 0;
+
+            span {
+                width: 710px;
+                margin: 14px 0 0 0;
+                padding: 0 25px;
+                font-size: 45pt;
+            }
+
+            &.small-text span {
+                margin-top: 30px;
+                font-size: 30pt;
+            }
+        }
+
+        .bottom-bar {
+            width: 630px;
+            height: 60px;
+
+            top: 230px;
+            left: 0;
+
+            span {
+                width: 590px;
+                margin: 3px 0 0 0;
+                padding: 0 25px;
+                font-size: 45pt;
+            }
+        }
+    }
 }
 
 
