@@ -9,7 +9,7 @@ class National extends Component {
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 
     return (
-      <div className={'city-line ' + this.props.support}>
+      <div className={'city-line ' + this.props.support.design}>
         <div className="temperature-block">
           <span className="temperature">
             { this.props.weatherData.TemperatureC }°

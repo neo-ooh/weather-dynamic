@@ -85,20 +85,22 @@ class App extends Component {
 
   componentDidMount () {
     let player = this.state.player
-    player.support = this.detectSupport() || 'FCL'
+    player.support = this.detectSupport()
     this.setState({ player }, () => {
       this.checkCache().then(this.detectLocation())
     })
   }
 
   supports = [
-    {name: 'FCL', width: '3840', height: '1080'},
-    {name: 'DCA', width: '1080', height: '1920'},
-    {name: 'LED', width: '2048', height: '576'},
-    {name: 'LED', width: '2176', height: '576'},
+    {name: 'FCL', width: '3840', height: '1080', design: 'FCL'},
+    {name: 'DCA', width: '1080', height: '1920', design: 'DCA'},
+    {name: 'LED', width: '2048', height: '576', design: 'FCL'},
+    {name: 'LED', width: '2176', height: '576', design: 'FCL'},
+    {name: 'FLD', width: '2560', height: '720', design: 'FCL'},
   ]
 
   detectSupport () {
+    // Get the support resolution
     const supportResolution = this.state.player.isBroadSign
       ? window.BroadSignObject.display_unit_resolution
       : this.props.windowWidth + "x" + this.props.windowHeight
@@ -108,11 +110,12 @@ class App extends Component {
 
     if(supportIndex === -1) {
       const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
-      return urlParameters.support || null
+      const support = this.supports.find(s => s.name === urlParameters.support )
+      return support !== undefined ? support : this.supports[0]
     }
 
-    this.log('Support: ' + this.supports[supportIndex].name)
-    return this.supports[supportIndex].name
+    this.log('Support: ' + this.supports[supportIndex].name + ' (' + this.supports[supportIndex].design + ')')
+    return this.supports[supportIndex]
   }
 
   checkCache() {
@@ -222,7 +225,7 @@ class App extends Component {
       inited: true
     })
 
-    Backgrounds.init(this.state.localization, this.state.player.support, this.log)
+    Backgrounds.init(this.state.localization, this.state.player.support.design, this.log)
   }
 
   log = msg => {
@@ -261,7 +264,8 @@ class App extends Component {
     const Scene = this.contents[this.state.content]
 
     return (
-      <main className={this.state.player.support}>
+      <main
+        className={[this.state.player.support.design, this.state.player.support.name].join(' ')} >
         <ErrorBoundary>
           {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
           { !this.state.onError &&

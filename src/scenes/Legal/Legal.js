@@ -15,7 +15,7 @@ class Legal extends Component {
     legal.url += this.props.localization[1] === 'QC' ? 'QC.png' : '.png'
 
     return (
-      <section id="legals" className={this.props.player.support}>
+      <section id="legals" className={this.props.player.support.design}>
         <img className="logo" src={legal.url}  alt={legal.alt} />
       </section>
     )

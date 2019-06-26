@@ -107,7 +107,7 @@ export default class Now extends Component {
         this.setState({
           content: 'TOMORROW'
         })
-      }, this.props.player.support === 'DCA' ? 4600 : 7125)
+      }, this.props.player.support.design === 'DCA' ? 4600 : 7125)
     }
   }
 

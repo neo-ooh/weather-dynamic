@@ -93,7 +93,7 @@ class National extends Component {
         this.setState({
           status: 'SECOND'
         })
-      }, this.props.player.support === 'DCA' ? 4600 : 7125)
+      }, this.props.player.support.design === 'DCA' ? 4600 : 7125)
     }
   }
 
@@ -119,7 +119,7 @@ class National extends Component {
         content={this.props.content}
         player={this.props.player}
         shouldDisplay={this.props.shouldDisplay}/>,
-      <section id="FCL-National" className={this.props.player.support} key="national-lines">
+      <section id="FCL-National" className={this.props.player.support.design} key="national-lines">
         <ReactCSSTransitionGroup
           transitionName="transition-national"
           transitionAppearTimeout={1250}
@@ -130,7 +130,7 @@ class National extends Component {
           transitionLeave={true}
           component="div"
           id="national-wrapper"
-          className={this.props.player.support} >
+          className={this.props.player.support.design} >
           { this.props.shouldDisplay && cities }
         </ReactCSSTransitionGroup>
       </section>
