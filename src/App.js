@@ -102,6 +102,10 @@ class App extends Component {
   ]
 
   detectSupport () {
+    if(!this.state.player.isBroadSign) {
+      this.log('This is not a BroadSign Player')
+    }
+
     // Get the support resolution
     const supportResolution = this.state.player.isBroadSign
       ? window.BroadSignObject.display_unit_resolution
@@ -194,11 +198,6 @@ class App extends Component {
     })
 
     if(this.state.onError && this.state.production) stopDisplay()
-
-    if (!window.BroadSignObject) {
-      console.log('No BroadSignObject has been found')
-      console.log('This is not a BroadSign Player')
-    }
   }
 
   // Init localization
