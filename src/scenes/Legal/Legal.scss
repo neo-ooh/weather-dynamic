@@ -24,4 +24,17 @@
             height: 50px;
         }
     }
+
+    &.WDE {
+        width: 620px;
+        bottom: 0;
+        height: 40px;
+
+        padding: 20px;
+
+        .logo {
+            height: 40px;
+            padding: 0;
+        }
+    }
 }

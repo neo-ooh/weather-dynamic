@@ -164,6 +164,10 @@
                 padding: 0 25px;
                 font-size: 45pt;
             }
+
+            &.small-text span {
+                font-size: 40pt;
+            }
         }
 
         .bottom-bar {
@@ -190,7 +194,7 @@
             width: 690px;
             height: 100px;
 
-            top: 55px;
+            top: 35px;
             left: 0;
 
             span {
@@ -203,7 +207,7 @@
             width: 750px;
             height: 75px;
 
-            top: 155px;
+            top: 135px;
             left: 0;
 
             span {
@@ -223,14 +227,14 @@
             width: 630px;
             height: 60px;
 
-            top: 230px;
+            top: 210px;
             left: 0;
 
             span {
                 width: 590px;
-                margin: 3px 0 0 0;
+                margin: 10px 0 0 0;
                 padding: 0 25px;
-                font-size: 45pt;
+                font-size: 40pt;
             }
         }
     }

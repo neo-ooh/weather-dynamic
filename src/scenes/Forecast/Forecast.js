@@ -113,7 +113,7 @@ class Forecast extends Component {
         transitionEnter={true}
         transitionLeave={true}
         component="div"
-        id="FCL-Forecast"
+        id="forecast"
         className={this.props.player.support.design}
         key="columns">
         { this.props.shouldDisplay && columns }

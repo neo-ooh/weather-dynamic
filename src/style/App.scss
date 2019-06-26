@@ -34,6 +34,18 @@ main {
     &.FCL {
         width: 3840px;
         height: 1080px;
+
+        &.LED {
+            width: 4080px;
+            height: 1080px;
+            transform-origin: top left;
+            transform: scale(0.5333333333);
+        }
+
+        &.FLD {
+            transform-origin: top left;
+            transform: scale(0.666666667);
+        }
     }
 
     &.DCA {
@@ -41,15 +53,8 @@ main {
         height: 1920px;
     }
 
-    &.LED {
-        width: 4080px;
-        height: 1080px;
-        transform-origin: top left;
-        transform: scale(0.5333333333);
-    }
-
-    &.FLD {
-        transform-origin: top left;
-        transform: scale(0.666666667);
+    &.WDE {
+        width: 2560px;
+        height: 384px;
     }
 }

@@ -520,8 +520,9 @@
             .temperature {
                 // So this is in the left part of the design
                 left: -370px;
-                top: 140px;
+                top: 155px;
                 width: 375px;
+                height: 174px;
 
                 font-size: 110pt;
                 line-height: 185px;
@@ -554,7 +555,7 @@
             }
 
             .details {
-                top: 10px;
+                top: 15px;
                 left: 580px;
 
                 width: 660px;
@@ -622,9 +623,9 @@
         &.TOMORROW {
             .top-part {
                 .weather-icon {
-                    left: 15px;
-                    top: -50px;
-                    width: 345px;
+                    left: 25px;
+                    top: -60px;
+                    width: 325px;
                     height: 365px;
                 }
 
