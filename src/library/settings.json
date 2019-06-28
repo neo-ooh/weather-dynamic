@@ -1,4 +1,3 @@
 {
-	"apiURL": "https://api.dynamics.ad-direct.ca/weather",
 	"cacheName": "weather-dynamic"
 }

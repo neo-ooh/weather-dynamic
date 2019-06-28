@@ -1,6 +1,8 @@
 import { get } from './CacheService'
 import settings from './settings'
 
+const apiURL = process.env.REACT_APP_API_URL
+
 export default class WeatherAPI {
   constructor () {
     WeatherAPI.options = {
@@ -24,7 +26,7 @@ export default class WeatherAPI {
   }
 
   national () {
-    const url = settings.apiURL + '/national' + this.getParams()
+    const url = apiURL + '/national' + this.getParams()
     return get(url)
   }
 
@@ -33,7 +35,7 @@ export default class WeatherAPI {
   }
 
   getLocalized (endpoint, country, province, city) {
-    return get(settings.apiURL + endpoint + '/' + country + '/' + province + '/' + city + this.getParams()).then(resp => {
+    return get(apiURL + endpoint + '/' + country + '/' + province + '/' + city + this.getParams()).then(resp => {
       return resp
     })
   }
