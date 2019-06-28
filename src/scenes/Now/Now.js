@@ -76,7 +76,6 @@ export default class Now extends Component {
   }
 
   checkLoadedData = () => {
-    console.log('Data loaded')
     if (this.todayForecast === undefined || this.tomorrowForecast === undefined) return
 
     if (this.todayForecast === null || this.tomorrowForecast === null) {

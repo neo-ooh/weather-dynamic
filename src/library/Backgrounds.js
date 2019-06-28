@@ -7,7 +7,7 @@ const periods = ['MORNING', 'DAY', 'DUSK', 'NIGHT']
 
 class Backgrounds
 {
-  _backgrounds = []
+  _backgrounds = {}
   _selectionMethod = 'WEATHER'
 
   init(location, support, log) {
@@ -18,7 +18,7 @@ class Backgrounds
           console.log(response)
           if (typeof response.content === 'undefined') return
 
-          this._backgrounds = this._backgrounds.concat(response.content.backgrounds)
+          this._backgrounds[period] = response.content.backgrounds
           this._selectionMethod = response.content.selection
 
           if(response.content.backgrounds.length === 0) {
@@ -27,13 +27,17 @@ class Backgrounds
         })
       )
     ).then(() => {
-      log(this._backgrounds.length + ' background.s found')
       caches.open(settings.cacheName).then(cache =>
         cache.keys().then(storedRequests => {
           const keys = storedRequests.map(key => key.url)
-          cache.addAll(this._backgrounds
-            .map(background => background.path.replace(/\\\//g, "/"))
-            .filter(path => !keys.includes(path)))
+          var filteredBackground = []
+          for (var period in this._backgrounds) {
+            let filteredPeriod = this._backgrounds[period]
+              .map(background => background.path.replace(/\\\//g, "/"))
+              .filter(path => !keys.includes(path))
+              filteredBackground.push(...filteredPeriod)
+          }
+          cache.addAll([...new Set(filteredBackground)])
         })
       )
     })
@@ -41,10 +45,9 @@ class Backgrounds
 
   get(weather, geo) {
     const period = this.getPeriod(geo)
-    const filteredBackgrounds = this._backgrounds
-      .filter(background => background.period === period)
+    if(this._selectionMethod === 'RANDOM') return this.getRandom(this._backgrounds[period])
 
-    if(this._selectionMethod === 'RANDOM') return this.getRandom(filteredBackgrounds)
+    const filteredBackgrounds = this._backgrounds[period]
 
     return this.getWeather(filteredBackgrounds, weather)
   }

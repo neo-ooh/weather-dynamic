@@ -1,5 +1,4 @@
 import { get } from './CacheService'
-import settings from './settings'
 
 const apiURL = process.env.REACT_APP_API_URL
 
