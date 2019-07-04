@@ -37,4 +37,17 @@
             padding: 0;
         }
     }
+
+    &.SGL {
+        width: 470px;
+        top: 0;
+        height: 30px;
+
+        padding: 20px;
+
+        .logo {
+            height: 30px;
+            padding: 0;
+        }
+    }
 }

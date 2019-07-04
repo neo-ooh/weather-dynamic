@@ -82,6 +82,7 @@
 
         @for $i from 1 to $elements {
             .FCL &:nth-child(#{$i + 1}),
+            .SGL &:nth-child(#{$i + 1}),
             .DCA &:nth-child(#{$i + 1}) {
                 left: #{$i * 340}px;
             }
@@ -272,6 +273,68 @@
             margin: -78px 20px 0 0;
             font-size: 45pt;
             text-align: right;
+        }
+    }
+
+    .SGL & {
+        width: 340px;
+        height: 100%;
+
+        .caption {
+            width: 100%;
+            height: 135px;
+
+            margin-top: 15px;
+
+            font-size: 85pt;
+        }
+
+        .weather-icon {
+            width: 250px;
+            height: 270px;
+            margin: 0px auto;
+        }
+
+        .weather-label {
+            top: 480px;
+            height: 130px;
+
+            padding: 0 30px;
+
+            font-size: 28pt;
+            line-height: 130px;
+
+            .label {
+                width: 280px;
+            }
+        }
+
+        &:first-child .h-separator {
+            margin-left: 50px;
+        }
+
+        &:last-child .h-separator {
+            margin-right: 50px;
+        }
+
+        &:not(:first-child) .v-separator {
+            top: 200px;
+            height: 600px;
+            width: 7px;
+        }
+
+        .max-temperature {
+            margin: 10px 0 0;
+            padding-left: 45px;
+
+            font-size: 95pt;
+        }
+
+        .min-temperature {
+            margin-top: -25px;
+            padding-left: 32px;
+
+            font-size: 70pt;
         }
     }
 }
