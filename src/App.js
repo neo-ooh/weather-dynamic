@@ -99,7 +99,7 @@ class App extends Component {
     {name: 'FLD', width: '2560', height: '720', design: 'FCL'},
     {name: 'FLD', width: '2560', height: '720', design: 'FCL'},
     {name: 'WDE', width: '2560', height: '384', design: 'WDE'},
-    {name: 'SGL', width: '1920', height: '1080', design: 'SGL'},
+    {name: 'SHD', width: '1920', height: '1080', design: 'SHD'},
   ]
 
   detectSupport () {

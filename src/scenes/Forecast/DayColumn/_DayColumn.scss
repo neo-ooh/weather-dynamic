@@ -82,7 +82,7 @@
 
         @for $i from 1 to $elements {
             .FCL &:nth-child(#{$i + 1}),
-            .SGL &:nth-child(#{$i + 1}),
+            .SHD &:nth-child(#{$i + 1}),
             .DCA &:nth-child(#{$i + 1}) {
                 left: #{$i * 340}px;
             }
@@ -276,7 +276,7 @@
         }
     }
 
-    .SGL & {
+    .SHD & {
         width: 340px;
         height: 100%;
 
