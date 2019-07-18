@@ -33,6 +33,8 @@ class App extends Component {
     'NATIONAL': National
   }
 
+  resolution = { width: 0, height: 0 }
+
   constructor (props) {
     super(props)
 
@@ -111,6 +113,9 @@ class App extends Component {
       ? window.BroadSignObject.display_unit_resolution
       : this.props.windowWidth + "x" + this.props.windowHeight
 
+    this.resolution.width = Number(supportResolution.split('x')[0])
+    this.resolution.height = Number(supportResolution.split('x')[1])
+
     this.log('Current resolution: ' + supportResolution)
     const supportIndex = this.supports.findIndex(support => supportResolution === (support.width + "x" + support.height))
 
@@ -134,7 +139,6 @@ class App extends Component {
     }
 
     const refreshRate = this.state.production ? 1000 * 3600 * 24 : 300 * 1000
-    console.log(refreshRate, Date.now() - lastUpdate)
     if(Date.now() - lastUpdate > refreshRate) {
       return caches.delete(settings.cacheName).then(() => {
         this.log('Cache Cleaned')
@@ -263,10 +267,11 @@ class App extends Component {
     }
 
     const Scene = this.contents[this.state.content]
-
+    console.log(this.state.player.support.name, this.resolution, 'scale(' + (this.state.player.support.name === 'LED' ? this.resolution.height / '1080' : 1) + ')')
     return (
       <main
-        className={[this.state.player.support.design, this.state.player.support.name].join(' ')} >
+        className={[this.state.player.support.design, this.state.player.support.name].join(' ')}
+        style={{ transform: 'scale(' + (this.state.player.support.name === 'LED' ? this.resolution.height / '1080' : 1) + ')' }}>
         <ErrorBoundary>
           {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
           { !this.state.onError &&
