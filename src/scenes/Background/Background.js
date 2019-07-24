@@ -4,6 +4,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Backgrounds from 'library/Backgrounds'
 import backgroundMap from 'library/backgroundsMap.json'
 
+import { cache } from 'dynamics-utilities'
+
 export default class background extends Component {
   constructor (props) {
     super(props)
@@ -14,10 +16,7 @@ export default class background extends Component {
   }
 
   componentDidMount () {
-    const url = this.resolveBackground()
-    this.setState({
-      url: url
-    })
+    this.resolveBackground()
   }
 
   componentDidUpdate (prevPros) {
@@ -44,7 +43,8 @@ export default class background extends Component {
       case 'NOW':
         iconID = this.props.weatherData.ObsIcon
         break
-      default: return {}
+      default:
+        return {}
     }
 
     let geo
@@ -61,7 +61,11 @@ export default class background extends Component {
       }
     }
 
-    return Backgrounds.get(backgroundMap[iconID], geo)
+    cache.getImage(Backgrounds.get(backgroundMap[iconID], geo)).then(url =>
+      this.setState({
+        url: url
+      })
+    )
   }
 
   getNationalBackground () {

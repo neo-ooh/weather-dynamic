@@ -1,27 +1,22 @@
 import React, { Component } from 'react'
 
-import { renderToStaticMarkup } from 'react-dom/server'
-import { withLocalize } from 'react-localize-redux'
 import parseAdress from 'parse-address-string'
-import windowSize from 'react-window-size'
 import querystring from 'querystring'
 import URL from 'url-parse'
 import Backgrounds from 'library/Backgrounds'
 import settings from 'library/settings'
 
 import WeatherAPI from 'library/WeatherAPI'
-import { stopDisplay } from './library/Broadsignlink'
+import { isBroadSignPlayer, BroadSignActions, resolveSupport, cache } from 'dynamics-utilities'
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary'
+import Error from './scenes/Error/Error'
+import Log from './scenes/Log/Log'
+
 import Forecast from './scenes/Forecast/Forecast'
 import National from './scenes/National/National'
 import Now from './scenes/Now/Now'
-import Error from './scenes/Error/Error'
 import Legal from './scenes/Legal/Legal'
-import Log from './scenes/Log/Log'
-
-import fr_caLocalization from 'assets/localizations/fr-CA.json'
-import en_caLocalization from 'assets/localizations/en-CA.json'
 
 import './style/App.scss'
 
@@ -33,19 +28,17 @@ class App extends Component {
     'NATIONAL': National
   }
 
-  resolution = { width: 0, height: 0 }
-
   constructor (props) {
     super(props)
+
+    // Set up cache
+    cache.setCacheName('weather-dynamic')
 
     const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
 
     // BROADSIGN ----
     // Listen for start of display calls
     document.getElementById('broadsign-holder').addEventListener('click', this.broadSignPlay)
-
-    // Detect if this is a broadsign player
-    const broadSignPlayer = typeof window.BroadSignObject !== 'undefined'
 
     // Build the state
     this.state = {
@@ -54,17 +47,14 @@ class App extends Component {
 
       // Player infos
       player: {
-        isBroadSign: broadSignPlayer,
-        width: props.windowWidth,
-        height: props.windowHeight,
         location: null,
-        support: null,
+        support: resolveSupport(urlParameters.support),
       },
 
       // What to display
       content: urlParameters.content ? urlParameters.content.toUpperCase() in this.contents ? urlParameters.content.toUpperCase() : 'NATIONAL' : 'NATIONAL', // TODAY, TOMORROW, FORECAST, NATIONAL
 
-      // Localization (the language)
+      // Locale (the language)
       locale: urlParameters.locale || 'en-CA',
 
       // Localization (the position)
@@ -86,56 +76,16 @@ class App extends Component {
   }
 
   componentDidMount () {
-    let player = this.state.player
-    player.support = this.detectSupport()
-    this.setState({ player }, () => {
-      this.checkCache().then(this.detectLocation())
-    })
-  }
-
-  supports = [
-    {name: 'FCL', width: '3840', height: '1080', design: 'FCL'},
-    {name: 'DCA', width: '1080', height: '1920', design: 'DCA'},
-    {name: 'LED', width: '2048', height: '576', design: 'FCL'},
-    {name: 'LED', width: '2176', height: '576', design: 'FCL'},
-    {name: 'LED', width: '2560', height: '720', design: 'FCL'},
-    {name: 'WDE', width: '2560', height: '384', design: 'WDE'},
-    {name: 'SHD', width: '1920', height: '1080', design: 'SHD'},
-  ]
-
-  detectSupport () {
-    if(!this.state.player.isBroadSign) {
-      this.log('This is not a BroadSign Player')
-    }
-
-    // Get the support resolution
-    const supportResolution = this.state.player.isBroadSign
-      ? window.BroadSignObject.display_unit_resolution
-      : this.props.windowWidth + "x" + this.props.windowHeight
-
-    this.resolution.width = Number(supportResolution.split('x')[0])
-    this.resolution.height = Number(supportResolution.split('x')[1])
-
-    this.log('Current resolution: ' + supportResolution)
-    const supportIndex = this.supports.findIndex(support => supportResolution === (support.width + "x" + support.height))
-
-    if(supportIndex === -1) {
-      const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
-      const support = this.supports.find(s => s.name === urlParameters.support )
-      return support !== undefined ? support : this.supports[0]
-    }
-
-    this.log('Support: ' + this.supports[supportIndex].name + ' (' + this.supports[supportIndex].design + ')')
-    return this.supports[supportIndex]
+    this.checkCache().then(this.detectLocation())
   }
 
   checkCache() {
     // Check cache state and erase if new day
-    const lastUpdate = localStorage.getItem('weather-dynamic-refresh')
+    const lastUpdate = localStorage.getItem('weather-dynamic.refresh')
     if(lastUpdate === null) {
       let d = new Date();
       d.setHours(0,0,0,0)
-      return Promise.resolve().then(localStorage.setItem('weather-dynamic-refresh', d.getTime()))
+      return Promise.resolve().then(localStorage.setItem('weather-dynamic.refresh', d.getTime()))
     }
 
     const refreshRate = this.state.production ? 1000 * 3600 * 24 : 300 * 1000
@@ -144,7 +94,7 @@ class App extends Component {
         this.log('Cache Cleaned')
         let d = new Date();
         this.state.production && d.setHours(0,0,0,0)
-        localStorage.setItem('weather-dynamic-refresh', d.getTime())
+        localStorage.setItem('weather-dynamic.refresh', d.getTime())
       })
     }
 
@@ -154,9 +104,7 @@ class App extends Component {
   detectLocation () {
     // LOCALIZATION ----
 
-    // parseAdress('3700 Saint-Patrick-Street, Montreal, QC H4E 1A1', console.log)
-
-    if (this.state.player.isBroadSign) {
+    if (isBroadSignPlayer) {
       this.log('Detecting location using BroadSign variables')
       this.log('Player location: ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
 
@@ -201,28 +149,16 @@ class App extends Component {
       display: true
     })
 
-    if(this.state.onError && this.state.production) stopDisplay()
+    if(this.state.onError && this.state.production) BroadSignActions.stopDisplay()
   }
 
   // Init localization
   initLocalization () {
-    this.props.initialize({
-      languages: [
-        {name: 'Canadian English', code: 'en-CA'},
-        {name: 'Francais Canadien', code: 'fr-CA'}
-      ],
-      options: {renderToStaticMarkup}
-    })
-
-    this.props.addTranslationForLanguage(fr_caLocalization, 'fr-CA')
-    this.props.addTranslationForLanguage(en_caLocalization, 'en-CA')
-
     let language = this.state.localization[1] === 'QC' ? 'fr-CA' : 'en-CA'
 
     const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
     language = urlParameters.locale || language
 
-    this.props.setActiveLanguage(language)
     WeatherAPI.setLocale(language)
 
     this.setState({
@@ -250,7 +186,7 @@ class App extends Component {
     })
 
     if (this.state.production && this.state.display) {
-      stopDisplay()
+      BroadSignActions.stopDisplay()
     }
   }
 
@@ -267,11 +203,11 @@ class App extends Component {
     }
 
     const Scene = this.contents[this.state.content]
-    console.log(this.state.player.support.name, this.resolution, 'scale(' + (this.state.player.support.name === 'LED' ? this.resolution.height / '1080' : 1) + ')')
+
     return (
       <main
         className={[this.state.player.support.design, this.state.player.support.name].join(' ')}
-        style={{ transform: 'scale(' + (this.state.player.support.name === 'LED' ? this.resolution.height / '1080' : 1) + ')' }}>
+        style={{ transform: 'scale(' + this.state.player.support.scale + ')' }}>
         <ErrorBoundary>
           {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
           { !this.state.onError &&
@@ -290,11 +226,11 @@ class App extends Component {
             player={this.state.player}
             locale={this.state.locale}
             localization={this.state.localization} />
-          { logs }
+          {/*{ logs }*/}
         </ErrorBoundary>
       </main>
     )
   }
 }
 
-export default withLocalize(windowSize(App))
+export default App

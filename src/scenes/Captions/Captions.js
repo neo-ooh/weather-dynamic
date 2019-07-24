@@ -1,6 +1,8 @@
 import React, { Component} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Translate, withLocalize } from 'react-localize-redux'
+
+import { injectIntl } from "react-intl"
+import messages from '../../library/messages'
 
 class Captions extends Component {
   render () {
@@ -14,14 +16,14 @@ class Captions extends Component {
     }
 
     if (this.props.content === 'NATIONAL') {
-      top = <Translate id="national.top" />
-      middle = <Translate id="national.bottom" />
+      top = this.props.intl.formatMessage(messages.nationalCaptionTop)
+      middle = this.props.intl.formatMessage(messages.nationalCaptionBottom)
       bottom = 'Canada'
     } else {
       if(this.props.localization === undefined) return null
-      top = <Translate id="weather" />
+      top = this.props.intl.formatMessage(messages.weather)
       middle = this.props.localization.Name
-      bottom = <Translate id={content} />
+      bottom = this.props.intl.formatMessage(messages[content])
     }
 
     if(middle.length > 15) {
@@ -55,4 +57,4 @@ class Captions extends Component {
   }
 }
 
-export default withLocalize(Captions)
+export default injectIntl(Captions)

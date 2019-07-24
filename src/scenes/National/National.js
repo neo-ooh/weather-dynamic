@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withLocalize } from 'react-localize-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import WeatherAPI from 'library/WeatherAPI'
@@ -138,4 +137,4 @@ class National extends Component {
   }
 }
 
-export default withLocalize(National)
+export default National

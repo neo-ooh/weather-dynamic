@@ -1,4 +1,4 @@
-import { get } from './CacheService'
+import { cache } from 'dynamics-utilities'
 
 const apiURL = process.env.REACT_APP_API_URL
 
@@ -26,7 +26,7 @@ export default class WeatherAPI {
 
   national () {
     const url = apiURL + '/national' + this.getParams()
-    return get(url)
+    return cache.getJson(url)
   }
 
   backgrounds (period, support, country, province, city) {
@@ -34,9 +34,7 @@ export default class WeatherAPI {
   }
 
   getLocalized (endpoint, country, province, city) {
-    return get(apiURL + endpoint + '/' + country + '/' + province + '/' + city + this.getParams()).then(resp => {
-      return resp
-    })
+    return cache.getJson(apiURL + endpoint + '/' + country + '/' + province + '/' + city + this.getParams())
   }
   getParams () {
     return '?locale=' + WeatherAPI.locale + '&key=' + WeatherAPI.APIKey

@@ -187,11 +187,15 @@
 
             padding: 0 30px;
 
-            font-size: 28pt;
+            font-size: 40pt;
             line-height: 150px;
 
             .label {
                 width: 280px;
+            }
+
+            &.small-text {
+                font-size: 28pt;
             }
         }
 

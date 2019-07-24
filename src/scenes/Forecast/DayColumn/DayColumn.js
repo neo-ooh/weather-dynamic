@@ -1,5 +1,7 @@
 import React, { Component} from 'react'
-import { Translate, withLocalize } from 'react-localize-redux'
+
+import { injectIntl } from "react-intl"
+import messages from '../../../library/messages'
 
 import getIcon from 'library/getIcon'
 
@@ -16,9 +18,9 @@ class DayColumn extends Component {
 
     return (
       <div className="day-column">
-        <div className="caption"><Translate id={'days.' + forecastDay} /></div>
+        <div className="caption">{ this.props.intl.formatMessage(messages['days-' + forecastDay]) }</div>
         <div className="weather-icon" style={iconStyle} />
-        <div className="weather-label">
+        <div className={ ['weather-label', this.props.weatherData.FxConditionDay.length > 15 ?'small-text':''].join(' ') }>
           <span className="label">
             { this.props.weatherData.FxConditionDay }
           </span>
@@ -32,4 +34,4 @@ class DayColumn extends Component {
   }
 }
 
-export default withLocalize(DayColumn)
+export default injectIntl(DayColumn)

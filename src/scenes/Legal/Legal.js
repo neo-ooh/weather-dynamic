@@ -1,25 +1,29 @@
 import React, { Component } from 'react'
+import { injectIntl } from 'react-intl'
+
+import legalEN from '../../assets/images/poweredBy.png'
+import legalENQC from '../../assets/images/poweredByQC.png'
+import legalFR from '../../assets/images/propulsePar.png'
+import legalFRQC from '../../assets/images/propulseParQC.png'
+
+
 
 class Legal extends Component {
   render () {
+    let legal = null
 
-    if(this.props.localization === undefined) return null
-
-    let legal = {}
-    if(this.props.locale === 'fr-CA') {
-      legal = { url: "images/propulsePar", alt:"Météo Média" }
+    if(this.props.intl.locale === 'fr-CA' || this.props.intl.locale === 'fr-FR') {
+      legal = this.props.localization[1] === 'QC' ? legalFRQC : legalFR
     } else {
-      legal = { url: "images/poweredBy", alt:"The Weather Network" }
+      legal = this.props.localization[1] === 'QC' ? legalENQC : legalEN
     }
-
-    legal.url += this.props.localization[1] === 'QC' ? 'QC.png' : '.png'
 
     return (
       <section id="legals" className={this.props.player.support.design}>
-        <img className="logo" src={legal.url}  alt={legal.alt} />
+        <img className="logo" src={legal}  alt={ "" } />
       </section>
     )
   }
 }
 
-export default Legal
+export default injectIntl(Legal)

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { withLocalize } from 'react-localize-redux'
 
 import getIcon from 'library/getIcon'
 
 class National extends Component {
   render () {
     const iconID = this.props.weatherData.ObsIcon ? this.props.weatherData.ObsIcon : this.props.weatherData.FxIconDay
-    const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
+    const iconStyle = { backgroundImage: 'url(' + getIcon(iconID) + ')' }
 
     return (
       <div className={'city-line ' + this.props.support.design}>
@@ -24,4 +23,4 @@ class National extends Component {
   }
 }
 
-export default withLocalize(National)
+export default National

@@ -1,0 +1,23 @@
+{
+  "weather.days.0": "Dim",
+  "weather.days.1": "Lun",
+  "weather.days.2": "Mar",
+  "weather.days.3": "Mer",
+  "weather.days.4": "Jeu",
+  "weather.days.5": "Ven",
+  "weather.days.6": "Sam",
+  "weather.feelsLike": "Ressenti",
+  "weather.forecast": "5 prochains jours",
+  "weather.forecast-3": "3 prochains jours",
+  "weather.max": "Max",
+  "weather.min": "Min",
+  "weather.national.bottom": "Nationale",
+  "weather.national.top": "Météo",
+  "weather.now": "Maintenant",
+  "weather.pop": "Risque de pluie",
+  "weather.today": "Aujourd;hui",
+  "weather.tomorrow": "Demain",
+  "weather.updatedOn": "Mis à jour",
+  "weather.weather": "Météo",
+  "weather.wind": "Vent"
+}

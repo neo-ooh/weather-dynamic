@@ -1,5 +1,40 @@
-import iconsMap from './iconsMap.json'
+const weatherIcons = {
+  '1': require('../assets/images/icons/sunny.png'),
+  '2': require('../assets/images/icons/sunny.png'),
+  '3': require('../assets/images/icons/partly-sunny.png'),
+  '4': require('../assets/images/icons/partly-sunny.png'),
+  '5': require('../assets/images/icons/rain.png'),
+  '6': require('../assets/images/icons/mostly-cloudy.png'),
+  '7': require('../assets/images/icons/thunderstorms.png'),
+  '8': require('../assets/images/icons/cloudy.png'),
+  '9': require('../assets/images/icons/rain.png'),
+  '10': require('../assets/images/icons/rain.png'),
+  '11': require('../assets/images/icons/thunderstorms.png'),
+  '12': require('../assets/images/icons/snow-and-rain.png'),
+  '13': require('../assets/images/icons/snow-and-rain.png'),
+  '14': require('../assets/images/icons/snow.png'),
+  '15': require('../assets/images/icons/snow.png'),
+  '16': require('../assets/images/icons/snow.png'),
+  '17': require('../assets/images/icons/fog.png'),
+
+  '18': require('../assets/images/icons/sunny.png'),
+  '19': require('../assets/images/icons/sunny.png'),
+  '20': require('../assets/images/icons/partly-sunny.png'),
+  '21': require('../assets/images/icons/partly-sunny.png'),
+  '22': require('../assets/images/icons/snow.png'),
+  '23': require('../assets/images/icons/rain.png'),
+  '24': require('../assets/images/icons/thunderstorms.png'),
+  '25': require('../assets/images/icons/snow-and-rain.png'),
+  '26': require('../assets/images/icons/snow.png'),
+  '27': require('../assets/images/icons/fog.png'),
+  '28': require('../assets/images/icons/rain.png'),
+  '29': require('../assets/images/icons/rain.png'),
+  '30': require('../assets/images/icons/rain.png'),
+  '31': require('../assets/images/icons/rain.png'),
+  '32': require('../assets/images/icons/rain.png'),
+  '33': require('../assets/images/icons/rain.png'),
+}
 
 export default function getIcon (iconID) {
-  return '/images/icons/' + iconsMap[iconID] + '.png'
+  return weatherIcons[iconID]
 }

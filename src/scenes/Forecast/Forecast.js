@@ -1,6 +1,5 @@
 import React, { Component} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { withLocalize } from 'react-localize-redux'
 import WeatherAPI from 'library/WeatherAPI'
 
 import Background from '../Background/Background'
@@ -122,4 +121,4 @@ class Forecast extends Component {
   }
 }
 
-export default withLocalize(Forecast)
+export default Forecast

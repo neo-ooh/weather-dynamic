@@ -1,0 +1,23 @@
+{
+  "weather.days.0": "Sun",
+  "weather.days.1": "Mon",
+  "weather.days.2": "Tue",
+  "weather.days.3": "Wed",
+  "weather.days.4": "Thu",
+  "weather.days.5": "Fri",
+  "weather.days.6": "Sat",
+  "weather.feelsLike": "Feels like",
+  "weather.forecast": "5 days forecast",
+  "weather.forecast-3": "3 days forecast",
+  "weather.max": "H",
+  "weather.min": "L",
+  "weather.national.bottom": "Weather",
+  "weather.national.top": "National",
+  "weather.now": "Now",
+  "weather.pop": "Chance of rain",
+  "weather.today": "Today",
+  "weather.tomorrow": "Tomorrow",
+  "weather.updatedOn": "Updated on",
+  "weather.weather": "Weather",
+  "weather.wind": "Wind"
+}

@@ -1,6 +1,8 @@
 import React, { Component} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Translate, withLocalize } from 'react-localize-redux'
+
+import { injectIntl } from "react-intl"
+import messages from '../../library/messages'
 
 import getIcon from 'library/getIcon'
 
@@ -51,7 +53,7 @@ class OneDay extends Component {
         <div className="details">
           <div className="detail-line feels-like">
             <span className="detail-name">
-              <Translate id="stats.feelsLike"/>
+              { this.props.intl.formatMessage(messages.feelsLike) }
             </span>
             <span className="detail-value">
               {this.props.weatherData.FeelsLikeC}°
@@ -60,7 +62,7 @@ class OneDay extends Component {
           <div className="detail-separator"></div>
           <div className="detail-line wind">
             <span className="detail-name">
-              <Translate id="stats.wind"/>
+              { this.props.intl.formatMessage(messages.wind) }
             </span>
             <span className="detail-value">
               {this.props.weatherData.WindSpeedKMH} km/h
@@ -70,7 +72,7 @@ class OneDay extends Component {
           <div className="detail-line min-max">
             <div className="temperature-line max">
               <span className="detail-name">
-                <Translate id="stats.max"/>
+              { this.props.intl.formatMessage(messages.max) }
               </span>
               <span className="detail-value">
                 {this.props.weatherData.TemperatureCMax}°
@@ -78,7 +80,7 @@ class OneDay extends Component {
             </div>
             <div className="temperature-line min">
               <span className="detail-name">
-                <Translate id="stats.min"/>
+              { this.props.intl.formatMessage(messages.min) }
               </span>
               <span className="detail-value">
                 {this.props.weatherData.TemperatureCMin}°
@@ -104,7 +106,7 @@ class OneDay extends Component {
         <div className="details wide centered">
           <div className="detail-line wind">
             <span className="detail-name">
-              <Translate id="stats.wind"/>
+              { this.props.intl.formatMessage(messages.wind) }
             </span>
             <span className="detail-value">
               {this.props.weatherData.WindSpeedKMH} km/h
@@ -113,7 +115,7 @@ class OneDay extends Component {
           <div className="detail-separator"></div>
           <div className="detail-line feels-like">
             <span className="detail-name">
-              <Translate id="stats.pop"/>
+              { this.props.intl.formatMessage(messages.pop) }
             </span>
             <span className="detail-value">
               {this.props.weatherData.POPPercentDay}%
@@ -125,4 +127,4 @@ class OneDay extends Component {
   }
 }
 
-export default withLocalize(OneDay)
+export default injectIntl(OneDay)

@@ -55,7 +55,6 @@ export default class Now extends Component {
   }
 
   handleFailedRequests = req => {
-    console.log(req)
     if (req === null) {
       return null
     }
@@ -80,8 +79,6 @@ export default class Now extends Component {
 
     if (this.todayForecast === null || this.tomorrowForecast === null) {
       this.setState({asFailed: true})
-      console.log(this.todayForecast)
-      console.log(this.tomorrowForecast)
       return this.props.onError('Error while loading weather data')
     }
 
