@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import parseAdress from 'parse-address-string'
 import querystring from 'querystring'
@@ -7,7 +7,7 @@ import Backgrounds from 'library/Backgrounds'
 import settings from 'library/settings'
 
 import WeatherAPI from 'library/WeatherAPI'
-import { isBroadSignPlayer, BroadSignActions, resolveSupport, cache } from 'dynamics-utilities'
+import {isBroadSignPlayer, BroadSignActions, resolveSupport, cache} from 'dynamics-utilities'
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary'
 import Error from './scenes/Error/Error'
@@ -20,6 +20,21 @@ import Legal from './scenes/Legal/Legal'
 
 import './style/App.scss'
 
+import {IntlProvider, addLocaleData} from 'react-intl'
+import fr from 'react-intl/locale-data/fr'
+import en from 'react-intl/locale-data/en'
+import frenchMessages from './assets/locales/fr-CA'
+import englishMessages from './assets/locales/en-CA'
+
+// LOCALIZATION
+const messages = {
+  'fr-FR': frenchMessages,
+  'fr-CA': frenchMessages,
+  'en-CA': englishMessages,
+}
+
+addLocaleData([...fr, ...en])
+
 class App extends Component {
   contents = {
     'NOW': Now,
@@ -28,7 +43,7 @@ class App extends Component {
     'NATIONAL': National
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     // Set up cache
@@ -75,25 +90,25 @@ class App extends Component {
     WeatherAPI.setAPIKey(this.state.APIKey)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.checkCache().then(this.detectLocation())
   }
 
   checkCache() {
     // Check cache state and erase if new day
     const lastUpdate = localStorage.getItem('weather-dynamic.refresh')
-    if(lastUpdate === null) {
+    if (lastUpdate === null) {
       let d = new Date();
-      d.setHours(0,0,0,0)
+      d.setHours(0, 0, 0, 0)
       return Promise.resolve().then(localStorage.setItem('weather-dynamic.refresh', d.getTime()))
     }
 
     const refreshRate = this.state.production ? 1000 * 3600 * 24 : 300 * 1000
-    if(Date.now() - lastUpdate > refreshRate) {
+    if (Date.now() - lastUpdate > refreshRate) {
       return caches.delete(settings.cacheName).then(() => {
         this.log('Cache Cleaned')
         let d = new Date();
-        this.state.production && d.setHours(0,0,0,0)
+        this.state.production && d.setHours(0, 0, 0, 0)
         localStorage.setItem('weather-dynamic.refresh', d.getTime())
       })
     }
@@ -101,7 +116,7 @@ class App extends Component {
     return Promise.resolve()
   }
 
-  detectLocation () {
+  detectLocation() {
     // LOCALIZATION ----
 
     if (isBroadSignPlayer) {
@@ -149,11 +164,11 @@ class App extends Component {
       display: true
     })
 
-    if(this.state.onError && this.state.production) BroadSignActions.stopDisplay()
+    if (this.state.onError && this.state.production) BroadSignActions.stopDisplay()
   }
 
   // Init localization
-  initLocalization () {
+  initLocalization() {
     let language = this.state.localization[1] === 'QC' ? 'fr-CA' : 'en-CA'
 
     const urlParameters = querystring.parse((new URL(document.location)).query.substr(1))
@@ -175,7 +190,7 @@ class App extends Component {
     }))
   }
 
-  componentDidCatch (error) {
+  componentDidCatch(error) {
     this.onError(error)
   }
 
@@ -190,13 +205,13 @@ class App extends Component {
     }
   }
 
-  render () {
-    if(!this.state.inited ||
+  render() {
+    if (!this.state.inited ||
       (this.state.onError && this.state.production)) {
       return null
     }
 
-    const logs = this.state.production ? null : <Log logs={this.state.logs} key="logs"/>
+    const logs = this.state.production ? null : <Log logs={ this.state.logs } key="logs"/>
 
     if (this.state.localization === null) {
       return logs
@@ -205,30 +220,34 @@ class App extends Component {
     const Scene = this.contents[this.state.content]
 
     return (
-      <main
-        className={[this.state.player.support.design, this.state.player.support.name].join(' ')}
-        style={{ transform: 'scale(' + this.state.player.support.scale + ')' }}>
-        <ErrorBoundary>
-          {this.state.onError && <Error message={this.state.errorMsg} key="error"/>}
-          { !this.state.onError &&
-          <Scene
-            key="scene"
-            player={this.state.player}
-            content={this.state.content}
-            weatherData={this.state.weatherData}
-            onError={this.onError}
-            localization={this.state.localization}
-            shouldDisplay={this.state.display}
-            log={this.log}
-          /> }
-          <Legal
-            key="legal"
-            player={this.state.player}
-            locale={this.state.locale}
-            localization={this.state.localization} />
-          {/*{ logs }*/}
-        </ErrorBoundary>
-      </main>
+      <IntlProvider
+        locale={ this.state.locale }
+        messages={ messages[this.state.locale] }>
+        <main
+          className={ [this.state.player.support.design, this.state.player.support.name].join(' ') }
+          style={ {transform: 'scale(' + this.state.player.support.scale + ')'} }>
+          <ErrorBoundary>
+            { this.state.onError && <Error message={ this.state.errorMsg } key="error"/> }
+            { !this.state.onError &&
+            <Scene
+              key="scene"
+              player={ this.state.player }
+              content={ this.state.content }
+              weatherData={ this.state.weatherData }
+              onError={ this.onError }
+              localization={ this.state.localization }
+              shouldDisplay={ this.state.display }
+              log={ this.log }
+            /> }
+            <Legal
+              key="legal"
+              player={ this.state.player }
+              locale={ this.state.locale }
+              localization={ this.state.localization }/>
+            {/*{ logs }*/ }
+          </ErrorBoundary>
+        </main>
+      </IntlProvider>
     )
   }
 }
