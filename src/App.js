@@ -198,10 +198,16 @@ class App extends Component {
     this.setState({
       onError: true,
       errorMsg: message
-    })
+    });
+
+    if (this.state.production && !this.state.display) {
+      BroadSignActions.skipDisplay();
+      return
+    }
 
     if (this.state.production && this.state.display) {
-      BroadSignActions.stopDisplay()
+      BroadSignActions.stopDisplay();
+      return
     }
   }
 
