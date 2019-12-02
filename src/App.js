@@ -166,7 +166,7 @@ class App extends Component {
       display: true
     })
 
-    this.log("onError :" + this.state.onError);
+    console.log("onError :" + this.state.onError);
 
     if (this.state.onError && this.state.production) {
       BroadSignActions.stopDisplay()
@@ -205,6 +205,8 @@ class App extends Component {
       onError: true,
       errorMsg: message
     });
+
+    console.log(message);
 
     if (this.state.production && !this.state.display) {
       BroadSignActions.skipDisplay();
