@@ -160,11 +160,17 @@ class App extends Component {
   }
 
   broadSignPlay = () => {
+    this.log("Broadsign Play");
+
     this.setState({
       display: true
     })
 
-    if (this.state.onError && this.state.production) BroadSignActions.stopDisplay()
+    this.log("onError :" + this.state.onError);
+
+    if (this.state.onError && this.state.production) {
+      BroadSignActions.stopDisplay()
+    }
   }
 
   // Init localization
