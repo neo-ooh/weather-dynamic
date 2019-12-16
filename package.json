@@ -24,7 +24,7 @@
     "babel-plugin-react-intl": "^4.1.2",
     "dynamics-utilities": "git+https://git@github.com/neo-traffic/dynamics-utilities.git#dev",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "parse-address-string": "0.0.3",
     "react": "^16.8.6",
     "react-addons-css-transition-group": "^15.6.2",
@@ -33,7 +33,7 @@
     "react-intl-cra": "^0.3.4",
     "react-intl-translations-manager": "^5.0.3",
     "react-intl.macro": "^0.3.6",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^3.3.0",
     "react-window-size": "^1.2.2",
     "suncalc": "^1.8.0"
   },
