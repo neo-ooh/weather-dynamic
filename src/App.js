@@ -64,7 +64,7 @@ class App extends Component {
       // Player infos
       player: {
         location: null,
-        design: resolveDesign(urlParameters.design),
+        design: resolveDesign(urlParameters.design || urlParameters.support),
       },
 
       // What to display
