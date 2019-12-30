@@ -7,7 +7,7 @@ import Backgrounds from 'library/Backgrounds'
 import settings from 'library/settings'
 
 import WeatherAPI from 'library/WeatherAPI'
-import {isBroadSignPlayer, BroadSignActions, resolveSupport, cache} from 'dynamics-utilities'
+import {isBroadSignPlayer, BroadSignActions, resolveDesign, cache} from 'dynamics-utilities'
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary'
 import Error from './scenes/Error/Error'
@@ -63,7 +63,7 @@ class App extends Component {
       // Player infos
       player: {
         location: null,
-        support: resolveSupport(urlParameters.support),
+        design: resolveDesign(urlParameters.design),
       },
 
       // What to display
@@ -187,7 +187,7 @@ class App extends Component {
       inited: true
     })
 
-    Backgrounds.init(this.state.localization, this.state.player.support.design, this.log)
+    Backgrounds.init(this.state.localization, this.state.player.design.name, this.log)
   }
 
   log = msg => {
@@ -238,8 +238,8 @@ class App extends Component {
         locale={ this.state.locale }
         messages={ messages[this.state.locale] }>
         <main
-          className={ [this.state.player.support.design, this.state.player.support.name].join(' ') }
-          style={ {transform: 'scale(' + this.state.player.support.scale + ')'} }>
+          className={ this.state.player.design.name }
+          style={ {transform: 'scale(' + this.state.player.design.scale + ')'} }>
           <ErrorBoundary>
             { this.state.onError && <Error message={ this.state.errorMsg } key="error"/> }
             { !this.state.onError &&

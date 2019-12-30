@@ -113,7 +113,7 @@ class Forecast extends Component {
         transitionLeave={true}
         component="div"
         id="forecast"
-        className={this.props.player.support.design}
+        className={this.props.player.design.name}
         key="columns">
         { this.props.shouldDisplay && columns }
       </ReactCSSTransitionGroup>

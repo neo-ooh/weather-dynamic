@@ -19,7 +19,7 @@ class Legal extends Component {
     }
 
     return (
-      <section id="legals" className={this.props.player.support.design}>
+      <section id="legals" className={this.props.player.design.name}>
         <img className="logo" src={legal}  alt={ "" } />
       </section>
     )

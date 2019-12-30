@@ -11,7 +11,7 @@ class Captions extends Component {
 
     let content = this.props.content.toLowerCase()
 
-    if(content === 'forecast' && this.props.player.support.design === 'DCA') {
+    if(content === 'forecast' && this.props.player.design.name === 'DCA') {
       content = 'forecast-3'
     }
 
@@ -31,7 +31,7 @@ class Captions extends Component {
     }
 
     return (
-      <section id="Captions" className={this.props.player.support.design}>
+      <section id="Captions" className={this.props.player.design.name}>
         <div className="top-bar">
           <span>{ top }</span>
         </div>

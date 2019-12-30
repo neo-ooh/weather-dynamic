@@ -92,7 +92,7 @@ class National extends Component {
         this.setState({
           status: 'SECOND'
         })
-      }, this.props.player.support.design === 'DCA' ? 4600 : 7125)
+      }, this.props.player.design.name === 'DCA' ? 4600 : 7125)
     }
   }
 
@@ -104,7 +104,7 @@ class National extends Component {
     const weatherData = this.state.status === 'FIRST' ? this.state.firstScreen : this.state.secondScreen
 
     const cities = weatherData.map((city, key) =>
-      <CityLine weatherData={city} key={key + '-' + this.state.status} support={this.props.player.support}/>)
+      <CityLine weatherData={city} key={key + '-' + this.state.status} design={this.props.player.design.name}/>)
 
     return [
       this.props.shouldDisplay &&
@@ -118,7 +118,7 @@ class National extends Component {
         content={this.props.content}
         player={this.props.player}
         shouldDisplay={this.props.shouldDisplay}/>,
-      <section id="FCL-National" className={this.props.player.support.design} key="national-lines">
+      <section id="FCL-National" className={this.props.player.design.name} key="national-lines">
         <ReactCSSTransitionGroup
           transitionName="transition-national"
           transitionAppearTimeout={1250}
@@ -129,7 +129,7 @@ class National extends Component {
           transitionLeave={true}
           component="div"
           id="national-wrapper"
-          className={this.props.player.support.design} >
+          className={this.props.player.design.name} >
           { this.props.shouldDisplay && cities }
         </ReactCSSTransitionGroup>
       </section>
