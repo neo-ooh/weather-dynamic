@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import WeatherAPI from 'library/WeatherAPI'
 
-import Background from '../Background/Background'
 import Captions from '../Captions/Captions'
 import OneDay from '../OneDay/OneDay'
 
@@ -10,7 +9,6 @@ export default class Now extends Component {
     super(props)
 
     this.state = {
-      content: 'NOW', // TOMORROW
       isReady: false,
       asFailed: false,
       weatherLoaded: false,
@@ -99,10 +97,14 @@ export default class Now extends Component {
     if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
       this.props.log('Beginning display')
 
+      this.props.setLocation(this.state.todayForecast.Location)
+      this.props.onWeatherData(this.state.todayForecast)
+
       setTimeout(() => {
-        this.setState({
-          content: 'TOMORROW'
-        })
+        this.props.onContentUpdate('TOMORROW')
+
+        this.props.onWeatherData(this.state.tomorrowForecast)
+
       }, this.props.player.design.name === 'DCA' ? 4600 : 7125)
     }
   }
@@ -112,28 +114,21 @@ export default class Now extends Component {
       return null // skip
     }
 
-    const weatherData = this.state.content === 'NOW' ? this.state.todayForecast : this.state.tomorrowForecast
+    const weatherData = this.props.content === 'NOW' ? this.state.todayForecast : this.state.tomorrowForecast
 
     if (weatherData == null) {
       return null
     }
 
     return [
-      this.props.shouldDisplay &&
-      <Background key="background"
-        content={this.state.content}
-        weatherData={weatherData}
-        player={this.props.player}
-        location={weatherData.Location}
-        log={this.props.log}/>,
       <Captions key="captions"
-        content={this.state.content}
+        content={this.props.content}
         localization={weatherData.Location}
         shouldDisplay={this.props.shouldDisplay}
         player={this.props.player} />,
       <OneDay key="now-oneday"
         player={this.props.player}
-        content={this.state.content}
+        content={this.props.content}
         weatherData={weatherData} />
     ]
   }

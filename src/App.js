@@ -25,6 +25,7 @@ import fr from 'react-intl/locale-data/fr'
 import en from 'react-intl/locale-data/en'
 import frenchMessages from './assets/locales/fr-CA'
 import englishMessages from './assets/locales/en-CA'
+import Background from './scenes/Background/Background'
 
 // LOCALIZATION
 const messages = {
@@ -68,6 +69,8 @@ class App extends Component {
 
       // What to display
       content: urlParameters.content ? urlParameters.content.toUpperCase() in this.contents ? urlParameters.content.toUpperCase() : 'NATIONAL' : 'NATIONAL', // TODAY, TOMORROW, FORECAST, NATIONAL
+      weatherData: null,
+      location: { Latitude: 49.895077, Longitude: -97.138451 },
 
       // Locale (the language)
       locale: urlParameters.locale || 'en-CA',
@@ -127,7 +130,6 @@ class App extends Component {
         if (error) {
           return this.onError('Could not parse adresse: ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
         }
-
 
         let country = 'CA'
         let province = address.state
@@ -200,6 +202,24 @@ class App extends Component {
     this.onError(error)
   }
 
+  onWeatherData = weatherData => {
+    this.setState({
+      weatherData: weatherData
+    })
+  }
+
+  setLocation = newLocation => {
+    this.setState({
+      location: newLocation
+    })
+  }
+
+  onContentUpdate = newContent => {
+    this.setState({
+      content: newContent
+    })
+  }
+
   onError = (message) => {
     this.setState({
       onError: true,
@@ -237,30 +257,41 @@ class App extends Component {
       <IntlProvider
         locale={ this.state.locale }
         messages={ messages[this.state.locale] }>
-        <main
-          className={ this.state.player.design.name }
-          style={ {transform: 'scale(' + this.state.player.design.scale + ')'} }>
-          <ErrorBoundary>
-            { this.state.onError && <Error message={ this.state.errorMsg } key="error"/> }
-            { !this.state.onError &&
-            <Scene
-              key="scene"
-              player={ this.state.player }
-              content={ this.state.content }
-              weatherData={ this.state.weatherData }
-              onError={ this.onError }
-              localization={ this.state.localization }
-              shouldDisplay={ this.state.display }
-              log={ this.log }
-            /> }
-            <Legal
-              key="legal"
-              player={ this.state.player }
-              locale={ this.state.locale }
-              localization={ this.state.localization }/>
-            {/*{ logs }*/ }
-          </ErrorBoundary>
-        </main>
+        <section id="main-wrapper">
+          { this.state.display &&
+            <Background key="background"
+                      content={this.state.content}
+                      weatherData={ this.state.weatherData }
+                      player={ this.state.player }
+                      location={ this.state.location }
+                      log={ this.log }/> }
+            <main
+              className={ this.state.player.design.name }
+              style={ {transform: 'scale(' + this.state.player.design.scale + ')'} }>
+              <ErrorBoundary>
+                { this.state.onError && <Error message={ this.state.errorMsg } key="error"/> }
+                { !this.state.onError &&
+                <Scene
+                  key="scene"
+                  player={ this.state.player }
+                  content={ this.state.content }
+                  onWeatherData={ this.onWeatherData }
+                  setLocation={ this.setLocation }
+                  onContentUpdate={ this.onContentUpdate }
+                  onError={ this.onError }
+                  localization={ this.state.localization }
+                  shouldDisplay={ this.state.display }
+                  log={ this.log }
+                /> }
+                <Legal
+                  key="legal"
+                  player={ this.state.player }
+                  locale={ this.state.locale }
+                  localization={ this.state.localization }/>
+                {/*{ logs }*/ }
+              </ErrorBoundary>
+            </main>
+        </section>
       </IntlProvider>
     )
   }

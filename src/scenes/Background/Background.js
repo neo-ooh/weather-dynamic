@@ -16,13 +16,19 @@ export default class background extends Component {
   }
 
   componentDidMount () {
+    if(this.props.weatherData === null) {
+      return
+    }
+
     this.resolveBackground()
   }
 
-  componentDidUpdate (prevPros) {
-    if (prevPros.content === this.props.content) {
-      return null
+  componentDidUpdate (prevProps) {
+    if (prevProps.weatherData === this.props.weatherData) {
+      return
     }
+
+    console.log(this.props.weatherData)
 
     this.componentDidMount()
   }
@@ -81,7 +87,7 @@ export default class background extends Component {
   }
 
   render () {
-    if (this.props.url === null) {
+    if (this.state.url === null) {
       return null
     }
 

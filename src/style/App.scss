@@ -27,11 +27,18 @@ html, body
     background-color: $background;
 }
 
+#main-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
 main {
     display: block;
     position: absolute;
 
     transform-origin: top left;
+    top: 0;
+    left: 0;
 
     &.FCL {
         width: 3840px;

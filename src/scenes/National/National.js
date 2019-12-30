@@ -88,6 +88,8 @@ class National extends Component {
     if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
       this.props.log('Beginning display')
 
+      this.props.onWeatherData([...this.state.firstScreen, ...this.state.secondScreen])
+
       setTimeout(() => {
         this.setState({
           status: 'SECOND'
@@ -107,13 +109,6 @@ class National extends Component {
       <CityLine weatherData={city} key={key + '-' + this.state.status} design={this.props.player.design.name}/>)
 
     return [
-      this.props.shouldDisplay &&
-      <Background key="background"
-        content={this.props.content}
-        weatherData={weatherData}
-        player={this.props.player}
-        location={this.state.location}
-        log={this.props.log}/>,
       <Captions key="captions"
         content={this.props.content}
         player={this.props.player}

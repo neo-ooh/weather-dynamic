@@ -2,7 +2,6 @@ import React, { Component} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import WeatherAPI from 'library/WeatherAPI'
 
-import Background from '../Background/Background'
 import Captions from '../Captions/Captions'
 
 import DayColumn from './DayColumn/DayColumn'
@@ -36,10 +35,15 @@ class Forecast extends Component {
       .then(this.handleFailedRequests)
       .then(req => {
         if (req != null) {
-          return this.setState({
+          this.setState({
             weatherData: req,
             isReady: true
           })
+
+          this.props.setLocation(req.Location)
+          this.props.onWeatherData(req)
+
+          return
         }
 
         // failed
@@ -91,13 +95,6 @@ class Forecast extends Component {
       <DayColumn weatherData={day} key={day.Period}/>)
 
     return [
-      this.props.shouldDisplay &&
-      <Background key="background"
-        content={this.props.content}
-        weatherData={this.state.weatherData}
-        player={this.props.player}
-        location={this.state.weatherData.Location}
-        log={this.props.log} />,
       <Captions key="captions"
         content={this.props.content}
         player={this.props.player}
