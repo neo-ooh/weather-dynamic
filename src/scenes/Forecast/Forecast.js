@@ -92,7 +92,10 @@ class Forecast extends Component {
     }
 
     const columns = this.state.weatherData.LongTermPeriod.slice(0, 5).map(day =>
-      <DayColumn weatherData={day} key={day.Period}/>)
+      <DayColumn
+        weatherData={day}
+        key={day.Period}
+        player={this.props.player}/>)
 
     return [
       <Captions key="captions"

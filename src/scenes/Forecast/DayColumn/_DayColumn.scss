@@ -86,6 +86,10 @@
             .DCA &:nth-child(#{$i + 1}) {
                 left: #{$i * 340}px;
             }
+
+            .PML &:nth-child(#{$i + 1}) {
+                left: #{$i * 415}px;
+            }
         }
 
         &.transition-forecast-appear-active,
@@ -341,4 +345,75 @@
             font-size: 70pt;
         }
     }
+
+    .PML & {
+         width: 415px;
+         height: 100%;
+
+        background-color: transparent;
+
+         &:nth-child(4),
+         &:nth-child(5) {
+             display: none;
+         }
+
+         .caption {
+             width: 100%;
+
+             font-size: 38pt;
+             color: #616161;
+
+             text-transform: lowercase;
+         }
+
+         .weather-icon {
+             width: 220px;
+             height: 175px;
+             margin: 20px 0 0 30px;
+
+             -webkit-filter: drop-shadow(0px 3px 30px rgba(0, 0, 0, .4));
+             filter: drop-shadow(0px 3px 30px rgba(0, 0, 0, .4));
+         }
+
+         .weather-label {
+             display: none;
+         }
+
+         .h-separator {
+             position: absolute;
+             width: 70px;
+             height: 5px;
+             left: 295px;
+             top: 150px;
+
+             background-color: #616161;
+             border: none;
+         }
+
+         .v-separator {
+             display: none;
+         }
+
+         .max-temperature {
+             position: absolute;
+             top: 85px;
+             left: 260px;
+             width: 150px;
+
+             color: #ff391c;
+             font-size: 50pt;
+             text-align: center;
+         }
+
+         .min-temperature {
+             position: absolute;
+             top: 165px;
+             left: 260px;
+             width: 150px;
+
+             color: #1392d3;
+             font-size: 50pt;
+             text-align: center;
+         }
+     }
 }

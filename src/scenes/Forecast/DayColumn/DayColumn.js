@@ -16,9 +16,11 @@ class DayColumn extends Component {
     const iconID = this.props.weatherData.FxIconDay
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 
+    const dayPrefix = this.props.player.design.name === 'PML' ? 'days-' : 'short-days-';
+
     return (
       <div className="day-column">
-        <div className="caption">{ this.props.intl.formatMessage(messages['days-' + forecastDay]) }</div>
+        <div className="caption">{ this.props.intl.formatMessage(messages[dayPrefix + forecastDay]) }</div>
         <div className="weather-icon" style={iconStyle} />
         <div className={ ['weather-label', this.props.weatherData.FxConditionDay.length > 15 ?'small-text':''].join(' ') }>
           <span className="label">

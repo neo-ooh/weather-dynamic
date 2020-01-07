@@ -74,36 +74,71 @@ export default defineMessages({
   "days-0": {
     id: 'weather.days.0',
     description: 'First day of the english week',
-    defaultMessage: 'Sun',
+    defaultMessage: 'Sunday',
   },
   "days-1": {
     id: 'weather.days.1',
     description: 'First day of the english week',
-    defaultMessage: 'Mon',
+    defaultMessage: 'Monday',
   },
   "days-2": {
     id: 'weather.days.2',
     description: 'Second day of the english week',
-    defaultMessage: 'Tue',
+    defaultMessage: 'Tuesday',
   },
   "days-3": {
     id: 'weather.days.3',
     description: 'Third day of the english week',
-    defaultMessage: 'Wed',
+    defaultMessage: 'Wednesday',
   },
   "days-4": {
     id: 'weather.days.4',
     description: 'Fourth day of the english week',
-    defaultMessage: 'Thu',
+    defaultMessage: 'Thursday',
   },
   "days-5": {
     id: 'weather.days.5',
     description: 'Fifth day of the english week',
-    defaultMessage: 'Fri',
+    defaultMessage: 'Friday',
   },
   "days-6": {
     id: 'weather.days.6',
     description: 'Sixth day of the english week',
+    defaultMessage: 'Saturday',
+  },
+  "short-days-0": {
+    id: 'weather.days.shorts.0',
+    description: 'First day of the english week, short',
+    defaultMessage: 'Sun',
+  },
+  "short-days-1": {
+    id: 'weather.days.shorts.1',
+    description: 'First day of the english week, short',
+    defaultMessage: 'Mon',
+  },
+  "short-days-2": {
+    id: 'weather.days.shorts.2',
+    description: 'Second day of the english week, short',
+    defaultMessage: 'Tue',
+  },
+  "short-days-3": {
+    id: 'weather.days.shorts.3',
+    description: 'Third day of the english week, short',
+    defaultMessage: 'Wed',
+  },
+  "short-days-4": {
+    id: 'weather.days.shorts.4',
+    description: 'Fourth day of the english week, short',
+    defaultMessage: 'Thu',
+  },
+  "short-days-5": {
+    id: 'weather.days.shorts.5',
+    description: 'Fifth day of the english week, short',
+    defaultMessage: 'Fri',
+  },
+  "short-days-6": {
+    id: 'weather.days.shorts.6',
+    description: 'Sixth day of the english week, short',
     defaultMessage: 'Sat',
   },
 })

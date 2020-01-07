@@ -7,6 +7,10 @@ import messages from '../../library/messages'
 class Captions extends Component {
   render () {
 
+    if(this.props.player.design.name === 'PML') {
+      return null
+    }
+
     let top, middle, bottom
 
     let content = this.props.content.toLowerCase()

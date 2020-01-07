@@ -50,4 +50,18 @@
             padding: 0;
         }
     }
+
+    &.PML {
+        top: 0px;
+        right: 0px;
+        left: unset;
+
+        padding: 15px;
+
+        background-color: transparent;
+
+        .logo {
+            height: 50px;
+        }
+    }
 }
