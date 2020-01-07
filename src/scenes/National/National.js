@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import WeatherAPI from 'library/WeatherAPI'
-import Background from '../Background/Background'
 import Captions from '../Captions/Captions'
 
 import CityLine from './CityLine/CityLine'
