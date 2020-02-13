@@ -39,11 +39,15 @@
     }
 
     &.SHD {
-        width: 470px;
-        top: 0;
+        width: unset;
+        top: 50px;
+        right: 0;
+        left: unset;
         height: 30px;
 
-        padding: 20px;
+        padding: 20px 130px 20px 20px;
+
+        text-align: left;
 
         .logo {
             height: 30px;

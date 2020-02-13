@@ -661,4 +661,108 @@
             }
         }
     }
+
+    .SHD & {
+        width: 1700px;
+        height: 815px;
+        margin: 265px 110px 0 110px;
+
+        .top-part {
+            width: 1720px;
+            height: 365px;
+            margin-left: 30px;
+
+            .weather-label {
+                top: 0px;
+                left: 50px;
+                width: 900px;
+                height: 365px;
+
+                font-size: 70pt;
+                line-height: 365px;
+
+                &.small {
+                    font-size: 70pt;
+                }
+            }
+
+            .weather-icon {
+                top: 30px;
+                left: 1100px;
+                width: 450px;
+                height: 350px;
+            }
+        }
+
+        .separator {
+            width: calc(100% - 60px);
+            height: 5px;
+            margin-left: 30px;
+        }
+
+        .bottom-part {
+            width: 1720px;
+
+            .temperature {
+                left: 30px;
+                top: 0px;
+                width: 700px;
+
+                font-size: 200pt;
+                line-height: 445px;
+            }
+
+            .forecast {
+                left: 15px;
+                top: 5px;
+                width: 770px;
+
+                .max {
+                    font-size: 180pt;
+                }
+
+                .min {
+                    margin-top: -50px;
+                    font-size: 120pt;
+                }
+            }
+
+            .details {
+                top: 40px;
+                left: 850px;
+
+                font-size: 55pt;
+
+                .detail-line {
+                    padding-top: 15px;
+
+                    .detail-value {
+                        padding-left: 35px;
+                    }
+
+                    .temperature-line {
+                        display: inline-block;
+                        width: calc(50% - 25px);
+
+                        &.min {
+                            margin-left: 50px;
+                        }
+                    }
+
+                    &:first-child {
+                        margin-left: -10px;
+                    }
+
+                    &:not(:last-child) {
+                        padding-bottom: 15px;
+                    }
+                }
+
+                .detail-separator {
+                    width: 810px;
+                    height: 5px;
+                }
+            }
+        }
+    }
 }
