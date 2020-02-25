@@ -244,58 +244,79 @@
         height: 275px;
 
         .top-bar {
-            width: 890px;
-            height: 170px;
-
-            top: 100px;
-            left: 100px;
-
-            background: none;
-
-            span {
-                margin: 0;
-                font-size: 85pt;
-
-                text-align: left;
-            }
+            display: none;
         }
 
         .middle-bar {
-            width: 920px;
-            height: 130px;
+            width: 1030px;
+            height: 80px;
 
-            top: 20px;
+            top: 125px;
             right: 0;
 
-            span {
-                width: 880px;
-                margin: 23px 0 0 25px;
-                font-size: 60pt;
+            padding: 10px 20px;
 
+            text-align: left;
+            background-color: $darkBlue;
+
+            span {
+                font-size: 50pt;
                 text-align: left;
+                line-height: 85px;
             }
 
             &.small-text span {
                 margin-top: 40px;
                 font-size: 35pt;
             }
+
+
+            &.national {
+                display: none;
+            }
         }
 
         .bottom-bar {
-            width: 770px;
-            height: 60px;
+            min-width: 550px;
+            height: 135px;
+            top: 50px;
+            left: 110px;
 
-            top: 150px;
-            right: 0;
+            padding: 20px 40px;
+            background-color: $yellow;
 
             span {
-                width: 750px;
-                margin: 5px 0 0 0;
+                text-transform: uppercase;
+                font-size: 85pt;
+                text-align: center;
+                line-height: 150px;
+                opacity: 1;
+                margin: 0;
 
-                padding-left: 20px;
+                &.transition-captions-appear,
+                &.transition-captions-enter {
+                    position: relative;
+                    opacity: 1;
+                    margin-left: 0;
 
-                font-size: 40pt;
-                text-align: left;
+                    &.transition-captions-appear-active,
+                    &.transition-captions-enter-active {
+                        opacity: 1;
+                        margin-left: 0;
+                    }
+                }
+
+                &.transition-captions-leave {
+                    display: none;
+                }
+            }
+
+            &.national {
+                left: 210px;
+            }
+
+            &.small-caption span {
+                font-size: 65pt;
             }
         }
     }

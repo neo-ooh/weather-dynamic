@@ -19,7 +19,15 @@ class Captions extends Component {
       content = 'forecast-3'
     }
 
-    if (this.props.content === 'NATIONAL') {
+    if(content === 'forecast' && this.props.player.design.name === 'SHD') {
+      content = 'forecast-5-short'
+    }
+
+    if (this.props.content === 'NATIONAL' && this.props.player.design.name === 'SHD') {
+      top = null
+      middle = 'Canada'
+      bottom = this.props.intl.formatMessage(messages.nationalCaptionBottom)
+    } else if (this.props.content === 'NATIONAL') {
       top = this.props.intl.formatMessage(messages.nationalCaptionTop)
       middle = this.props.intl.formatMessage(messages.nationalCaptionBottom)
       bottom = 'Canada'
@@ -32,6 +40,10 @@ class Captions extends Component {
 
     if(middle.length > 15) {
       content += " small-text"
+    }
+
+    if(this.props.player.design.name === 'SHD' && bottom.length > 8) {
+      content += " small-caption"
     }
 
     return (
@@ -51,7 +63,7 @@ class Captions extends Component {
           transitionEnter={true}
           transitionLeave={true}
           component="section"
-          className="bottom-bar">
+          className={'bottom-bar ' + content} >
           { this.props.shouldDisplay &&
             <span key={ bottom }>{ bottom }</span>
           }

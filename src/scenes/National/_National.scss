@@ -16,6 +16,13 @@
         width: 1080px;
         height: 1170px;
     }
+
+    &.SHD {
+        left: 0px;
+        top: 250px;
+        width: 1920px;
+        height: 810px;
+    }
 }
 
 #national-wrapper
@@ -34,6 +41,13 @@
         top: 0;
         height: 1170px;
         width: 1080px;
+    }
+
+    &.SHD {
+        left: 210px;
+        top: 0px;
+        width: 1500px;
+        height: 810px;
     }
 }
 
@@ -70,7 +84,11 @@
                 }
 
                 &.DCA {
-                    top: #{$i * 185 + ($i - 1) * 10}px;;
+                    top: #{$i * 185 + ($i - 1) * 10}px;
+                }
+
+                &.SHD {
+                    top: #{$i * 158 + ($i - 1) * 5}px;
                 }
             }
         }
@@ -101,6 +119,12 @@
             &:nth-child(9),
             &:nth-child(10) {
                 top: -40px;
+            }
+        }
+
+        &.FCL {
+            &:nth-child(6) {
+                margin-top: 0px;
             }
         }
 

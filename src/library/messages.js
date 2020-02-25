@@ -41,6 +41,11 @@ export default defineMessages({
     description: 'Three days weather forecast',
     defaultMessage: '3 days forecast',
   },
+  "forecast-5-short": {
+    id: 'weather.forecast-5-short',
+    description: 'Three days weather forecast',
+    defaultMessage: '5 days',
+  },
   updatedOn: {
     id: 'weather.updatedOn',
     description: 'Update date label',
