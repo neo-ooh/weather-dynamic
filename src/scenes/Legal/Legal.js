@@ -8,18 +8,35 @@ import legalENQC from '../../assets/images/poweredByQC.png'
 import legalFR from '../../assets/images/propulsePar.png'
 import legalFRQC from '../../assets/images/propulseParQC.png'
 
+import legalFRSHD from '../../assets/images/meteo-media-logo.png'
+import legalENSHD from '../../assets/images/weather-network-logo.png'
+
 
 
 class Legal extends Component {
+  getLogo = () => {
+    switch (this.props.player.design.name) {
+      case 'PML':
+        return {fr: PMLFR, en: PMLFR}
+      case 'SHD':
+        return {fr: legalFRSHD, en: legalENSHD}
+      default:
+        return {
+          fr: this.props.localization[1] === 'QC' ? legalFRQC : legalFR,
+          en: this.props.localization[1] === 'QC' ? legalENQC : legalEN
+        }
+    }
+  }
+
+
   render () {
+    const legals = this.getLogo();
     let legal = null
 
-    if(this.props.player.design.name === 'PML') {
-      legal = PMLFR
-    } else if(this.props.intl.locale === 'fr-CA' || this.props.intl.locale === 'fr-FR') {
-      legal = this.props.localization[1] === 'QC' ? legalFRQC : legalFR
+    if(this.props.intl.locale === 'fr-CA' || this.props.intl.locale === 'fr-FR') {
+      legal = legals.fr
     } else {
-      legal = this.props.localization[1] === 'QC' ? legalENQC : legalEN
+      legal = legals.en
     }
 
     return (
