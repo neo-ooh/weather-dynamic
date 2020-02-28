@@ -764,5 +764,13 @@
                 }
             }
         }
+
+        &.TOMORROW {
+            .bottom-part {
+                .details {
+                    top: 110px;
+                }
+            }
+        }
     }
 }
