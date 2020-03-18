@@ -83,6 +83,7 @@
         @for $i from 1 to $elements {
             .FCL &:nth-child(#{$i + 1}),
             .SHD &:nth-child(#{$i + 1}),
+            .PHD &:nth-child(#{$i + 1}),
             .DCA &:nth-child(#{$i + 1}) {
                 left: #{$i * 340}px;
             }
@@ -284,7 +285,8 @@
         }
     }
 
-    .SHD & {
+    .SHD &,
+    .PHD & {
         width: 340px;
         height: 100%;
 

@@ -38,7 +38,8 @@
         }
     }
 
-    &.SHD {
+    &.SHD,
+    &.PHD {
         width: unset;
         top: 28px;
         right: 0;

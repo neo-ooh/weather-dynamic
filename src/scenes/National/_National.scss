@@ -17,7 +17,8 @@
         height: 1170px;
     }
 
-    &.SHD {
+    &.SHD,
+    &.PHD {
         left: 0px;
         top: 250px;
         width: 1920px;
@@ -43,7 +44,8 @@
         width: 1080px;
     }
 
-    &.SHD {
+    &.SHD,
+    &.PHD {
         left: 210px;
         top: 0px;
         width: 1500px;
@@ -87,7 +89,8 @@
                     top: #{$i * 185 + ($i - 1) * 10}px;
                 }
 
-                &.SHD {
+                &.SHD,
+                &.PHD {
                     top: #{$i * 158 + ($i - 1) * 5}px;
                 }
             }
@@ -119,12 +122,6 @@
             &:nth-child(9),
             &:nth-child(10) {
                 top: -40px;
-            }
-        }
-
-        &.FCL {
-            &:nth-child(6) {
-                margin-top: 0px;
             }
         }
 

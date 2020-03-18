@@ -19,6 +19,7 @@ class Legal extends Component {
       case 'PML':
         return {fr: PMLFR, en: PMLFR}
       case 'SHD':
+      case 'PHD':
         return {fr: legalFRSHD, en: legalENSHD}
       default:
         return {

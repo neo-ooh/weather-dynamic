@@ -662,7 +662,8 @@
         }
     }
 
-    .SHD & {
+    .SHD &,
+    .PHD & {
         width: 1700px;
         height: 815px;
         margin: 265px 110px 0 110px;
