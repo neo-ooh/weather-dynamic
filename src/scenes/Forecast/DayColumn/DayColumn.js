@@ -16,7 +16,7 @@ class DayColumn extends Component {
     const iconID = this.props.weatherData.FxIconDay
     const iconStyle = {backgroundImage: 'url(' + getIcon(iconID) + ')'}
 
-    const dayPrefix = this.props.player.design.name === 'PML' ? 'days-' : 'short-days-';
+    const dayPrefix = (this.props.player.design.name === 'PML' || this.props.player.design.name === 'PMP') ? 'days-' : 'short-days-';
 
     return (
       <div className="day-column">

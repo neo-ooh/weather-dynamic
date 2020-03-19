@@ -38,6 +38,15 @@
         height: 275px;
     }
 
+    &.PMP {
+        top: 250px;
+        left: 0px;
+        width: 480px;
+        height: 765px;
+
+        flex-direction: column;
+    }
+
 
     // background-color: rgba(0, 0, 0, .65);
 }

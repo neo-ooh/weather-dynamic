@@ -7,7 +7,8 @@ import messages from '../../library/messages'
 class Captions extends Component {
   render () {
 
-    if(this.props.player.design.name === 'PML') {
+    if(this.props.player.design.name === 'PML' ||
+       this.props.player.design.name === 'PMP') {
       return null
     }
 
