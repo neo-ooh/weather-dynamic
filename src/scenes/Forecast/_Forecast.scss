@@ -23,7 +23,8 @@
         height: 359px;
     }
 
-    &.SHD {
+    &.SHD,
+    &.PHD {
         top: 270px;
         left: 110px;
         width: 1700px;
@@ -35,6 +36,15 @@
         left: 0px;
         width: 1245px;
         height: 275px;
+    }
+
+    &.PMP {
+        top: 250px;
+        left: 0px;
+        width: 480px;
+        height: 765px;
+
+        flex-direction: column;
     }
 
 

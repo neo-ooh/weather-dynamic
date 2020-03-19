@@ -239,7 +239,8 @@
         }
     }
 
-    &.SHD {
+    &.SHD,
+    &.PHD {
         width: 1920px;
         height: 275px;
 
@@ -318,6 +319,12 @@
             &.small-caption span {
                 font-size: 65pt;
             }
+        }
+    }
+
+    &.PHD {
+        .middle-bar {
+            background-color: $orange;
         }
     }
 }

@@ -7,7 +7,8 @@ import messages from '../../library/messages'
 class Captions extends Component {
   render () {
 
-    if(this.props.player.design.name === 'PML') {
+    if(this.props.player.design.name === 'PML' ||
+       this.props.player.design.name === 'PMP') {
       return null
     }
 
@@ -19,11 +20,11 @@ class Captions extends Component {
       content = 'forecast-3'
     }
 
-    if(content === 'forecast' && this.props.player.design.name === 'SHD') {
+    if(content === 'forecast' && (this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')) {
       content = 'forecast-5-short'
     }
 
-    if (this.props.content === 'NATIONAL' && this.props.player.design.name === 'SHD') {
+    if (this.props.content === 'NATIONAL' && (this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')) {
       top = null
       middle = 'Canada'
       bottom = this.props.intl.formatMessage(messages.nationalCaptionBottom)
@@ -42,7 +43,7 @@ class Captions extends Component {
       content += " small-text"
     }
 
-    if(this.props.player.design.name === 'SHD' && bottom.length > 8) {
+    if((this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')&& bottom.length > 8) {
       content += " small-caption"
     }
 

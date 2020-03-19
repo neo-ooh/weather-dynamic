@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { injectIntl } from 'react-intl'
 
 import PMLFR from '../../assets/images/meteo-media-logo.png'
+import PMPFR from '../../assets/images/PMP.credits.png'
 
 import legalEN from '../../assets/images/poweredBy.png'
 import legalENQC from '../../assets/images/poweredByQC.png'
@@ -18,7 +19,10 @@ class Legal extends Component {
     switch (this.props.player.design.name) {
       case 'PML':
         return {fr: PMLFR, en: PMLFR}
+      case 'PMP':
+        return {fr: PMPFR, en: PMPFR}
       case 'SHD':
+      case 'PHD':
         return {fr: legalFRSHD, en: legalENSHD}
       default:
         return {
