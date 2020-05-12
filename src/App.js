@@ -14,6 +14,7 @@ import Error from './scenes/Error/Error'
 import Log from './scenes/Log/Log'
 
 import Forecast from './scenes/Forecast/Forecast'
+import Hourly from './scenes/Hourly/Hourly'
 import National from './scenes/National/National'
 import Now from './scenes/Now/Now'
 import Legal from './scenes/Legal/Legal'
@@ -40,6 +41,7 @@ class App extends Component {
   contents = {
     'NOW': Now,
     'TOMORROW': Now,
+    'HOURLY': Hourly,
     'FORECAST': Forecast,
     'NATIONAL': National
   }
@@ -284,6 +286,7 @@ class App extends Component {
                 <Legal
                   key="legal"
                   player={ this.state.player }
+                  content={ this.state.content }
                   locale={ this.state.locale }
                   localization={ this.state.localization }/>
                 {/*{ logs }*/ }

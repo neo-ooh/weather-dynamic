@@ -5,6 +5,10 @@ import { cache } from 'dynamics-utilities'
 
 const periods = ['MORNING', 'DAY', 'DUSK', 'NIGHT']
 
+const getSunTimes = (date, lat, lng) => {
+  return SunCalc.getTimes(date, lat, lng)
+}
+
 class Backgrounds
 {
   _backgrounds = {}
@@ -53,7 +57,7 @@ class Backgrounds
 
   getPeriod(geo) {
     const currDate = new Date()
-    const sunTimes = SunCalc.getTimes(currDate, geo.lat, geo.lng)
+    const sunTimes = getSunTimes(currDate, geo.lat, geo.lng)
 
     let currPeriod
 
@@ -85,4 +89,5 @@ class Backgrounds
 }
 
 export default new Backgrounds()
+export { getSunTimes }
 

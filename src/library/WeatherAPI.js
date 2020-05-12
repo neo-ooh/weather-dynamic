@@ -20,6 +20,10 @@ export default class WeatherAPI {
     return this.getLocalized('/tomorrow', country, province, city)
   }
 
+  hourly (country, province, city) {
+    return this.getLocalized('/hourly', country, province, city)
+  }
+
   forecast (country, province, city) {
     return this.getLocalized('/forecast', country, province, city)
   }

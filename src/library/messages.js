@@ -61,6 +61,11 @@ export default defineMessages({
     description: 'feels Like label',
     defaultMessage: 'Feels like',
   },
+  feelsLikeLng: {
+    id: 'weather.feelsLikeLng',
+    description: 'feels Like label but longer',
+    defaultMessage: 'Feels like',
+  },
   max: {
     id: 'weather.max',
     description: 'Max temperature label',
@@ -145,5 +150,15 @@ export default defineMessages({
     id: 'weather.days.shorts.6',
     description: 'Sixth day of the english week, short',
     defaultMessage: 'Sat',
+  },
+  "sunrise": {
+    id: 'weather.sunrise',
+    description: 'sunrise label',
+    defaultMessage: 'Sunrise',
+  },
+  "sunset": {
+    id: 'weather.sunset',
+    description: 'sunset label',
+    defaultMessage: 'Sunset',
   },
 })

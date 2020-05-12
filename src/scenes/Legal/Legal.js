@@ -43,6 +43,9 @@ class Legal extends Component {
       legal = legals.en
     }
 
+    if(this.props.content === 'HOURLY')
+      return null
+
     return (
       <section id="legals" className={this.props.player.design.name}>
         <img className="logo" src={legal}  alt={ "" } />
