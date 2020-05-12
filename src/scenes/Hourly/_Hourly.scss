@@ -6,11 +6,12 @@
     &:before {
         content: "";
         position: absolute;
-        left: 62px;
-        top: 62px;
-        height: 1px;
-        width: 1px;
-        box-shadow: 0 0 250px 50px #000;
+        left: -225px;
+        top: -210px;
+        height: 500px;
+        width: 500px;
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,0.35) 0%, rgba(255,255,255,0) 55%);
     }
 
     transition: .5s cubic-bezier(0.645, 0.045, 0.355, 1);
