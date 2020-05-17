@@ -77,6 +77,10 @@
     &.transition-forecast-enter {
         position: absolute;
 
+        .PML & {
+            position: relative;
+        }
+
         opacity: 0;
         margin-top: 50px;
 
@@ -91,10 +95,6 @@
             .PHD &:nth-child(#{$i + 1}),
             .DCA &:nth-child(#{$i + 1}) {
                 left: #{$i * 340}px;
-            }
-
-            .PML &:nth-child(#{$i + 1}) {
-                left: #{$i * 415}px;
             }
 
             .PMP &:nth-child(#{$i + 1}) {
@@ -358,9 +358,8 @@
     }
 
     .PML & {
-         width: 415px;
-         height: 100%;
-
+        width: 200px;
+        height: 100%;
         background-color: transparent;
 
          &:nth-child(4),
@@ -369,18 +368,24 @@
          }
 
          .caption {
+             box-sizing: border-box;
              width: 100%;
+             height: 40px;
 
-             font-size: 32pt;
-             color: #616161;
+             background-color: $orange;
+
+             font-weight: 500;
+             font-size: 21pt;
+             color: #FFF;
 
              text-transform: lowercase;
+             text-align: center;
          }
 
          .weather-icon {
              width: 200px;
-             height: 150px;
-             margin: 20px 0 0 30px;
+             height: 110px;
+             margin: 10px 0;
 
              -webkit-filter: drop-shadow(0px 3px 30px rgba(0, 0, 0, .4));
              filter: drop-shadow(0px 3px 30px rgba(0, 0, 0, .4));
@@ -390,41 +395,38 @@
              display: none;
          }
 
-         .h-separator {
-             position: absolute;
-             width: 70px;
-             height: 5px;
-             left: 255px;
-             top: 130px;
-
-             background-color: #616161;
-             border: none;
-         }
-
+         .h-separator,
          .v-separator {
              display: none;
          }
 
          .max-temperature {
              position: absolute;
-             top: 65px;
-             left: 220px;
-             width: 150px;
+             right: 0;
+             width: 50%;
 
-             color: #ff391c;
-             font-size: 50pt;
+             color: $orange;
+             font-size: 36pt;
+             font-weight: 600;
              text-align: center;
          }
 
          .min-temperature {
-             position: absolute;
-             top: 145px;
-             left: 220px;
-             width: 150px;
+             color: $darkerBlue;
+             width: 50%;
 
-             color: #1392d3;
-             font-size: 50pt;
+             font-size: 36pt;
              text-align: center;
+
+             &:after {
+                 content: "/";
+                 left: calc(50% - 15px);
+                 bottom: 9px;
+                 position: absolute;
+                 color: $darkerBlue;
+                 font-weight: 600;
+                 font-size: 24pt;
+             }
          }
      }
 

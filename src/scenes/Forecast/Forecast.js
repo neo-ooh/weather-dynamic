@@ -5,6 +5,11 @@ import WeatherAPI from 'library/WeatherAPI'
 import Captions from '../Captions/Captions'
 
 import DayColumn from './DayColumn/DayColumn'
+import messages from '../../library/messages'
+import getIcon from '../../library/getIcon'
+import {getSunTimes} from '../../library/Backgrounds'
+
+import { injectIntl } from 'react-intl'
 
 class Forecast extends Component {
   constructor (props) {
@@ -14,7 +19,8 @@ class Forecast extends Component {
       isReady: false,
       asFailed: false,
       weatherLoaded: false,
-      weatherData: null
+      weatherData: null,
+      todayForecast: null,
     }
   }
 
@@ -52,6 +58,18 @@ class Forecast extends Component {
         })
         this.props.onError('Error while loading weather data')
       })
+    console.log(this.props.player.design.name)
+    if (this.props.player.design.name === 'PML') {
+      getWeather.now(...this.props.localization)
+        .then(this.handleFailedRequests)
+        .then(req => {
+          if (req !== null) {
+            this.setState({
+              todayForecast: req,
+            })
+          }
+        })
+    }
 
     this.props.log('Weather data loaded')
   }
@@ -97,7 +115,62 @@ class Forecast extends Component {
         key={day.Period}
         player={this.props.player}/>)
 
+    var nowJSX = null
+
+    if (this.props.player.design.name === 'PML' && this.state.todayForecast != null) {
+      console.log(this.state.todayForecast)
+      const now = this.state.todayForecast
+      const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIconDay) + ')'}
+
+      let geo
+
+      if (this.props.player.isBroadSign) {
+        geo = {
+          lat: window.BroadSignObject.display_unit_lat_long.split(',')[0],
+          lng: window.BroadSignObject.display_unit_lat_long.split(',')[1]
+        }
+      } else {
+        geo = {
+          lat: this.state.weatherData.Location.Latitude,
+          lng: this.state.weatherData.Location.Longitude
+        }
+      }
+
+      const currDate = new Date()
+      const sunTimes = getSunTimes(currDate, geo.lat ,geo.lng)
+
+      const sunsetSunrise = currDate < sunTimes.sunrise ? sunTimes.sunrise : sunTimes.sunset
+      const sunsetSunriseMsg = currDate < sunTimes.sunrise ? 'sunrise' : 'sunset'
+
+      nowJSX = (
+        <ReactCSSTransitionGroup
+          transitionName="transition-hour-now"
+          transitionAppearTimeout={1250}
+          transitionEnterTimeout={1250}
+          transitionLeaveTimeout={1250}
+          transitionAppear={true}
+          transitionEnter={true}
+          transitionLeave={true}
+          component="section"
+          key="hour-now">
+          <div id="hourly-now">
+            <div className="icon" style={ iconStyle }/>
+            <div className="temperature">{now.TemperatureC}°</div>
+            <hr className="h-separator" />
+            <div className="feels-like">
+              { this.props.intl.formatMessage(messages['feelsLikeLng']) } {now.FeelsLikeC}°
+            </div>
+            <div className="sunset-sunrise"><span>
+              { this.props.intl.formatMessage(messages[sunsetSunriseMsg]) }&nbsp;
+              {sunsetSunrise.toLocaleString('en-CA', {hour: 'numeric', minute: 'numeric', hour12: true})}
+            </span></div>
+          </div>
+        </ReactCSSTransitionGroup>
+      )
+    }
+
     return [
+      nowJSX,
       <Captions key="captions"
         content={this.props.content}
         player={this.props.player}
@@ -121,4 +194,4 @@ class Forecast extends Component {
   }
 }
 
-export default Forecast
+export default injectIntl(Forecast)

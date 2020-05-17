@@ -93,12 +93,6 @@ class Forecast extends Component {
       return null // skip
     }
 
-    // const columns = this.state.weatherData.LongTermPeriod.slice(0, 5).map(day =>
-    //   <DayColumn
-    //     weatherData={day}
-    //     key={day.Period}
-    //     player={this.props.player}/>)
-
     const now = this.state.weatherData['HourlyPeriod'][0]
     const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIcon) + ')'}
 
@@ -134,7 +128,7 @@ class Forecast extends Component {
         component="section"
         key="hour-now">
           <div id="hourly-now">
-            <div className="icon" style={iconStyle}></div>
+            <div className="icon" style={ iconStyle }/>
             <div className="temperature">{now.TemperatureC}°</div>
             <hr className="h-separator" />
             <div className="feels-like">

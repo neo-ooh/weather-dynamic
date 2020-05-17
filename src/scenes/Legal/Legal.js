@@ -43,7 +43,8 @@ class Legal extends Component {
       legal = legals.en
     }
 
-    if(this.props.content === 'HOURLY')
+    if(this.props.content === 'HOURLY' || (this.props.content === 'FORECAST' &&
+      this.props.player.design.name === 'PML'))
       return null
 
     return (
