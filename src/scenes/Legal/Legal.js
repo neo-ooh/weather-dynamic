@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { injectIntl } from 'react-intl'
 
 import PMLFR from '../../assets/images/meteo-media-logo.png'
+import PMLEN from '../../assets/images/weather-network-logo.png'
 import PMPFR from '../../assets/images/PMP.credits.png'
 
 import legalEN from '../../assets/images/poweredBy.png'
@@ -18,7 +19,7 @@ class Legal extends Component {
   getLogo = () => {
     switch (this.props.player.design.name) {
       case 'PML':
-        return {fr: PMLFR, en: PMLFR}
+        return {fr: PMLFR, en: PMLEN}
       case 'PMP':
         return {fr: PMPFR, en: PMPFR}
       case 'SHD':
@@ -42,10 +43,6 @@ class Legal extends Component {
     } else {
       legal = legals.en
     }
-
-    if(this.props.content === 'HOURLY' || (this.props.content === 'FORECAST' &&
-      this.props.player.design.name === 'PML'))
-      return null
 
     return (
       <section id="legals" className={this.props.player.design.name}>
