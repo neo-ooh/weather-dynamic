@@ -7,6 +7,7 @@ import messages from '../../library/messages'
 
 import { getSunTimes } from '../../library/Backgrounds'
 import Hour from './Hour/Hour'
+import Captions from '../Captions/Captions'
 
 class Forecast extends Component {
   constructor (props) {
@@ -16,7 +17,8 @@ class Forecast extends Component {
       isReady: false,
       asFailed: false,
       weatherLoaded: false,
-      weatherData: null
+      weatherData: null,
+      todayForecast: null
     }
   }
 
@@ -53,6 +55,16 @@ class Forecast extends Component {
           asFailed: true
         })
         this.props.onError('Error while loading weather data')
+      })
+
+    getWeather.now(...this.props.localization)
+      .then(this.handleFailedRequests)
+      .then(req => {
+        if (req !== null) {
+          this.setState({
+            todayForecast: req,
+          })
+        }
       })
 
     this.props.log('Weather data loaded')
@@ -93,40 +105,43 @@ class Forecast extends Component {
       return null // skip
     }
 
-    const now = this.state.weatherData['HourlyPeriod'][0]
-    const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIcon) + ')'}
+    var nowJSX = null
 
-    let geo
+    if (this.props.player.design.name === 'PML' && this.state.todayForecast != null) {
+      const now = this.state.todayForecast
+      const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIconDay) + ')'}
 
-    if (this.props.player.isBroadSign) {
-      geo = {
-        lat: window.BroadSignObject.display_unit_lat_long.split(',')[0],
-        lng: window.BroadSignObject.display_unit_lat_long.split(',')[1]
+      let geo
+
+      if (this.props.player.isBroadSign) {
+        geo = {
+          lat: window.BroadSignObject.display_unit_lat_long.split(',')[0],
+          lng: window.BroadSignObject.display_unit_lat_long.split(',')[1]
+        }
+      } else {
+        geo = {
+          lat: this.state.weatherData.Location.Latitude,
+          lng: this.state.weatherData.Location.Longitude
+        }
       }
-    } else {
-      geo = {
-        lat: this.state.weatherData.Location.Latitude,
-        lng: this.state.weatherData.Location.Longitude
-      }
-    }
 
-    const currDate = new Date()
-    const sunTimes = getSunTimes(currDate, geo.lat ,geo.lng)
+      const currDate = new Date()
+      const sunTimes = getSunTimes(currDate, geo.lat ,geo.lng)
 
-    const sunsetSunrise = currDate < sunTimes.sunrise ? sunTimes.sunrise : sunTimes.sunset
-    const sunsetSunriseMsg = currDate < sunTimes.sunrise ? 'sunrise' : 'sunset'
+      const sunsetSunrise = currDate < sunTimes.sunrise ? sunTimes.sunrise : sunTimes.sunset
+      const sunsetSunriseMsg = currDate < sunTimes.sunrise ? 'sunrise' : 'sunset'
 
-    return [
-      <ReactCSSTransitionGroup
-        transitionName="transition-hour-now"
-        transitionAppearTimeout={1250}
-        transitionEnterTimeout={1250}
-        transitionLeaveTimeout={1250}
-        transitionAppear={true}
-        transitionEnter={true}
-        transitionLeave={true}
-        component="section"
-        key="hour-now">
+      nowJSX = (
+        <ReactCSSTransitionGroup
+          transitionName="transition-hour-now"
+          transitionAppearTimeout={1250}
+          transitionEnterTimeout={1250}
+          transitionLeaveTimeout={1250}
+          transitionAppear={true}
+          transitionEnter={true}
+          transitionLeave={true}
+          component="section"
+          key="hour-now">
           <div id="hourly-now">
             <div className="icon" style={ iconStyle }/>
             <div className="temperature">{now.TemperatureC}°</div>
@@ -139,7 +154,17 @@ class Forecast extends Component {
               {sunsetSunrise.toLocaleString('en-CA', {hour: 'numeric', minute: 'numeric', hour12: true})}
             </span></div>
           </div>
-      </ReactCSSTransitionGroup>,
+        </ReactCSSTransitionGroup>
+      )
+    }
+
+    return [
+      nowJSX,
+      <Captions key="captions"
+                content={this.props.content}
+                player={this.props.player}
+                localization={this.state.weatherData.Location}
+                shouldDisplay={this.props.shouldDisplay}/>,
       <ReactCSSTransitionGroup
         transitionName="transition-hours"
         transitionAppearTimeout={1250}

@@ -58,7 +58,7 @@ class Forecast extends Component {
         })
         this.props.onError('Error while loading weather data')
       })
-    console.log(this.props.player.design.name)
+
     if (this.props.player.design.name === 'PML') {
       getWeather.now(...this.props.localization)
         .then(this.handleFailedRequests)
@@ -118,7 +118,6 @@ class Forecast extends Component {
     var nowJSX = null
 
     if (this.props.player.design.name === 'PML' && this.state.todayForecast != null) {
-      console.log(this.state.todayForecast)
       const now = this.state.todayForecast
       const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIconDay) + ')'}
 
