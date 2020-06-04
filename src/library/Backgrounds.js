@@ -21,11 +21,12 @@ class Backgrounds
         api.backgrounds(period, support, ...location).then((response) => {
           if (typeof response.content === 'undefined') return
 
-          this._backgrounds[period] = response.content.backgrounds
           this._selectionMethod = response.content.selection
+          this._backgrounds[period] = response.content.backgrounds
 
-          if(response.content.backgrounds.length === 0) {
+          if(response.content.backgrounds === undefined || response.content.backgrounds.length === 0) {
             cache.remove(response.url)
+            return
           }
         })
       )
@@ -35,6 +36,7 @@ class Backgrounds
           const keys = storedRequests.map(key => key.url)
           var filteredBackground = []
           for (var period in this._backgrounds) {
+            if(this._backgrounds[period] === undefined) continue
             let filteredPeriod = this._backgrounds[period]
               .map(background => background.path.replace(/\\\//g, "/"))
               .filter(path => !keys.includes(path))
