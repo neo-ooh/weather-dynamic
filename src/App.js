@@ -21,9 +21,7 @@ import Legal from './scenes/Legal/Legal'
 
 import './style/App.scss'
 
-import {IntlProvider, addLocaleData} from 'react-intl'
-import fr from 'react-intl/locale-data/fr'
-import en from 'react-intl/locale-data/en'
+import {IntlProvider } from 'react-intl'
 import frenchMessages from './assets/locales/fr-CA'
 import englishMessages from './assets/locales/en-CA'
 import Background from './scenes/Background/Background'
@@ -34,8 +32,6 @@ const messages = {
   'fr-CA': frenchMessages,
   'en-CA': englishMessages,
 }
-
-addLocaleData([...fr, ...en])
 
 class App extends Component {
   contents = {
