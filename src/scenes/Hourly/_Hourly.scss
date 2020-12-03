@@ -29,36 +29,35 @@
         }
     }
 
-    .icon {
+    .now-caption {
         position: absolute;
-        top: -75px;
-        left: -125px;
-        width: 375px;
-        height: 275px;
+        width: 330px;
+        top: 30px;
 
-        background-position: center center;
-        background-size: contain;
-        background-repeat: no-repeat;
+        font-size: 22pt;
+        font-weight: 600;
+        color: $lightOrange;
+        text-align: center;
     }
 
     .temperature {
         position: absolute;
-        left: 200px;
-        top: 15px;
-        width: 250px;
-        color: $darkerBlue;
+        left: 0;
+        top: 60px;
+        width: 330px;
+        color: #FFF;
 
         font-size: 70pt;
         font-weight: 600;
         text-align: center;
     }
 
-    .h-separator {
+    .v-separator {
         position: absolute;
-        left: 225px;
-        top: 130px;
-        height: 2px;
-        width: 200px;
+        left: 330px;
+        top: 30px;
+        height: 200px;
+        width: 2px;
 
         background-color: $orange;
         border: none;
@@ -66,11 +65,11 @@
 
     .feels-like {
         position: absolute;
-        left: 200px;
-        top: 150px;
-        width: 250px;
+        left: 0;
+        top: 180px;
+        width: 330px;
 
-        color: $darkerBlue;
+        color: #FFF;
         font-size: 16pt;
         font-weight: 600;
         text-align: center;
@@ -79,12 +78,12 @@
 
     .sunset-sunrise {
         position: absolute;
-        display: flex;
+        display: none;
         flex-direction: row-reverse;
         align-items: center;
-        top: 210px;
+        top: 225px;
         left: 0;
-        width: 415px;
+        width: 300px;
         height: 35px;
         padding-right: 10px;
 
@@ -94,17 +93,14 @@
         font-size: 14pt;
         font-weight: 500;
         text-align: right;
-
-        background-color: $darkerBlue;
     }
 }
 
 #hours {
     position: absolute;
-    left: 560px;
-    top: 30px;
     display: flex;
-    width: 850px;
+    left: 330px;
+    width: 1110px;
 
     flex-direction: row;
     justify-content: space-between;
@@ -112,7 +108,7 @@
     font-family: 'Poppins', sans-serif;
 
     .hour-wrapper {
-        width: 110px;
+        width: 16.66%;
         transition: .5s cubic-bezier(0.645, 0.045, 0.355, 1);
         transition-property: opacity;
 
@@ -136,17 +132,18 @@
             box-sizing: border-box;
             width: 100%;
             height: 40px;
+            margin-top: 30px;
 
-            background-color: $orange;
             color: #FFF;
             text-align: center;
             font-size: 1.8em;
+            font-weight: 600;
         }
 
         .icon {
-            width: 100%;
+            width: 75%;
             height: 90px;
-            margin: 15px 0;
+            margin: 15px auto;
 
             background-position: center center;
             background-size: contain;
@@ -157,10 +154,18 @@
             box-sizing: border-box;
             width: 100%;
 
-            color: $darkerBlue;
+            color: #FFF;
             text-align: center;
             font-size: 3.3em;
             font-weight: bold;
+
+            &.above {
+                color: $lightOrange;
+            }
+
+            &.below {
+                color: $lightBlue;
+            }
         }
     }
 }

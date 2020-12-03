@@ -153,9 +153,9 @@ class Forecast extends Component {
           component="section"
           key="hour-now">
           <div id="hourly-now">
-            <div className="icon" style={ iconStyle }/>
+            <div className="now-caption">Présentement</div>
             <div className="temperature">{now.TemperatureC}°</div>
-            <hr className="h-separator" />
+            <hr className="v-separator" />
             <div className="feels-like">
               { this.props.intl.formatMessage(messages['feelsLikeLng']) } {now.FeelsLikeC}°
             </div>

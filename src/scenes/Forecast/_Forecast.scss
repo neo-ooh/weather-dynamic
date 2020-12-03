@@ -34,7 +34,7 @@
 
     &.PMP {
         top: 250px;
-        left: 0px;
+        left: 0;
         width: 480px;
         height: 765px;
 
@@ -42,11 +42,10 @@
     }
 
     &.PML {
-        top: 30px;
-        left: 560px;
-        width: 800px;
-        height: 240px;
-        padding: 0 40px;
+        top: 0;
+        left: 330px;
+        width: 1110px;
+        height: 270px;
 
         flex-direction: row;
         justify-content: space-between;

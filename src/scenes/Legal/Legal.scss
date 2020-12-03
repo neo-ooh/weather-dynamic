@@ -57,14 +57,14 @@
     }
 
     &.PML {
-        top: 209px;
         left: 0;
+        bottom: 0;
 
         width: unset;
         height: 35px;
 
         padding: 3px 7px;
-        background-color: #FFF;
+        background-color: transparent;
 
         .logo {
             height: 30px;

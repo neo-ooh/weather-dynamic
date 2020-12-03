@@ -9,10 +9,11 @@ class Hour extends Component {
       <div className="hour-wrapper">
         <div className="hour">{(new Date(this.props.data.TimestampLocal)).getHours()}h</div>
         <div className="icon" style={ iconStyle }/>
-        <div className="temperature">{this.props.data.TemperatureC}°</div>
+        <div className={['temperature', this.props.data.TemperatureC > 0 ? 'above' : 'below'].join(' ')}>
+          {this.props.data.TemperatureC}°</div>
       </div>
     )
-  }
+  };
 }
 
 export default Hour;
