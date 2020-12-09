@@ -74,9 +74,21 @@ main {
         width: 1440px;
         height: 270px;
 
-        //background-color: $darkerBlue;
-        background: rgb(24,25,36);
-        background: linear-gradient(180deg, rgba(24,25,36,1) 0%, $darkerBlue 5%);
+        background-size: cover;
+        background : rgb(24, 25, 36) url("../assets/images/news/PHD-weather.png") bottom left;
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 999;
+            left: 0;
+            top: -50px;
+            height: 50px;
+            width: 100%;
+
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+        }
     }
 
     &.PMP {
