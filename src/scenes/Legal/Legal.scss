@@ -59,11 +59,12 @@
     &.PML {
         //display: none;
         bottom: 5px;
-        right: 5px;
-        left: unset;
+        left: 0;
 
+        width: 330px;
         height: 30px;
         padding: 0;
+        text-align: center;
 
         background-color : transparent;
 
