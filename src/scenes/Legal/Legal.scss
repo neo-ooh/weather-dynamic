@@ -57,17 +57,18 @@
     }
 
     &.PML {
-        left: 240px;
-        bottom: 0;
+        //display: none;
+        bottom: 5px;
+        right: 5px;
+        left: unset;
 
-        width: unset;
-        height: 35px;
+        height: 30px;
+        padding: 0;
 
-        padding: 3px 7px;
-        background-color: transparent;
+        background-color : transparent;
 
         .logo {
-            height: 30px;
+            height : 30px;
         }
     }
 

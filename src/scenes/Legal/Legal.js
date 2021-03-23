@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { injectIntl } from 'react-intl'
 
 import PMLFR from '../../assets/images/meteo-media-logo.png'
-import PMLEN from '../../assets/images/weather-network-logo.png'
+import PMLEN from '../../assets/images/pml.en.svg'
 import PMPFR from '../../assets/images/PMP.credits.png'
 
 import legalEN from '../../assets/images/poweredBy.png'
@@ -12,8 +12,6 @@ import legalFRQC from '../../assets/images/propulseParQC.png'
 
 import legalFRSHD from '../../assets/images/meteo-media-logo.png'
 import legalENSHD from '../../assets/images/weather-network-logo.png'
-
-
 
 class Legal extends Component {
   getLogo = () => {
