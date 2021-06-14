@@ -1,7 +1,6 @@
 import React, { Component} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
-import { injectIntl } from "react-intl"
 import messages from '../../library/messages'
 
 class Captions extends Component {
@@ -55,7 +54,7 @@ class Captions extends Component {
         <div className={'middle-bar ' + content}>
           <span>{ middle }</span>
         </div>
-        <ReactCSSTransitionGroup
+        <CSSTransition
           transitionName="transition-captions"
           transitionAppearTimeout={1250}
           transitionEnterTimeout={1250}
@@ -68,7 +67,7 @@ class Captions extends Component {
           { this.props.shouldDisplay &&
             <span key={ bottom }>{ bottom }</span>
           }
-        </ReactCSSTransitionGroup>
+        </CSSTransition>
       </section>
     )
   }

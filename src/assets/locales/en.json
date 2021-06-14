@@ -1,0 +1,40 @@
+{
+  "days": {
+    "0": "Sunday",
+    "1": "Monday",
+    "2": "Tuesday",
+    "3": "Wednesday",
+    "4": "Thursday",
+    "5": "Friday",
+    "6": "Saturday",
+    "shorts": {
+      "0": "Sun",
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wed",
+      "4": "Thu",
+      "5": "Fri",
+      "6": "Sat"
+    }
+  },
+  "feelsLike": "Feels like",
+  "feelsLikeLng": "Feels like",
+  "forecast": "5 days forecast",
+  "forecast-3": "3 days forecast",
+  "forecast-5-short": "5 days",
+  "max": "H",
+  "min": "L",
+  "national": {
+    "bottom": "Weather",
+    "top": "National"
+  },
+  "now": "Now",
+  "pop": "Chance of rain",
+  "sunrise": "Sunrise at",
+  "sunset": "Sunset at",
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "updatedOn": "Updated on",
+  "weather": "Weather",
+  "wind": "Wind"
+}

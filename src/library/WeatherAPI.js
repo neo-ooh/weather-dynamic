@@ -4,6 +4,7 @@ const apiURL = process.env.REACT_APP_API_URL
 
 export default class WeatherAPI {
   constructor () {
+
     WeatherAPI.options = {
       params: {
         locale: WeatherAPI.locale,
