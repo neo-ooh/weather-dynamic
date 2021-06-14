@@ -11,9 +11,9 @@ const App = () => {
   const { i18n } = useTranslation();
   const ctx = React.useContext(DynamicContext)
 
-  // Start by getting our location
-  const [ country, province, city ]     = React.useMemo(() => ctx.getLocation(), [ ctx ]);
-  const [ location, locationIsLoading ] = useFetch(`/dynamics/_weather/${ country }/${ province }/${ city }`);
+  const [ country, province, city ]     = React.useMemo(() => ctx.context.getLocation(), [ ctx ]);
+
+  const [ location, locationIsLoading ] = useFetch(`/dynamics/_weather/locations/${ country }/${ province }/${ city }`, 'get', null, true);
 
   // Deduce and set the locale (language)
   const { locale: urlLocale } = useParams();
@@ -30,9 +30,9 @@ const App = () => {
 
   return [
     <IfParam name="content"
-             value="NOW"
+             value="now"
              key="now">
-      <Now location={ location }/>
+      <Now location={ location } locale={locale}/>
     </IfParam>,
     // <IfParam name="content"
     //          value="HOURLY"

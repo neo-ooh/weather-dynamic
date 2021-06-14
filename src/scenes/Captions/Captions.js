@@ -1,8 +1,6 @@
 import React, { Component} from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import messages from '../../library/messages'
-
 class Captions extends Component {
   render () {
 
@@ -73,4 +71,4 @@ class Captions extends Component {
   }
 }
 
-export default injectIntl(Captions)
+export default Captions

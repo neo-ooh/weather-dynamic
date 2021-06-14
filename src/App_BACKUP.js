@@ -18,7 +18,7 @@ import Hourly   from './scenes/Hourly/Hourly';
 import Legal    from './scenes/Legal/Legal';
 import Log      from './scenes/Log/Log';
 import National from './scenes/National/National';
-import Now      from './scenes/Now/Now';
+import Now      from 'scenes/Now/Now';
 
 import './style/App.scss';
 
