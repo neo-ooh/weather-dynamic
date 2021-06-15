@@ -11,8 +11,6 @@ const Now = ({ location, locale }) => {
   const { t } = useTranslation('weather');
   const [ content, setContent ] = React.useState('today');
 
-
-
   const requestArgs = React.useMemo(() => ({
     country : location.country,
     province: location.province,
@@ -34,16 +32,14 @@ const Now = ({ location, locale }) => {
 
   const data = React.useMemo(() => content === 'today' ? todayForecast : tomorrowForecast, [content, todayForecast, tomorrowForecast]);
 
-  if (!isLive) {
+  if (!isLive || !data) {
     return null; // skip
   }
-
-  console.log(data)
 
   return (
     <React.Fragment>
       <Captions top={t('weather')}
-                middle={data.localization.Name}
+                middle={data.Location.Name}
                 bottom={t(content)} />
     </React.Fragment>
   )

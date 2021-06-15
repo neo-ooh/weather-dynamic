@@ -1,74 +1,72 @@
-import React, { Component} from 'react'
-import { CSSTransition } from 'react-transition-group'
+import classNames         from 'classnames';
+import { DynamicContext } from 'dynamics-utilities';
+import React                               from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-class Captions extends Component {
-  render () {
+const Captions = ({ top, middle, bottom }) => {
+  const { support } = React.useContext(DynamicContext);
 
-    if(this.props.player.design.name === 'PML' ||
-       this.props.player.design.name === 'PMP') {
-      return null
-    }
+  console.log(support);
 
-    let top, middle, bottom
+  //
+  // let top, middle, bottom
+  //
+  // let content = this.props.content.toLowerCase()
+  //
+  // if(content === 'forecast' && this.props.player.design.name === 'DCA') {
+  //   content = 'forecast-3'
+  // }
+  //x
+  // if(content === 'forecast' && (this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')) {
+  //   content = 'forecast-5-short'
+  // }
+  //
+  // if (this.props.content === 'NATIONAL' && (this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')) {
+  //   top = null
+  //   middle = 'Canada'
+  //   bottom = this.props.intl.formatMessage(messages.nationalCaptionBottom)
+  // } else if (this.props.content === 'NATIONAL') {
+  //   top = this.props.intl.formatMessage(messages.nationalCaptionTop)
+  //   middle = this.props.intl.formatMessage(messages.nationalCaptionBottom)
+  //   bottom = 'Canada'
+  // } else {
+  //   if(this.props.localization === undefined) return null
+  //   top = this.props.intl.formatMessage(messages.weather)
+  //   middle = this.props.localization.Name
+  //   bottom = this.props.intl.formatMessage(messages[content])
+  // }
+  //
+  // if(middle.length > 15) {
+  //   content += " small-text"
+  // }
+  //
+  // if((this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')&& bottom.length > 8) {
+  //   content += " small-caption"
+  // }
 
-    let content = this.props.content.toLowerCase()
-
-    if(content === 'forecast' && this.props.player.design.name === 'DCA') {
-      content = 'forecast-3'
-    }
-
-    if(content === 'forecast' && (this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')) {
-      content = 'forecast-5-short'
-    }
-
-    if (this.props.content === 'NATIONAL' && (this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')) {
-      top = null
-      middle = 'Canada'
-      bottom = this.props.intl.formatMessage(messages.nationalCaptionBottom)
-    } else if (this.props.content === 'NATIONAL') {
-      top = this.props.intl.formatMessage(messages.nationalCaptionTop)
-      middle = this.props.intl.formatMessage(messages.nationalCaptionBottom)
-      bottom = 'Canada'
-    } else {
-      if(this.props.localization === undefined) return null
-      top = this.props.intl.formatMessage(messages.weather)
-      middle = this.props.localization.Name
-      bottom = this.props.intl.formatMessage(messages[content])
-    }
-
-    if(middle.length > 15) {
-      content += " small-text"
-    }
-
-    if((this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')&& bottom.length > 8) {
-      content += " small-caption"
-    }
-
-    return (
-      <section id="Captions" className={this.props.player.design.name}>
-        <div className="top-bar">
-          <span>{ top }</span>
+  return (
+    <section id="Captions" className={ support.design }>
+      <div className="top-bar">
+        <span>{ top }</span>
+      </div>
+      <div className="middle-bar">
+        <span>{ middle }</span>
+      </div>
+      <SwitchTransition>
+      <CSSTransition
+        timeout={1250}
+        appear={ true }
+        key={bottom}
+        classNames="captions">
+        <div className="bottom-bar" key={ bottom }>
+          <span>
+            { bottom }
+          </span>
         </div>
-        <div className={'middle-bar ' + content}>
-          <span>{ middle }</span>
-        </div>
-        <CSSTransition
-          transitionName="transition-captions"
-          transitionAppearTimeout={1250}
-          transitionEnterTimeout={1250}
-          transitionLeaveTimeout={1250}
-          transitionAppear={true}
-          transitionEnter={true}
-          transitionLeave={true}
-          component="section"
-          className={'bottom-bar ' + content} >
-          { this.props.shouldDisplay &&
-            <span key={ bottom }>{ bottom }</span>
-          }
-        </CSSTransition>
-      </section>
-    )
-  }
-}
+      </CSSTransition>
+      </SwitchTransition>
+    </section>
+  );
+};
 
-export default Captions
+export default Captions;
