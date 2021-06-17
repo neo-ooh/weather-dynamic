@@ -1,5 +1,7 @@
+@import "../../../style/colors";
+
 .day-column {
-    position: relative;
+    position: absolute;
     background-color: rgba(0, 0, 0, .65);
 
     .caption {
@@ -73,8 +75,20 @@
         }
     }
 
-    &.transition-forecast-appear,
-    &.transition-forecast-enter {
+    @for $i from 1 to $elements {
+        .FCL &:nth-child(#{$i + 1}),
+        .HD &:nth-child(#{$i + 1}),
+        .DCA &:nth-child(#{$i + 1}) {
+            left: #{$i * 340}px;
+        }
+
+        .PMP &:nth-child(#{$i + 1}) {
+            top: #{$i * 255}px;
+        }
+    }
+
+    &.forecast-appear,
+    &.forecast-enter {
         position: absolute;
 
         .PML & {
@@ -89,21 +103,10 @@
             margin-top: 0;
         }
 
-        @for $i from 1 to $elements {
-            .FCL &:nth-child(#{$i + 1}),
-            .SHD &:nth-child(#{$i + 1}),
-            .PHD &:nth-child(#{$i + 1}),
-            .DCA &:nth-child(#{$i + 1}) {
-                left: #{$i * 340}px;
-            }
-
-            .PMP &:nth-child(#{$i + 1}) {
-                top: #{$i * 255}px;
-            }
-        }
-
-        &.transition-forecast-appear-active,
-        &.transition-forecast-enter-active {
+        &.forecast-appear-active,
+        &.forecast-enter-active,
+        &.forecast-appear-done,
+        &.forecast-enter-done {
             opacity: 1;
             margin-top: 0;
         }
@@ -294,8 +297,7 @@
         }
     }
 
-    .SHD &,
-    .PHD & {
+    .HD & {
         width: 340px;
         height: 100%;
 
@@ -361,6 +363,7 @@
         width: 33.3%;
         height: 100%;
         background-color: transparent;
+        position: relative;
 
          &:nth-child(4),
          &:nth-child(5) {

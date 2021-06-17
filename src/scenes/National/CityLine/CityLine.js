@@ -1,26 +1,33 @@
-import React, { Component } from 'react'
+import getIcon              from 'library/getIcon';
+import React, { Component } from 'react';
+import { CSSTransition }    from 'react-transition-group';
 
-import getIcon from 'library/getIcon'
+import './CityLine.scss';
 
 class National extends Component {
-  render () {
-    const iconID = this.props.weatherData.ObsIcon ? this.props.weatherData.ObsIcon : this.props.weatherData.FxIconDay
-    const iconStyle = { backgroundImage: 'url(' + getIcon(iconID) + ')' }
+  render() {
+    const iconID    = this.props.weatherData.ObsIcon ? this.props.weatherData.ObsIcon : this.props.weatherData.FxIconDay;
+    const iconStyle = { backgroundImage: 'url(' + getIcon(iconID) + ')' };
 
     return (
-      <div className={'city-line ' + this.props.design}>
-        <div className="temperature-block">
+      <CSSTransition timeout={ { appear: 750, enter: 750, exit: 250 } }
+                     appear={ true }
+                     key={ this.props.weatherData.Location.Name }
+                     classNames="transition" {...this.props} >
+        <div className={ 'city-line ' + this.props.design }>
+          <div className="temperature-block">
           <span className="temperature">
             { this.props.weatherData.TemperatureC }°
           </span>
+          </div>
+          <div className="weather-icon" style={ iconStyle }/>
+          <div className="city-name">
+            { this.props.weatherData.Location.Name }
+          </div>
         </div>
-        <div className="weather-icon" style={iconStyle}></div>
-        <div className="city-name">
-          { this.props.weatherData.Location.Name }
-        </div>
-      </div>
-    )
+      </CSSTransition>
+    );
   }
 }
 
-export default National
+export default National;

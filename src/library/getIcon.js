@@ -35,6 +35,6 @@ const weatherIcons = {
   '33': require('../assets/images/icons/rain.png'),
 }
 
-export default function getIcon (iconID) {
-  return weatherIcons[iconID]
+export default (iconID) => {
+  return weatherIcons[iconID].default
 }

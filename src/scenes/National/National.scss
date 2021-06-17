@@ -1,37 +1,12 @@
-#FCL-National
+@import '../../style/colors';
+
+#national
 {
     position: absolute;
     overflow: hidden;
 
     &.FCL {
-        left: 1920px;
-        top: 0;
-        width: 1920px;
-        height: 1080px;
-    }
-
-    &.DCA {
-        left: 0px;
-        top: 750px;
-        width: 1080px;
-        height: 1170px;
-    }
-
-    &.SHD,
-    &.PHD {
-        left: 0px;
-        top: 250px;
-        width: 1920px;
-        height: 810px;
-    }
-}
-
-#national-wrapper
-{
-    position: absolute;
-
-    &.FCL {
-        left: 85px;
+        left: 2005px;
         top: 70px;
         height: 940px;
         width: 1750px;
@@ -39,15 +14,14 @@
 
     &.DCA {
         left: 0;
-        top: 0;
+        top: 750px;
         height: 1170px;
         width: 1080px;
     }
 
-    &.SHD,
-    &.PHD {
+    &.HD {
         left: 210px;
-        top: 0px;
+        top: 250px;
         width: 1500px;
         height: 810px;
     }
@@ -59,6 +33,7 @@
     @for $i from 0 to $elements {
         &:nth-child(#{$i + 1}) {
             transition: #{($i + 1) * .25}s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-property: margin-left, opacity;
         }
     }
 
@@ -69,42 +44,21 @@
         }
     }
 
-    &.transition-national-appear,
-    &.transition-national-enter
+    &.transition-appear,
+    &.transition-enter
     {
-        position: absolute;
-
         opacity: 0;
         margin-left: 250px;
 
-        @for $i from 1 to $elements
-        {
-            &:nth-child(#{$i + 1})
-            {
-                &.FCL {
-                    top: #{$i * 185 + ($i - 1) * 5}px;
-                }
-
-                &.DCA {
-                    top: #{$i * 185 + ($i - 1) * 10}px;
-                }
-
-                &.SHD,
-                &.PHD {
-                    top: #{$i * 158 + ($i - 1) * 5}px;
-                }
-            }
-        }
-
-        &.transition-national-appear-active,
-        &.transition-national-enter-active
+        &.transition-appear-active,
+        &.transition-enter-active
         {
             opacity: 1;
             margin-left: 0;
         }
     }
 
-    &.transition-national-leave
+    &.transition-exit
     {
         opacity: 1;
         margin-left: 0;
@@ -125,7 +79,7 @@
             }
         }
 
-        &.transition-national-leave-active
+        &.transition-exit
         {
             opacity: 0.01;
             margin-left: -250px;

@@ -4,11 +4,10 @@
   "description": "Weather dynamic to be broadcasted on Neo-Traffic's network",
   "main": "src/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
+    "build": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "extract:messages": "react-intl-cra 'src/**/*.{js,jsx}' -o './messages/messages.json' && node ./translationRunner.js"
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -24,15 +23,16 @@
     "addresser": "^1.1.19",
     "classnames": "^2.3.1",
     "dynamics-utilities": "git+https://git@github.com/neo-traffic/dynamics-utilities.git#main",
+    "lodash": "^4.17.21",
     "luxon": "^1.27.0",
     "moment": "^2.27.0",
-    "node-sass": "^6.0.0",
     "parse-address-string": "0.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.11.0",
     "react-scripts": "^4.0.3",
     "react-transition-group": "^4.4.2",
+    "sass": "^1.35.0",
     "suncalc": "^1.8.0"
   },
   "browserslist": {

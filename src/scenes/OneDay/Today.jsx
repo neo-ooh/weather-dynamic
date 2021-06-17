@@ -1,26 +1,23 @@
+import classNames         from 'classnames';
 import React              from 'react';
 import { useTranslation } from 'react-i18next';
 
-/**
- *
- * @param {Record} weatherData
- * @return {JSX.Element}
- * @constructor
- */
 const Today = ({ weatherData }) => {
   const { t } = useTranslation('weather');
 
   return (
     <div className="bottom-part today">
-      <div className={ 'temperature ' +
-      (weatherData.TemperatureC <= 0 ? 'bellow-zero ' : ' ') +
-      (weatherData.TemperatureC.length > 2 ? 'shrink ' : ' ') }>
+      <div className="separator"/>
+      <div className={ classNames('temperature',
+        { 'bellow-zero': weatherData.TemperatureC <= 0 },
+        { 'shrink': weatherData.TemperatureC.length > 2 },
+      ) }>
         { weatherData.TemperatureC }°
       </div>
       <div className="details">
         <div className="detail-line feels-like">
             <span className="detail-name">
-              { t('feelsLike') }
+              { t('feels-like') }
             </span>
           <span className="detail-value">
               { weatherData.FeelsLikeC }°

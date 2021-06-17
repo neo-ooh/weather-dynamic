@@ -7,16 +7,16 @@ import React, { Component } from 'react';
 
 import { IntlProvider } from 'react-intl';
 import englishMessages  from './assets/locales/en-CA';
-import frenchMessages   from './assets/locales/fr-CA';
-import Background       from './scenes/Background/Background';
-import Error            from './scenes/Error/Error';
+import frenchMessages from './assets/locales/fr-CA';
+import Background     from './scenes/Background/Background';
+import Error          from './scenes/Error/Error';
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary';
 
 import Forecast from './scenes/Forecast/Forecast';
 import Hourly   from './scenes/Hourly/Hourly';
-import Legal    from './scenes/Legal/Legal';
-import Log      from './scenes/Log/Log';
+import Legal    from './scenes/Legal/Legals';
+import Log    from './scenes/Log/Log';
 import National from './scenes/National/National';
 import Now      from 'scenes/Now/Now';
 

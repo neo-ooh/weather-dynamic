@@ -1,18 +1,9 @@
 // MAIN CSS ENTRY POINT
-@import 'colors';
-@import '~dynamics-utilities/assets/sass/mixins/font-face';
+@import "colors";
+@import "~dynamics-utilities/assets/sass/mixins/font-face";
 
-@import '../scenes/Background/Background';
-@import '../scenes/Captions/Captions';
-@import '../scenes/Error/Error';
-@import '../scenes/Forecast/Forecast';
-@import '../scenes/Forecast/DayColumn/DayColumn';
-@import '../scenes/Hourly/Hourly';
-@import '../scenes/Legal/Legal';
-@import '../scenes/Log/Log';
-@import '../scenes/National/National';
-@import '../scenes/National/CityLine/CityLine';
-@import '../scenes/OneDay/OneDay';
+@import "../scenes/Error/Error";
+@import "../scenes/Log/Log";
 
 @include font-face(Gotham, "~dynamics-utilities/assets/fonts/Gotham/Gotham-Light", 300, normal, woff2 woff);
 @include font-face(Gotham, "~dynamics-utilities/assets/fonts/Gotham/Gotham-Book", 500, normal, woff2 woff);
@@ -64,8 +55,7 @@ main {
         height: 384px;
     }
 
-    &.SHD,
-    &.PHD {
+    &.HD {
         width: 1920px;
         height: 1080px;
     }

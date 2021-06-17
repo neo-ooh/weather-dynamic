@@ -1,12 +1,12 @@
-import classNames         from 'classnames';
-import { DynamicContext } from 'dynamics-utilities';
+import classNames                          from 'classnames';
+import { DynamicContext }                  from 'dynamics-utilities';
 import React                               from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
+import './Captions.scss';
+
 const Captions = ({ top, middle, bottom }) => {
   const { support } = React.useContext(DynamicContext);
-
-  console.log(support);
 
   //
   // let top, middle, bottom
@@ -36,34 +36,38 @@ const Captions = ({ top, middle, bottom }) => {
   //   bottom = this.props.intl.formatMessage(messages[content])
   // }
   //
-  // if(middle.length > 15) {
-  //   content += " small-text"
-  // }
   //
-  // if((this.props.player.design.name === 'SHD' || this.props.player.design.name === 'PHD')&& bottom.length > 8) {
-  //   content += " small-caption"
-  // }
+
+  const middleBarClassNames = [ 'middle-bar' ];
+  const bottomBarClassNames = [ 'bottom-bar' ];
+
+  if (middle.length > 15) {
+    middleBarClassNames.push('small-text');
+  }
+
+  if (support.design === 'HD' && bottom.length > 8) {
+    bottomBarClassNames.push('small-caption');
+  }
 
   return (
     <section id="Captions" className={ support.design }>
       <div className="top-bar">
         <span>{ top }</span>
       </div>
-      <div className="middle-bar">
+      <div className={ classNames(middleBarClassNames) }>
         <span>{ middle }</span>
       </div>
       <SwitchTransition>
-      <CSSTransition
-        timeout={1250}
-        appear={ true }
-        key={bottom}
-        classNames="captions">
-        <div className="bottom-bar" key={ bottom }>
+        <CSSTransition timeout={ { appear: 750, enter: 750, exit: 250 } }
+                       appear={ true }
+                       key={ bottom }
+                       classNames="captions">
+          <div className={ classNames(bottomBarClassNames) } key={ bottom }>
           <span>
             { bottom }
           </span>
-        </div>
-      </CSSTransition>
+          </div>
+        </CSSTransition>
       </SwitchTransition>
     </section>
   );

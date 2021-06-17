@@ -5,9 +5,8 @@ const defaultGeo = { lat: 49.895077, lng: -97.138451 }; // Winnipeg
 
 const UseDayPeriod = (lat = null, lng = null) => {
   return React.useMemo(() => {
-    const now      = Date();
+    const now      = new Date();
     const sunTimes = SunCalc.getTimes(now, lat || defaultGeo.lat, lng || defaultGeo.lng);
-
 
     // Select current Period
     if (now < sunTimes.sunrise) {

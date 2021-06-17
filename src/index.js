@@ -1,10 +1,10 @@
 // Log Aggregation
+import App         from 'App';
 import en          from 'assets/locales/en.json';
 import fr          from 'assets/locales/fr.json';
 import { Dynamic } from 'dynamics-utilities';
 import React       from 'react';
-import ReactDOM from 'react-dom';
-import App      from 'App';
+import ReactDOM    from 'react-dom';
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary';
 
@@ -12,7 +12,9 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <ErrorBoundary>
-    <Dynamic name="weather"
+    <Dynamic env={ process.env.NODE_ENV }
+             name="weather"
+             version={ process.env.REACT_APP_GIT_SHA }
              locales={ {
                en: { weather: en },
                fr: { weather: fr },

@@ -1,3 +1,5 @@
+@import "../../style/colors";
+
 #hourly-now {
     position:absolute;
     top: 0;
@@ -85,7 +87,7 @@
     }
 }
 
-#hours {
+.hours {
     position: absolute;
     display: flex;
     left: 330px;
@@ -107,12 +109,12 @@
             }
         }
 
-        &.transition-hours-appear,
-        &.transition-hours-enter {
+        &.hours-appear,
+        &.hours-enter {
             opacity: 0;
 
-            &.transition-hours-appear-active,
-            &.transition-hours-enter-active {
+            &.hours-appear-active,
+            &.hours-enter-active {
                 opacity: 1;
             }
         }

@@ -1,13 +1,14 @@
-import { useFetch, useIsLive } from 'dynamics-utilities';
-import React                   from 'react';
+import { DynamicContext, useFetch, useIsLive } from 'dynamics-utilities';
+import React                                            from 'react';
 import { useTranslation }      from 'react-i18next';
 import Captions                from 'scenes/Captions/Captions';
-
-// import Captions from '../Captions/Captions';
-// import OneDay   from '../OneDay/OneDay';
+import Background              from '../Background';
+import Legals                  from '../Legal/Legals';
+import OneDay                  from '../OneDay/OneDay';
 
 const Now = ({ location, locale }) => {
   const [ isLive, liveStart ] = useIsLive();
+  const { support } = React.useContext(DynamicContext);
   const { t } = useTranslation('weather');
   const [ content, setContent ] = React.useState('today');
 
@@ -30,28 +31,22 @@ const Now = ({ location, locale }) => {
     setTimeout(() => setContent('tomorrow'), 7500);
   }, [isLive])
 
-  const data = React.useMemo(() => content === 'today' ? todayForecast : tomorrowForecast, [content, todayForecast, tomorrowForecast]);
+  const weatherData = React.useMemo(() => content === 'today' ? todayForecast : tomorrowForecast, [content, todayForecast, tomorrowForecast]);
 
-  if (!isLive || !data) {
+  if (!isLive || !weatherData) {
     return null; // skip
   }
 
   return (
     <React.Fragment>
+      <Background weatherData={weatherData} content={content} />
+      <Legals children support={support} location={location} />
       <Captions top={t('weather')}
-                middle={data.Location.Name}
+                middle={weatherData.Location.Name}
                 bottom={t(content)} />
+      <OneDay content={content} weatherData={weatherData} />
     </React.Fragment>
   )
-    // <Captions key="captions"
-    //           content={ this.props.content }
-    //           localization={ weatherData.Location }
-    //           shouldDisplay={ this.props.shouldDisplay }
-    //           player={ this.props.player }/>,
-    // <OneDay key="now-oneday"
-    //         player={ this.props.player }
-    //         content={ this.props.content }
-    //         weatherData={ weatherData }/>,
 };
 
 export default Now;

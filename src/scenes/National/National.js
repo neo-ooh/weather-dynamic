@@ -1,134 +1,67 @@
-import React, { Component } from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { DynamicContext, useFetch, useIsLive } from 'dynamics-utilities';
+import React                                   from 'react';
+import { useTranslation }                      from 'react-i18next';
+import { TransitionGroup }                     from 'react-transition-group';
+import Background                              from '../Background';
+import Captions                                from '../Captions/Captions';
 
-import WeatherAPI from 'library/WeatherAPI'
-import Captions from '../Captions/Captions'
+import CityLine from './CityLine/CityLine';
+import './National.scss';
 
-import CityLine from './CityLine/CityLine'
+const National = ({ location, locale }) => {
+  const [ panel, setPanel ]   = React.useState('first');
+  const [ isLive, liveStart ] = useIsLive();
+  const { support }           = React.useContext(DynamicContext);
+  const { t, i18n }                 = useTranslation('weather');
 
-class National extends Component {
-  constructor (props) {
-    super(props)
+  const requestArgs = React.useMemo(() => ({
+    locale,
+  }), [ location ]);
 
-    this.state = {
-      status: 'FIRST',
-      isReady: false,
-      asFailed: false,
-      weatherLoaded: false,
-      firstScreen: null,
-      secondScreen: null,
-      location: {
-        Latitude: 49.895077,
-        Longitude: -97.138451
-      }
+  const [ nationalForecast, nationalForecastIsLoading ] = useFetch('/dynamics/_weather/national', 'get', requestArgs, true);
+
+  React.useEffect(() => {
+    if (!isLive) {
+      return;
     }
+
+    setTimeout(() => setPanel('second'), 7500);
+  }, [ isLive ]);
+
+  const weatherData = React.useMemo(() => {
+    if (nationalForecastIsLoading) {
+      return null;
+    }
+
+    const offset = panel === 'first' ? 0 : 5;
+    return nationalForecast.slice(offset, offset + 5);
+  }, [ nationalForecast, panel, nationalForecastIsLoading ]);
+
+  React.useEffect(() => {
+    if (isLive && !nationalForecastIsLoading) {
+      console.log(`Ready ${ Date.now() - liveStart }ms after display`);
+    }
+  }, [ isLive, nationalForecastIsLoading ]);
+
+  if (!isLive || nationalForecastIsLoading) {
+    return null; // skip
   }
 
-  loadWeatherData () {
-    if (this.state.weatherLoaded) {
-      return
-    }
+  return (
+    <React.Fragment>
+      <Background weatherData={ weatherData } content="national"/>
+      <Captions top={ support.design !== 'HD' ? t('national.top') : null }
+                middle={ support.design !== 'HD' ? t('national.bottom') : 'Canada' }
+                bottom={ support.design !== 'HD' ? 'Canada' : t('national.bottom') }/>
+      <div id="national" className={ support.design }>
+        <TransitionGroup appear={true} component={null}>
+          { weatherData.map((city, key) => (
+            <CityLine weatherData={ city } design={ support.design } key={ key }/>
+          )) }
+        </TransitionGroup>
+      </div>
+    </React.Fragment>
+  );
+};
 
-    this.setState({
-      weatherLoaded: true
-    })
-
-    this.props.log('Loading weather data')
-
-    let getWeather = new WeatherAPI()
-
-    getWeather.national()
-      .then(this.handleFailedRequests)
-      .then(req => {
-        if (req !== null) {
-          return this.setState({
-            firstScreen: req.slice(0, 5),
-            secondScreen: req.slice(5, 10),
-            isReady: true
-          })
-        }
-
-        // failed
-        this.setState({
-          asFailed: true
-        })
-
-        this.props.onError('Error while loading weather data')
-      })
-
-    this.props.log('Weather data loaded')
-  }
-
-  handleFailedRequests (req) {
-    if (req === null) {
-      return null
-    }
-
-    if (req === 'BAD CONTENT') {
-      return null
-    }
-
-    if (!req.hasOwnProperty('content')) {
-      return null
-    }
-
-    if ('error' in req.content) {
-      return null
-    }
-
-    return req.content
-  }
-
-  componentDidMount () {
-    this.loadWeatherData()
-  }
-
-  componentDidUpdate (prevProps) {
-    if (!prevProps.shouldDisplay && this.props.shouldDisplay) {
-      this.props.log('Beginning display')
-
-      this.props.onWeatherData([...this.state.firstScreen, ...this.state.secondScreen])
-
-      setTimeout(() => {
-        this.setState({
-          status: 'SECOND'
-        })
-      }, this.props.player.design.name === 'DCA' ? 4600 : 7125)
-    }
-  }
-
-  render () {
-    if (!this.state.isReady) {
-      return null // skip
-    }
-
-    const weatherData = this.state.status === 'FIRST' ? this.state.firstScreen : this.state.secondScreen
-
-    const cities = weatherData.map((city, key) =>
-      <CityLine weatherData={city} key={key + '-' + this.state.status} design={this.props.player.design.name}/>)
-
-    return [
-      <Captions key="captions"
-        content={this.props.content}
-        player={this.props.player}
-        shouldDisplay={this.props.shouldDisplay}/>,
-      <section id="FCL-National" className={this.props.player.design.name} key="national-lines">
-        <ReactCSSTransitionGroup
-          transitionName="transition-national"
-          transitionAppearTimeout={1250}
-          transitionEnterTimeout={1250}
-          transitionLeaveTimeout={1250}
-          transitionAppear={true}
-          transitionEnter={true}
-          transitionLeave={true}
-          component="div"
-          id="national-wrapper"
-          className={this.props.player.design.name} >
-          { this.props.shouldDisplay && cities }
-        </ReactCSSTransitionGroup>
-      </section>
-    ]
-  }
-}
-
-export default National
+export default National;
