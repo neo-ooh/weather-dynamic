@@ -17,7 +17,7 @@ const App = () => {
 
   const [ country, province, city ] = React.useMemo(() => ctx.context.getLocation(), [ ctx ]);
 
-  const [ location, locationIsLoading ] = useFetch(`/dynamics/_weather/locations/${ country }/${ province }/${ city }`,
+  const [ location, locationIsLoading ] = useFetch(`/v1/dynamics/_weather/locations/${ country }/${ province }/${ city }`,
     'get',
     null,
     true,

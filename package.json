@@ -4,9 +4,9 @@
   "description": "Weather dynamic to be broadcasted on Neo-Traffic's network",
   "main": "src/index.js",
   "scripts": {
-    "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
-    "build": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
-    "test": "react-scripts test",
+    "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` craco start",
+    "build": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "repository": {
@@ -20,11 +20,12 @@
   },
   "homepage": "https://weather.dynamics.ad-direct.ca",
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "addresser": "^1.1.19",
     "classnames": "^2.3.1",
     "dynamics-utilities": "git+https://git@github.com/neo-traffic/dynamics-utilities.git#main",
     "lodash": "^4.17.21",
-    "luxon": "^1.27.0",
+    "luxon": "^2.3.1",
     "moment": "^2.27.0",
     "parse-address-string": "0.0.3",
     "react": "^17.0.2",
