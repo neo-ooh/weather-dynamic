@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Backgrounds from 'library/Backgrounds'
 import backgroundMap from 'library/backgroundsMap.json'
 
-import { cache } from 'dynamics-utilities'
+import { cache } from 'utilities'
 
 export default class background extends Component {
   constructor (props) {

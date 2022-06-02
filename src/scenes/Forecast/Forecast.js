@@ -6,8 +6,7 @@ import Captions from '../Captions/Captions'
 
 import DayColumn from './DayColumn/DayColumn'
 import messages from '../../library/messages'
-import getIcon from '../../library/getIcon'
-import {getSunTimes} from '../../library/Backgrounds'
+import {getSunTimes} from 'library/Backgrounds'
 
 import { injectIntl } from 'react-intl'
 
@@ -119,7 +118,6 @@ class Forecast extends Component {
 
     if (this.props.player.design.name === 'PML' && this.state.todayForecast != null) {
       const now = this.state.todayForecast
-      const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIconDay) + ')'}
 
       let geo
 

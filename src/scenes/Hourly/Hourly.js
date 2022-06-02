@@ -1,11 +1,10 @@
 import React, { Component} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import WeatherAPI from 'library/WeatherAPI'
-import getIcon from '../../library/getIcon'
 import {injectIntl} from 'react-intl'
 import messages from '../../library/messages'
 
-import { getSunTimes } from '../../library/Backgrounds'
+import { getSunTimes } from 'library/Backgrounds'
 import Hour from './Hour/Hour'
 import Captions from '../Captions/Captions'
 
@@ -109,9 +108,8 @@ class Forecast extends Component {
 
     if (this.props.player.design.name === 'PML' && this.state.todayForecast != null) {
       const now = this.state.todayForecast
-      const iconStyle = {backgroundImage: 'url(' + getIcon(now.FxIconDay) + ')'}
 
-      let geo
+      let geo;
 
       if (this.props.player.isBroadSign) {
         geo = {

@@ -7,7 +7,7 @@ import Backgrounds from 'library/Backgrounds'
 import settings from 'library/settings'
 
 import WeatherAPI from 'library/WeatherAPI'
-import {isBroadSignPlayer, BroadSignActions, resolveDesign, cache} from 'dynamics-utilities'
+import {isBroadSignPlayer, BroadSignActions, resolveDesign, cache} from 'utilities'
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary'
 import Error from './scenes/Error/Error'

@@ -1,7 +1,7 @@
 import SunCalc from 'suncalc'
 import API from './WeatherAPI'
-import settings from './settings'
-import { cache } from 'dynamics-utilities'
+import settings  from './settings'
+import { cache } from 'utilities'
 
 const periods = ['MORNING', 'DAY', 'DUSK', 'NIGHT']
 

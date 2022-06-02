@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Panoramic",
+    "width": 3840,
+    "height": 1080,
+    "design": "FCL",
+    "scale": 1.0
+  },
+  {
+    "name": "Vertical",
+    "width": 1080,
+    "height": 1920,
+    "design": "DCA",
+    "scale": 1.0
+  },
+  {
+    "name": "LED",
+    "width": 2048,
+    "height": 576,
+    "design": "FCL",
+    "scale": 0.5333333
+  },
+  {
+    "name": "LED",
+    "width": 2176,
+    "height": 576,
+    "design": "FCL",
+    "scale": 0.503
+  },
+  {
+    "name": "LED",
+    "width": 2560,
+    "height": 720,
+    "design": "FCL",
+    "scale": 0.63
+  },
+  {
+    "name": "WDE",
+    "width": 2560,
+    "height": 384,
+    "design": "WDE",
+    "scale": 1.0
+  },
+  {
+    "name": "HD",
+    "width": 1920,
+    "height": 1080,
+    "design": "HD",
+    "scale": 1.0
+  }
+]

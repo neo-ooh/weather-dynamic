@@ -1,4 +1,4 @@
-import { cache } from 'dynamics-utilities'
+import { cache } from 'utilities'
 
 const apiURL = process.env.REACT_APP_API_URL
 

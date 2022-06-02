@@ -22,9 +22,8 @@
   "homepage": "https://weather.dynamics.ad-direct.ca",
   "dependencies": {
     "babel-plugin-react-intl": "^7.5.28",
-    "dynamics-utilities": "git+https://git@github.com/neo-traffic/dynamics-utilities.git#dev",
     "moment": "^2.27.0",
-    "node-sass": "^4.14.1",
+    "sass": "^1.52.1",
     "parse-address-string": "0.0.3",
     "react": "^16.13.1",
     "react-addons-css-transition-group": "^15.6.2",
