@@ -1,7 +1,7 @@
-const isBroadSignPlayer = require('utilities/src/isBroadSignPlayer')
-const designs = require('utilities/src/designs.json')
+import isBroadSignPlayer from 'utilities/src/isBroadSignPlayer';
+import designs from 'utilities/src/designs.json';
 
-module.exports = function(hint = null, fallback = "SHD") {
+export default function(hint = null, fallback = "SHD") {
   const hintedDesign = designs.hasOwnProperty(hint) ? designs[hint] : null
 
   const resolutionSource = hintedDesign != null && hintedDesign.name === 'FCL' ? 'display_unit_resolution' : 'frame_resolution';

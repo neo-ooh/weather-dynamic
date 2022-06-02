@@ -1,6 +1,6 @@
-const supports = require("utilities/src/supports.json");
+import supports from 'utilities/src/supports.json';
 
-class Context {
+export default class Context {
   getPlayer() {
     if (!this.playerType) {
       this.playerType = this.__inferPlayerType();
@@ -91,5 +91,3 @@ class Context {
     return (new URLSearchParams(window.location.search)).get(param);
   }
 }
-
-module.exports.Context = Context

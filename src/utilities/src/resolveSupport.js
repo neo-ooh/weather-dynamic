@@ -1,5 +1,5 @@
-const isBroadSignPlayer = require('utilities/src/isBroadSignPlayer')
-const supports = require('utilities/src/supports.json')
+import isBroadSignPlayer from 'utilities/src/isBroadSignPlayer';
+import supports          from 'utilities/src/supports.json';
 
 /**
  * This methods detects the current support in which this application is running.
@@ -32,7 +32,7 @@ const supports = require('utilities/src/supports.json')
  *  scale: number
  *  }}
  */
-module.exports = function (hint = null, fallbackSupport = supports[0]) {
+export default function (hint = null, fallbackSupport = supports[0]) {
   // Filter known supports by the given hint
   const hintedSupport = supports.filter(support => support.name === hint)
 

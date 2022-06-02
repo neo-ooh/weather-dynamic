@@ -7,7 +7,7 @@ import Backgrounds from 'library/Backgrounds'
 import settings from 'library/settings'
 
 import WeatherAPI from 'library/WeatherAPI'
-import {isBroadSignPlayer, BroadSignActions, resolveDesign, cache} from 'utilities'
+import {isBroadSignPlayer, stopDisplay, skipDisplay, resolveDesign, cache} from 'utilities'
 
 import ErrorBoundary from './scenes/Error/ErrorBoundary'
 import Error from './scenes/Error/Error'
@@ -92,7 +92,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.checkCache().then(this.detectLocation())
+    this.checkCache().then(() => {this.detectLocation()})
   }
 
   checkCache() {
@@ -101,7 +101,7 @@ class App extends Component {
     if (lastUpdate === null) {
       let d = new Date();
       d.setHours(0, 0, 0, 0)
-      return Promise.resolve().then(localStorage.setItem('weather-dynamic.refresh', d.getTime()))
+      return Promise.resolve().then(() => { localStorage.setItem('weather-dynamic.refresh', d.getTime()) })
     }
 
     const refreshRate = this.state.production ? 1000 * 3600 * 24 : 300 * 1000
@@ -167,7 +167,7 @@ class App extends Component {
     })
 
     if (this.state.onError && this.state.production) {
-      BroadSignActions.stopDisplay()
+      stopDisplay()
     }
   }
 
@@ -225,13 +225,12 @@ class App extends Component {
     console.log(message);
 
     if (this.state.production && !this.state.display) {
-      BroadSignActions.skipDisplay();
+      skipDisplay();
       return
     }
 
     if (this.state.production && this.state.display) {
-      BroadSignActions.stopDisplay();
-      return
+      stopDisplay();
     }
   }
 

@@ -1,6 +1,6 @@
-let parseCacheControl = require('parse-cache-control')
+import parseCacheControl from 'parse-cache-control';
 
-class Cache {
+export class Cache {
   constructor(cacheName) {
     this.cacheName = cacheName;
   }
@@ -84,5 +84,3 @@ class Cache {
     await cache.delete(url);
   }
 }
-
-module.exports.Cache = Cache;

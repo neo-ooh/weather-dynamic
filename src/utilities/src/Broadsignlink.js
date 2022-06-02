@@ -2,7 +2,7 @@
 //  BROADSIGN ACTIONS
 //
 
-const isBroadSignPlayer = require('utilities/src/isBroadSignPlayer')
+import isBroadSignPlayer from 'utilities/src/isBroadSignPlayer'
 
 // Courtesy of BroadSign support
 
@@ -160,13 +160,10 @@ function resetWebSocketUri () {
   this.wsUri = 'ws://localhost:2326'
 }
 
-function stopDisplay () {
+export function stopDisplay () {
   initWebSocket(stop);
 }
 
-function skipDisplay () {
+export function skipDisplay () {
   initWebSocket(skip);
 }
-
-module.exports.skipDisplay = skipDisplay
-module.exports.stopDisplay = stopDisplay

@@ -1,4 +1,4 @@
-let parseCacheControl = require('parse-cache-control')
+import parseCacheControl from 'parse-cache-control'
 
 let cacheName = ''
 
@@ -6,7 +6,7 @@ let cacheName = ''
  * Set the name of the cache to work with
  * @param newCacheName string
  */
-function setCacheName(newCacheName) {
+export function setCacheName(newCacheName) {
   cacheName = newCacheName
 }
 
@@ -17,7 +17,7 @@ function setCacheName(newCacheName) {
  * @param url The url to fetch
  * @returns {Promise<Response>}
  */
-function get (url) {
+export function get (url) {
   return caches.open(cacheName).then(cache =>
     // Start by checking if the requested url isn't already stored
     cache.match(url).then(response => {
@@ -57,7 +57,7 @@ function get (url) {
  * @param url
  * @returns {Promise<Object>}
  */
-function getJson (url) {
+export function getJson (url) {
   return get(url).then(response => response.json())
 }
 
@@ -66,7 +66,7 @@ function getJson (url) {
  * @param url
  * @returns URL
  */
-function getImage (url) {
+export function getImage (url) {
   return get(url)
     .then(response => response.blob())
     .then(blob => URL.createObjectURL(blob))
@@ -77,7 +77,7 @@ function getImage (url) {
  * @param url
  * @returns {Promise<Response | never>}
  */
-function add (url) {
+export function add (url) {
   // Prepare request
   let headers = new Headers()
   // headers.append('pragma', 'no-cache')
@@ -112,17 +112,8 @@ function add (url) {
  * @param url
  * @returns {Promise<boolean>}
  */
-function remove (url) {
+export function remove (url) {
   return caches.open(cacheName).then(cache =>
     cache.delete(url)
   )
-}
-
-module.exports = {
-  setCacheName: setCacheName,
-  get: get,
-  getJson: getJson,
-  getImage: getImage,
-  add: add,
-  remove: remove,
 }

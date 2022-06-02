@@ -1,12 +1,14 @@
-exports.supports = require('./src/supports')
-exports.designs = require('./src/designs')
+import * as cacheImp from './src/cache';
 
-exports.BroadSignActions = require('./src/Broadsignlink')
+export { default as supports } from './src/supports';
+export { default as designs } from './src/designs.json';
 
-exports.resolveSupport = require('./src/resolveSupport')
-exports.resolveDesign = require('./src/resolveDesign')
+export { stopDisplay, skipDisplay } from './src/Broadsignlink';
+export { default as resolveSupport } from './src/resolveSupport'
+export { default as resolveDesign } from './src/resolveDesign'
 
-exports.isBroadSignPlayer = require('./src/isBroadSignPlayer')
-exports.BroadSignData = require('./src/BroadSignData')
+export { default as isBroadSignPlayer } from './src/isBroadSignPlayer';
+export { default as BroadSignData } from './src/BroadSignData';
 
-exports.cache = require('./src/cache')
+
+export const cache = cacheImp;

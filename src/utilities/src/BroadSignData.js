@@ -1,4 +1,4 @@
-const isBroadSignPlayer = require('utilities/src/isBroadSignPlayer')
+import isBroadSignPlayer from 'utilities/src/isBroadSignPlayer';
 
 function getVar(broadSignParameter) {
   return isBroadSignPlayer ? window.BroadSignObject[broadSignParameter] : null
@@ -6,7 +6,7 @@ function getVar(broadSignParameter) {
 
 
 
-module.exports = {
+export default {
   getParameter: getVar,
   displayAddress: getVar.bind(null, 'display_unit_address'),
   displayLatLong: getVar.bind(null, 'display_unit_lat_long'),
