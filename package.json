@@ -32,7 +32,7 @@
     "react-intl-cra": "^0.3.4",
     "react-intl-translations-manager": "^5.0.3",
     "react-intl.macro": "^0.3.7",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^5.0.1",
     "react-window-size": "^1.2.2",
     "sass": "^1.52.1",
     "suncalc": "^1.8.0"
