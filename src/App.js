@@ -166,7 +166,7 @@ class App extends Component {
       display: true
     })
 
-    if (this.state.onError && this.state.production) {
+    if (this.state.onError && this.state.production && !['PML', 'PMP'].includes(this.state.player.design.name)) {
       stopDisplay()
     }
   }
@@ -224,12 +224,12 @@ class App extends Component {
 
     console.log(message);
 
-    if (this.state.production && !this.state.display) {
+    if (this.state.production && !this.state.display && !['PML', 'PMP'].includes(this.state.player.design.name)) {
       skipDisplay();
       return
     }
 
-    if (this.state.production && this.state.display) {
+    if (this.state.production && this.state.display && !['PML', 'PMP'].includes(this.state.player.design.name)) {
       stopDisplay();
     }
   }
