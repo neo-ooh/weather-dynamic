@@ -4,15 +4,17 @@
     z-index: 1000;
     width: 100vw;
     max-width: 1920px;
+    padding: 20px;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .75);
 
     color: #FFF;
 
     p {
-        margin: 15px 20px;
-        font-size: 36pt;
+        margin: 0;
+        font-family: "Courier New", sans-serif;
+        font-size: 16pt;
     }
 
     .WDE & {

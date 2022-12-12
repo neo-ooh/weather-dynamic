@@ -174,7 +174,7 @@ class Forecast extends Component {
         component="section"
         id="hours"
         key="hours">
-        { this.state.weatherData.HourlyPeriod.slice(1, 7).map(hour => (
+        { this.props.shouldDisplay && this.state.weatherData.HourlyPeriod.slice(1, 7).map(hour => (
           <Hour data={hour} key={hour.TimestampLocal} />
         ))}
       </ReactCSSTransitionGroup>

@@ -92,7 +92,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.checkCache().then(() => {this.detectLocation()})
+    this.checkCache().then(() => {
+      this.detectLocation()
+      this.log(`Design used: ${this.state.player.design?.name}; Scale: ${this.state.player.design?.scale}`);
+    })
   }
 
   checkCache() {
@@ -126,7 +129,7 @@ class App extends Component {
 
       return parseAdress(decodeURIComponent(window.BroadSignObject.display_unit_address), (error, address) => {
         if (error) {
-          return this.onError('Could not parse adresse: ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
+          return this.onError('Could not parse address: ' + decodeURIComponent(window.BroadSignObject.display_unit_address))
         }
 
         let country = 'CA'
@@ -240,6 +243,12 @@ class App extends Component {
       return null
     }
 
+    const officeDU = [
+      413214128,
+      413214213,
+      500101535,
+    ];
+
     const logs = this.state.production ? null : <Log logs={ this.state.logs } key="logs"/>
 
     if (this.state.localization === null) {
@@ -248,10 +257,13 @@ class App extends Component {
 
     const Scene = this.contents[this.state.content]
 
+    const showLogs = !this.state.production || officeDU.includes(Number(window.BroadSignObject?.display_unit_id));
+
     return (
       <IntlProvider
         locale={ this.state.locale }
         messages={ messages[this.state.locale] }>
+        { showLogs && logs }
         <section id="main-wrapper">
           { this.state.display &&
             <Background key="background"
