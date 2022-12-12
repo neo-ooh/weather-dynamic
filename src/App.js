@@ -63,6 +63,7 @@ class App extends Component {
       player: {
         location: null,
         design: resolveDesign(urlParameters.design || urlParameters.support),
+        isBroadSign: isBroadSignPlayer,
       },
 
       // What to display
@@ -283,6 +284,7 @@ class App extends Component {
                   player={ this.state.player }
                   content={ this.state.content }
                   onWeatherData={ this.onWeatherData }
+                  location={this.state.location}
                   setLocation={ this.setLocation }
                   onContentUpdate={ this.onContentUpdate }
                   onError={ this.onError }
