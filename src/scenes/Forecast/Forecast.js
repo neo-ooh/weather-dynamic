@@ -6,7 +6,7 @@ import Captions from '../Captions/Captions'
 
 import DayColumn from './DayColumn/DayColumn'
 import messages from '../../library/messages'
-import {getSunTimes} from 'library/Backgrounds'
+// import {getSunTimes} from 'library/Backgrounds'
 
 import { injectIntl } from 'react-intl'
 
@@ -114,30 +114,30 @@ class Forecast extends Component {
         key={day.Period}
         player={this.props.player}/>)
 
-    var nowJSX = null
+    let nowJSX = null
 
     if (this.props.player.design.name === 'PML' && this.state.todayForecast != null) {
       const now = this.state.todayForecast
 
-      let geo
-
-      if (this.props.player.isBroadSign) {
-        geo = {
-          lat: window.BroadSignObject.display_unit_lat_long.split(',')[0],
-          lng: window.BroadSignObject.display_unit_lat_long.split(',')[1]
-        }
-      } else {
-        geo = {
-          lat: this.state.weatherData.Location.Latitude,
-          lng: this.state.weatherData.Location.Longitude
-        }
-      }
-
-      const currDate = new Date()
-      const sunTimes = getSunTimes(currDate, geo.lat ,geo.lng)
-
-      const sunsetSunrise = currDate < sunTimes.sunrise ? sunTimes.sunrise : sunTimes.sunset
-      const sunsetSunriseMsg = currDate < sunTimes.sunrise ? 'sunrise' : 'sunset'
+      // let geo
+      //
+      // if (this.props.player.isBroadSign) {
+      //   geo = {
+      //     lat: window.BroadSignObject.display_unit_lat_long.split(',')[0],
+      //     lng: window.BroadSignObject.display_unit_lat_long.split(',')[1]
+      //   }
+      // } else {
+      //   geo = {
+      //     lat: this.state.weatherData.Location.Latitude,
+      //     lng: this.state.weatherData.Location.Longitude
+      //   }
+      // }
+      //
+      // const currDate = new Date()
+      // const sunTimes = getSunTimes(currDate, geo.lat ,geo.lng)
+      //
+      // const sunsetSunrise = currDate < sunTimes.sunrise ? sunTimes.sunrise : sunTimes.sunset
+      // const sunsetSunriseMsg = currDate < sunTimes.sunrise ? 'sunrise' : 'sunset'
 
       nowJSX = (
         <ReactCSSTransitionGroup
@@ -157,10 +157,10 @@ class Forecast extends Component {
             <div className="feels-like">
               { this.props.intl.formatMessage(messages['feelsLikeLng']) } {now.FeelsLikeC}°
             </div>
-            <div className="sunset-sunrise"><span>
+           {/* <div className="sunset-sunrise"><span>
               { this.props.intl.formatMessage(messages[sunsetSunriseMsg]) }&nbsp;
               {sunsetSunrise.toLocaleString('en-CA', {hour: 'numeric', minute: 'numeric', hour12: true})}
-            </span></div>
+            </span></div>*/}
           </div>
         </ReactCSSTransitionGroup>
       )
